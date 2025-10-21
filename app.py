@@ -2,15 +2,20 @@ from flask import Flask, render_template
 import json
 import os
 import sys
-import socket 
+import socket
 
 # Initialize Flask App
 app = Flask(__name__)
 
 # --- REVISED PATH LOGIC ---
-# Use Flask's root_path to reliably locate the 'data' directory 
+# Use Flask's root_path to reliably locate the 'data' directory
 # relative to the app's location, which is robust on Vercel.
 DATA_PATH = os.path.join(app.root_path, 'data', 'content.json')
+
+# --- TEMPORARY DEBUGGING LINES ADDED HERE ---
+print(f"DEBUG: Vercel CWD is: {os.getcwd()}")
+print(f"DEBUG: Calculated DATA_PATH is: {DATA_PATH}")
+# ---------------------------------------------
 
 # --- Load Content Data ---
 site_data = {}
