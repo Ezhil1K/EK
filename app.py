@@ -1,21 +1,36 @@
-# app.py
-
-# ... (imports)
+import json
+import os
+from flask import Flask, render_template
 
 # Initialize Flask App
 app = Flask(__name__)
 
-# --- FINAL GUARANTEED PATH FIX ---
-# The file is now inside the 'templates' folder.
-# We will use the simplest path relative to the app's root.
+# --- FINAL GUARANTEED PATH FIX: Use Flask's built-in Resource Loader ---
+# Assuming 'content.json' is now in the 'templates' folder.
 DATA_PATH = 'templates/content.json' 
 
-# --- Load Content Data ---
 site_data = {}
 try:
-    # Use standard Python open() with the simple relative path
-    # NOTE: You could also use app.open_resource(DATA_PATH) here
-    with open(DATA_PATH, 'r') as f:
+    # Use app.open_resource for a path guaranteed to work by Flask/Vercel
+    with app.open_resource(DATA_PATH, 'r') as f:
         site_data = json.load(f)
-    print("DEBUG: Data loaded successfully.")
-# ... (rest of the try/except block remains the same)
+    # The print statement *should* appear in Vercel's Runtime Logs if successful
+    print("DEBUG: Data loaded successfully using app.open_resource.")
+except FileNotFoundError:
+    # If this still fails, the file was not bundled or the path is wrong.
+    print(f"ERROR: File not found at {DATA_PATH}. Current working directory: {os.getcwd()}")
+    site_data = {"error": "data file missing"}
+except json.JSONDecodeError as e:
+    print(f"ERROR: Failed to decode JSON from {DATA_PATH}: {e}")
+    site_data = {"error": "JSON decode failed"}
+except Exception as e:
+    print(f"CRITICAL ERROR during data loading: {e}")
+    site_data = {"error": "Unknown data loading error"}
+
+# --- Flask Routes ---
+@app.route('/')
+def home():
+    # Pass the loaded data to the template
+    return render_template('index.html', data=site_data)
+
+# ... (other routes)
