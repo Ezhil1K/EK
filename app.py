@@ -1,16 +1,18 @@
-# app.py - FINAL ATTEMPT PATH LOGIC
+# app.py
 
-# ... (rest of imports)
+# ... (rest of the file)
 
-# Initialize Flask App
-app = Flask(__name__)
+# --- FINAL PATH LOGIC ---
+# Using the simple relative path 'data/content.json' 
+# combined with the explicit include in vercel.json is the most reliable method.
+DATA_PATH = 'data/content.json' 
 
-# --- Load Content Data using Flask's open_resource ---
+# --- Load Content Data ---
 site_data = {}
 try:
-    # Use the full path with a leading slash to ensure Vercel looks from the root.
-    with app.open_resource('/data/content.json') as f: 
+    # Use standard Python open() with the simple relative path
+    with open(DATA_PATH, 'r') as f:
         site_data = json.load(f)
-    print("DEBUG: Data loaded successfully using app.open_resource.")
-
-# ... (rest of the try/except block remains the same)
+    print("DEBUG: Data loaded successfully.")
+    
+# ... (rest of the try/except block using DATA_PATH)
