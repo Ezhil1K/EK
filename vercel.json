@@ -2,18 +2,23 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.py",
-      "use": "@vercel/python"
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "templates/content.json"
+        ]
+      }
     }
   ],
   "routes": [
     {
       "src": "/article/particle-counter",
-      "dest": "/templates/article_particle_counter.html"
+      "dest": "app.py"
     },
     {
       "src": "/(.*)",
-      "dest": "index.py"
+      "dest": "app.py"
     }
   ]
 }
