@@ -5,22 +5,20 @@
       "src": "app.py",
       "use": "@vercel/python",
       "config": {
+        "maxLambdaSize": "15mb",
         "includeFiles": [
-          "templates/**"
-          "images/**",     
-          "requirements.txt" 
+          "content.json",
+          "templates/**",
+          "images/**",
+          "requirements.txt"
         ]
       }
     }
   ],
   "routes": [
     {
-      "src": "/article/particle-counter",
-      "dest": "app.py"
-    },
-    {
       "src": "/(.*)",
-      "dest": "app.py"
+      "dest": "/app.py"
     }
   ]
 }
