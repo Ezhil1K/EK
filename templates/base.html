@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title will be provided by the inheriting template (e.g., index.html) -->
+    <title>{% block title %}Technical Specialist - Cleanliness, Rust Prevention & Chemical Technology{% endblock %}</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        /* Custom gradient for the header to ensure text is visible over the video */
+        .header-bg {
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+            transition: background-color 0.3s ease;
+        }
+        .scrolled {
+            background-color: rgba(17, 24, 39, 0.95); /* Darker background when scrolled */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* --- Floating Contact Stack Styling --- */
+        #floating-contact-stack {
+            right: 0.5rem; 
+            top: 50%;
+            opacity: 0;
+            transform: translateY(-50%) translateX(100%); 
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+            z-index: 50; 
+            margin-right: 15px;
+        }
+        
+        #floating-contact-stack.show {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .contact-icon-item {
+            width: 170px; 
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: white;
+            border-radius: 9999px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-decoration: none; 
+            transform: translateX(120px); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            overflow: hidden; 
+        }
+        
+        .contact-icon-item:hover {
+            transform: translateX(12px); 
+            border-radius: 25px; 
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; 
+        }
+        
+        .contact-label {
+            white-space: nowrap;
+            padding-right: 15px; 
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1f2937; 
+        }
+        /* --- End Floating Contact Stack Styling --- */
+    </style>
+
+    <!-- Google Analytics (GA4) Code - Measurement ID: G-365191627 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-365191627"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-365191627');
+    </script>
+    
+    <!-- This block allows specific CSS or script includes for individual pages -->
+    {% block head %}{% endblock %}
+
+</head>
+
+<body>
+    
+    <!-- Floating Contact Icon Stack (Scroll-Triggered) -->
+    <!-- Note: Data (phone_number, etc.) must be passed to all templates that extend base.html -->
+    {% if data is defined %}
+    <div id="floating-contact-stack" class="hidden md:flex fixed flex-col space-y-3">
+        
+        <!-- Phone/Call Icon with Hover Text -->
+        <a href="tel:{{ +91 9978645456 }}" title="Call Me" class="contact-icon-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="2" width="16" height="20" rx="2" fill="#000000"/>
+                <rect x="6" y="4" width="12" height="16" rx="1" fill="#FFFFFF"/>
+                <circle cx="12" cy="6" r="1" fill="#000000"/>
+                <rect x="10" y="20" width="4" height="1" rx="0.5" fill="#000000"/>
+             </svg>
+          </div>
+            <span class="contact-label">Call Us</span>
+        </a>
+        
+        <!-- Email Icon with Hover Text -->
+        <a href="mailto:{{ ezhil.1ek@hotmail.com }}" title="Email Me" class="contact-icon-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6H20C21.1 6 22 6.9 22 8V16C22 17.1 21.1 18 20 18H4C2.9 18 2 17.1 2 16V8C2 6.9 2.9 6 4 6ZM20 8L12 12.5L4 8V16H20V8Z" fill="#0078D4"/>
+                <path d="M12 13.5L20 8H4L12 13.5Z" fill="#005BB5"/>
+                </svg>
+              </div>
+            <span class="contact-label">Email</span>
+        </a>
+        
+        <!-- LinkedIn Icon with Hover Text -->
+        <a href="{{ data.linkedin_url }}" target="_blank" title="Connect on LinkedIn" class="contact-icon-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452H16.894V14.264C16.894 13.211 16.872 11.84 15.374 11.84C13.852 11.84 13.672 13.048 13.672 14.348V20.452H10.119V9H13.672V10.607H13.716C14.148 9.93 15.147 9.2 16.463 9.2C19.016 9.2 20.447 10.989 20.447 14.264V20.452ZM6.528 8.441C5.192 8.441 4.148 7.395 4.148 6.058C4.148 4.721 5.192 3.675 6.528 3.675C7.865 3.675 8.908 4.721 8.908 6.058C8.908 7.395 7.865 8.441 6.528 8.441ZM8.075 20.452H4.522V9H8.075V20.452ZM22.225 0H1.775C0.792 0 0 0.792 0 1.775V22.225C0 23.208 0.792 24 1.775 24H22.225C23.208 24 24 23.208 24 22.225V1.775C24 0.792 23.208 0 22.225 0Z" fill="#0077B5"/>
+                </svg>
+             </div> 
+            <span class="contact-label">LinkedIn</span>
+        </a>
+
+    </div>
+    {% endif %}
+    
+    <!-- Navigation Bar - Fixed and Transparent -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 py-4 header-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="/" class="tracking-widest hover:opacity-80 transition duration-300">
+                <img src="image_cc9191.png" alt="Logo" class="h-8 max-h-8 w-auto">
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex space-x-8">
+                {% set nav_links = [
+                    ("Home", "/"), 
+                    ("About", "/#about"), 
+                    ("Case Studies", "/#casestudies"), 
+                    ("Projects", "/#projects"), 
+                    ("Skills", "/#skills"), 
+                    ("Articles", "/#articles"), 
+                    ("Contact Me", "/#contact")
+                ] %}
+                {% for name, href in nav_links %}
+                    <!-- Updated links to use absolute paths (e.g., /#about) for better navigation across different pages -->
+                    <a href="{{ href }}" class="text-white hover:text-cyan-300 transition duration-300 font-medium text-lg rounded-lg px-2 py-1">
+                        {{ name }}
+                    </a>
+                {% endfor %}
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <nav id="mobile-menu" class="lg:hidden hidden px-4 pt-2 pb-4 bg-gray-800 bg-opacity-95 mt-2 mx-4 rounded-lg shadow-xl">
+             {% for name, href in nav_links %}
+                 <a href="{{ href }}" class="block text-white hover:text-cyan-300 py-2 transition duration-300 border-b border-gray-700 last:border-b-0" onclick="document.getElementById('mobile-menu').classList.add('hidden');">
+                    {{ name }}
+                 </a>
+             {% endfor %}
+        </nav>
+    </header>
+    
+    <!-- This is the main block where content of other pages (like index.html) will be inserted -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-center p-6 text-gray-400">
+        <p>&copy; 2024 Technical Specialist Portfolio | Dynamic Portfolio built with Flask & Vercel</p>
+    </footer>
+
+    <!-- JavaScript for Dynamic Navigation Bar & Floating Contact Panel -->
+    <script>
+        // Debounce function to limit how often a function is called
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('navbar');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            // Element for the new floating contact stack
+            const floatingContactStack = document.getElementById('floating-contact-stack');
+            
+            // Calculate the 50% scroll height trigger point for the floating icons
+            const triggerScrollPoint = window.innerHeight * 0.5;
+
+            // --- 1. Combined Scroll Listener for Navbar and Floating Contact Panel ---
+            const handleScroll = () => {
+                const scrollY = window.scrollY;
+
+                // 1A. Navbar background change
+                if (scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // 1B. Floating Contact Panel visibility logic
+                if (floatingContactStack) {
+                    if (scrollY > triggerScrollPoint) {
+                        // Show the bar
+                        if (!floatingContactStack.classList.contains('show')) {
+                            floatingContactStack.classList.add('show');
+                        }
+                    } else {
+                        // Hide the bar when scrolling back near the top
+                        if (floatingContactStack.classList.contains('show')) {
+                            floatingContactStack.classList.remove('show');
+                        }
+                    }
+                }
+            };
+            
+            // Attach the debounced scroll listener
+            window.addEventListener('scroll', debounce(handleScroll, 10));
+            // Run on load to handle initial position
+            handleScroll();
+
+            // --- 2. Mobile Menu Toggle ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+    
+    <!-- This block allows specific JS for individual pages (e.g., game logic) to be inserted just before </body> -->
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
