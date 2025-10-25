@@ -3,133 +3,153 @@
 {% block title %}Technical Specialist - Cleanliness, Rust Prevention & Chemical - Home{% endblock %}
 
 {% block content %}
-    {% if data is defined %}
-    
-    <!-- Hero Section with Looping Video -->
-    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Background Video -->
-        <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover">
-            <source src="{{ data.hero_video_url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    {% if data is defined %}
+    
+    <!-- Hero Section with Looping Video (Now YouTube Embed) -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Video (YouTube Embed) -->
+        <!-- Note: YouTube embeds require an iframe. The URL is set to autoplay, mute, and loop via parameters in content.json -->
+        <iframe 
+            class="absolute z-0 w-full h-full object-cover pointer-events-none" 
+            src="{{ data.hero_video_url }}"
+            title="Hero Background Video" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
 
-        <!-- Overlay to ensure text visibility -->
-        <div class="absolute inset-0 bg-gray-900 opacity-60 z-10"></div>
+        <!-- Overlay to ensure text visibility -->
+        <div class="absolute inset-0 bg-gray-900 opacity-60 z-10"></div>
 
-        <!-- Hero Content -->
-        <div class="z-20 text-center p-8 max-w-4xl mx-auto">
-            <!-- UPDATED H1 FOR COLOR AND FONT CHANGES -->
-            <h1 class="text-5xl sm:text-7xl font-extrabold text-white leading-tight mb-4 animate-fadeInUp">
-                <span class="text-cyan-400 font-bold">Technical Specialist -</span> 
-                <span class="text-white">Cleanliness & Rust Prevention</span>
-            </h1>
-            <!-- UPDATED P SUBTITLE -->
-            <p class="text-xl sm:text-2xl text-cyan-300 font-light mb-8">
-                Bridging Material Science, Technical Cleanliness, Rust Prevention and Process Engineering
-            </p>
-            <a href="#casestudies" class="inline-block px-8 py-3 bg-cyan-500 text-white font-semibold text-lg rounded-full shadow-lg hover:bg-cyan-600 transition duration-300 transform hover:scale-105">
-                View My Case Studies
-            </a>
-        </div>
-    </section>
+        <!-- Hero Content -->
+        <div class="z-20 text-center p-8 max-w-4xl mx-auto">
+            <h1 class="text-5xl sm:text-7xl font-extrabold text-white leading-tight mb-4 animate-fadeInUp">
+                <span class="text-cyan-400 font-bold">Chemical System -</span> 
+                <span class="text-white">Technical Specialist</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-cyan-300 font-light mb-8">
+                Bridging Material Science, Technical Cleanliness, Rust Prevention and Process Engineering
+            </p>
+            <a href="#casestudies" class="inline-block px-8 py-3 bg-cyan-500 text-white font-semibold text-lg rounded-full shadow-lg hover:bg-cyan-600 transition duration-300 transform hover:scale-105">
+                View My Case Studies
+            </a>
+        </div>
+    </section>
 
-    <!-- Content Sections start here (removed redundant <main> tag) -->
-    <div class="py-16">
-        <!-- About Me Section -->
-        <section id="about" class="container mx-auto px-4 py-12">
-            <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center border-b-4 border-cyan-500 inline-block pb-1">About Me</h2>
-            <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed bg-white p-8 rounded-xl shadow-lg">
-                <p>{{ data.about_me }}</p>
-            </div>
-        </section>
+    <!-- Content Sections start here -->
+    <div class="py-16">
+        <!-- About Me Section -->
+        <section id="about" class="container mx-auto px-4 py-12">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center border-b-4 border-cyan-500 inline-block pb-1">About Me</h2>
+            <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed bg-white p-8 rounded-xl shadow-lg">
+                <p>{{ data.about_me }}</p>
+            </div>
+        </section>
 
-        <!-- Case Studies Section (Dynamic) -->
-        <section id="casestudies" class="bg-gray-100 py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Technical Case Studies & Problem Solving</h2>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    <!-- Jinja2 Loop for Case Studies -->
-                    {% for case in data.casestudies %}
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-cyan-500 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-3">{{ case.title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ case.summary }}</p>
-                        </div>
-                        <a href="{{ case.detail_link }}" class="text-cyan-600 font-medium hover:text-cyan-800 flex items-center self-start">
-                            View Full Analysis 
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
+        <!-- Case Studies Section (Dynamic) -->
+        <section id="casestudies" class="bg-gray-100 py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Technical Case Studies & Problem Solving</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Jinja2 Loop for Case Studies -->
+                    {% for case in data.casestudies %}
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col">
+                        <img src="{{ case.image }}" alt="{{ case.title }} image" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col justify-between flex-grow">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ case.title }}</h3>
+                                <!-- Using 'description' as per new JSON -->
+                                <p class="text-gray-600 mb-4 text-sm">{{ case.description }}</p>
+                            </div>
+                            <!-- Using 'link' as per new JSON -->
+                            <a href="{{ case.link }}" class="text-cyan-600 font-medium hover:text-cyan-800 flex items-center self-start border-b-2 border-cyan-500 pb-1 mt-4">
+                                View Full Analysis 
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
 
-        <!-- Skills Section (Dynamic) -->
-        <section id="skills" class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Core Technical Skills</h2>
-            <div class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-4">
-                <!-- Jinja2 Loop for Skills -->
-                {% for skill in data.skills %}
-                <div class="bg-white p-4 rounded-lg shadow border border-gray-200 text-center hover:bg-cyan-50 transition duration-200">
-                    <p class="font-medium text-gray-800">{{ skill }}</p>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-        
-        <!-- Projects Section (Dynamic) -->
-        <section id="projects" class="bg-gray-100 py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Key Applications & Projects</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Jinja2 Loop for Projects -->
-                    {% for project in data.projects %}
-                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-cyan-400 hover:shadow-xl transition duration-300">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">{{ project.title }}</h3>
-                        <p class="text-gray-600 mb-4">{{ project.summary }}</p>
-                        <a href="{{ project.link }}" class="text-cyan-600 font-medium hover:text-cyan-800">
-                            Explore App
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
+        <!-- Skills Section (Dynamic - Refactored for Categories) -->
+        <section id="skills" class="container mx-auto px-4 py-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Core Technical Skills</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Jinja2 Loop for Skills Categories -->
+                {% for category in data.skills %}
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500 h-full">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">{{ category.category }}</h3>
+                    <ul class="space-y-2 text-gray-600 list-disc list-inside">
+                        <!-- Inner Loop for Skill Items -->
+                        {% for item in category.items %}
+                        <li class="hover:text-cyan-600 transition duration-150 text-sm">{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <!-- Projects Section (Dynamic) -->
+        <section id="projects" class="bg-gray-100 py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Key Applications & Projects</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Jinja2 Loop for Projects -->
+                    {% for project in data.projects %}
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-cyan-400 hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <!-- Using 'name' for title as per new JSON structure -->
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ project.name }}</h3>
+                            <p class="text-sm text-gray-500 mb-4">Year: {{ project.year }}</p>
+                        </div>
+                        <!-- Using 'link' as per new JSON -->
+                        <a href="{{ project.link }}" class="text-cyan-600 font-medium hover:text-cyan-800 flex items-center self-start">
+                            Explore App &rarr;
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
 
-        <!-- Articles Section (Dynamic) -->
-        <section id="articles" class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Technical Articles & Insights</h2>
-            <div class="max-w-4xl mx-auto space-y-6">
-                <!-- Jinja2 Loop for Articles -->
-                {% for article in data.articles %}
-                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition duration-300">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ article.title }}</h3>
-                    <p class="text-gray-600 mb-2">{{ article.summary }}</p>
-                    <a href="{{ article.link }}" class="text-sm text-cyan-500 hover:text-cyan-700 font-medium">Read Article &rarr;</a>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
+        <!-- Articles Section (Dynamic) -->
+        <section id="articles" class="container mx-auto px-4 py-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Technical Articles & Insights</h2>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <!-- Jinja2 Loop for Articles -->
+                {% for article in data.articles %}
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition duration-300 flex justify-between items-center border-l-4 border-cyan-400">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ article.title }}</h3>
+                        <p class="text-sm text-gray-500">{{ article.date }}</p>
+                    </div>
+                    <a href="{{ article.link }}" class="text-sm text-cyan-500 hover:text-cyan-700 font-medium whitespace-nowrap ml-4">Read Article &rarr;</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
 
-        <!-- Contact Me Section -->
-        <section id="contact" class="bg-gray-800 py-16">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl font-bold text-white mb-6">Let's Connect</h2>
-                <p class="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-                    I am available for consultation on technical cleanliness auditing, failure analysis, and chemical process optimization.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <a href="mailto:{{ data.email_address }}" class="px-6 py-3 bg-cyan-500 text-white font-semibold rounded-full hover:bg-cyan-600 transition duration-300 shadow-lg">
-                        Email Me
-                    </a>
-                    <a href="{{ data.linkedin_url }}" target="_blank" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full hover:bg-gray-200 transition duration-300 shadow-lg">
-                        Connect on LinkedIn
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-    {% endif %}
+        <!-- Contact Me Section -->
+        <section id="contact" class="bg-gray-800 py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-white mb-6">Let's Connect</h2>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+                    I am available for consultation on technical cleanliness auditing, failure analysis, and chemical process optimization.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="mailto:{{ data.email_address }}" class="px-6 py-3 bg-cyan-500 text-white font-semibold rounded-full hover:bg-cyan-600 transition duration-300 shadow-lg">
+                        Email Me
+                    </a>
+                    <a href="{{ data.linkedin_url }}" target="_blank" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full hover:bg-gray-200 transition duration-300 shadow-lg">
+                        Connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% endif %}
 {% endblock content %}
