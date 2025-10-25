@@ -1,35 +1,51 @@
 {
-  "about_me": "As a Chemical System Technical Specialist, I bridge the gap between material science and engineering process controls. My expertise lies in applying standards like VDA 19.x and ISO 16232 to achieve technical cleanliness goals, specializing in failure analysis for critical components in hydraulic and mechanical systems. I transform complex analytical data (SEM-EDX, FTIR) into actionable process improvements.",
-  "hero_video_url": "https://cdn.coverr.co/videos/coverr-a-scientist-wearing-a-face-mask-working-on-his-research-in-the-lab-9316/1080p.mp4",
-  "skills": [
-    "Technical Cleanliness (VDA 19.x, ISO 16232)",
-    "Chemical Compatibility & Analysis (FTIR, SEM-EDX)",
-    "Root Cause Analysis (8D, 5-Why)",
-    "Metallurgy & Failure Analysis",
-    "Process Validation & Quality Control",
-    "Python (Flask, Data Analysis)",
-    "Database Management (SQL)"
-  ],
-  "articles": [
-    {"title": "The Role of Sample Preparation in Contaminant Identification", "summary": "A deep dive into best practices for minimizing external contamination during VDA 19 procedures.", "link": "#"},
-    {"title": "Automating Cleanliness Reporting with Python and Pandas", "summary": "How I streamlined data processing from particle counters to reduce reporting time by 75%.", "link": "#"}
-  ],
-  "projects": [
-    {"title": "ChemSure Compliance System", "summary": "A Python web application for real-time GADSL substance search and compliance checking.", "link": "#"},
-    {"title": "MatSync Material Selector", "summary": "A database-driven tool to match compatible material-chemical pairings, reducing premature system failure.", "link": "#"}
-  ],
-  "casestudies": [
-    {
-      "id": "corrosion-reduction",
-      "title": "Case Study: 30% Reduction in Valve Corrosion",
-      "summary": "Used FTIR to identify the specific organic residue causing premature corrosion in hydraulic valves. Implemented a 4-stage cleaning process resulting in quantified savings.",
-      "detail_link": "#"
-    },
-    {
-      "id": "particle-control",
-      "title": "Case Study: Achieving ISO 16232 Level 1 Cleanliness",
-      "summary": "Redesigned the entire component handling and packaging process, resulting in the successful validation of the component to demanding ISO cleanliness standards.",
-      "detail_link": "#"
-    }
-  ]
+    "hero_video_url": "https://cdn.coverr.co/videos/coverr-a-close-up-of-a-metal-part-being-cleaned-by-a-cnc-machine-1191/1080p.mp4",
+    "phone_number": "+11234567890",
+    "email_address": "technical.specialist@example.com",
+    "linkedin_url": "https://www.linkedin.com/in/yourprofile",
+    "about_me": "I am a dedicated Technical Specialist with over a decade of experience in optimizing manufacturing processes, specializing in technical cleanliness standards (VDA 19.1, ISO 16232) and advanced rust prevention strategies. My expertise lies in bridging the gap between material science, chemical engineering, and production line efficiency to eliminate costly failures and improve product longevity in high-precision industries like automotive and aerospace. I use data-driven methods, microscopy, and chemical analysis to solve complex surface contamination and corrosion problems at the root cause.",
+    "casestudies": [
+        {
+            "title": "Eliminating Inter-stage Corrosion in Hydraulic Components",
+            "summary": "Implemented a new non-silicate, pH-neutral cleaner and optimized drying cycle (vacuum assist) to eliminate flash rusting of precision steel parts between machining and heat treatment, reducing scrap rates by 18% quarterly.",
+            "detail_link": "#"
+        },
+        {
+            "title": "Optimizing Cleaning Process for EV Battery Housings",
+            "summary": "Developed a custom particle analysis protocol for aluminum housing surfaces, achieving an ISO 16232 cleanliness level C (150 μm particle maximum) by changing ultrasonic bath frequency and filtration media.",
+            "detail_link": "#"
+        }
+    ],
+    "skills": [
+        "Technical Cleanliness Auditing (VDA 19.1)",
+        "Corrosion Failure Analysis",
+        "Process Optimization (Six Sigma)",
+        "Material Science & Metallurgy",
+        "Chemical Process Engineering",
+        "Jinja2 & Flask Development"
+    ],
+    "projects": [
+        {
+            "title": "Interactive Rust Prediction Tool",
+            "summary": "Developed a Flask application that models corrosion risk based on component material, humidity, and VCI packaging choice.",
+            "link": "#"
+        },
+        {
+            "title": "Automated Cleanliness Reporting System",
+            "summary": "Created Python scripts to process image analysis data (microscopy) and generate VDA 19-compliant reports automatically.",
+            "link": "#"
+        }
+    ],
+    "articles": [
+        {
+            "title": "The Role of VCI in Extended Storage Protection",
+            "summary": "A deep dive into Vapor Corrosion Inhibitor technologies and their selection criteria for various metal alloys.",
+            "link": "#"
+        },
+        {
+            "title": "Understanding Particulate vs. Film Contamination",
+            "summary": "Explaining the difference between measuring non-volatile residue (NVR) and particle counts, and their impact on critical assemblies.",
+            "link": "#"
+        }
+    ]
 }
