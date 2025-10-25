@@ -1,44 +1,53 @@
 {
-    "logo_url": "uploaded:image_d8cfdd.png-ba989038-aed2-412b-abdd-70f0a6810aeb",
-    "hero_video_url": "https://www.youtube.com/embed/g2qJg7z_xHk?autoplay=1&mute=1&controls=0&loop=1&playlist=g2qJg7z_xHk",
-    "about_me": "Hello! I am a Chemical System Technical Specialist, passionate about bridging Material Science, Technical Cleanliness, Rust Prevention, and Process Engineering to deliver high-performance and sustainable industrial solutions. My expertise lies in optimizing chemical processes and ensuring material integrity in complex environments. I thrive on translating intricate scientific principles into practical, impactful solutions.",
-    "casestudies": [
-        {
-            "title": "Optimizing Cleaning Process for Sensitive Automotive Components",
-            "description": "Reduced solvent usage by 40% and improved cleanliness standards (particle count reduction by 95%) for critical engine parts, leading to zero field failures related to contamination.",
-            "link": "#case-study-1",
-            "image": "https://placehold.co/400x250/3498db/ffffff?text=Case+Study+1"
-        },
-        {
-            "title": "Developing a Sustainable Rust Prevention Strategy",
-            "description": "Implemented a VCI (Volatile Corrosion Inhibitor) packaging system that extended the shelf life of highly reactive metal components from 6 months to 2 years, cutting down warranty claims significantly.",
-            "link": "#case-study-2",
-            "image": "https://placehold.co/400x250/2ecc71/ffffff?text=Case+Study+2"
-        },
-        {
-            "title": "Process Engineering for High-Purity Chemical Delivery",
-            "description": "Redesigned the chemical delivery line for a semiconductor manufacturing facility, achieving POU (Point-of-Use) chemical purity levels exceeding industry standards and boosting production yield by 8%.",
-            "link": "#case-study-3",
-            "image": "https://placehold.co/400x250/f39c12/ffffff?text=Case+Study+3"
-        }
-    ],
-    "skills": [
-        {"category": "Material Science", "items": ["Corrosion Kinetics", "Surface Analysis (SEM, EDS)", "Polymer Chemistry"]},
-        {"category": "Chemical Processing", "items": ["Process Optimization", "Chemical Analysis (HPLC, GC)", "Fluid Dynamics"]},
-        {"category": "Technical Cleanliness", "items": ["Particle Analysis (ISO 16232)", "Cleanroom Protocols", "Aqueous/Solvent Cleaning"]},
-        {"category": "Data & Engineering", "items": ["Statistical Process Control (SPC)", "MATLAB/Python Simulation", "Failure Analysis (RCA)"]}
-    ],
-    "projects": [
-        {"name": "Automated Corrosion Testing Rig", "year": "2024", "link": "#project-1"},
-        {"name": "Biodegradable Degreaser Formulation", "year": "2023", "link": "#project-2"},
-        {"name": "IoT Sensor Integration for Process Monitoring", "year": "2022", "link": "#project-3"}
-    ],
-    "articles": [
-        {"title": "The Future of VCI Technology in Global Supply Chains", "date": "Oct 2025", "link": "#article-1"},
-        {"title": "Best Practices for Maintaining Technical Cleanliness in EV Manufacturing", "date": "Sep 2025", "link": "#article-2"},
-        {"title": "Advanced Spectroscopy in Failure Analysis", "date": "Aug 2025", "link": "#article-3"}
-    ],
-    "email_address": "ezhil.1ek@hotmail.com",
-    "linkedin_url": "https://linkedin.com/in/yourprofile",
-    "phone_number": "+91-99-786-45456"
+  "title": "Technical Specialist - Cleanliness & Rust Prevention",
+  "logo_url": "/images/logo_EK.png",
+  "email_address": "ezhil.1ek@example.com",
+  "phone_number": "+91 99786 45456",
+  "linkedin_url": "https://linkedin.com/in/ezhil_k_spec",
+  "hero": {
+    "subtitle": "Precision Engineering for a Rust-Free Future.",
+    "video_id": "dQw4w9WgXcQ", 
+    "tagline": "Specializing in industrial cleaning processes, corrosion control, and chemical management to elevate manufacturing quality."
+  },
+  "about": {
+    "headline": "Over 10 Years Driving Quality and Efficiency",
+    "description": "I am a dedicated Technical Specialist with a decade of experience focused on achieving zero-defect production standards in automotive and heavy machinery sectors. My expertise lies in designing, implementing, and auditing complex cleanliness processes, specifically **rust prevention** using VCI/HIC technologies, and advanced **chemical management** systems (e.g., coolants, cutting oils, pre-treatment). I translate data-driven insights into actionable process improvements that directly reduce costs and prevent warranty claims."
+  },
+  "skills": [
+    "Cleanliness & Rust Prevention (VCI/HIC)",
+    "Chemical Management & Auditing (Coolants, Oils)",
+    "Root Cause Analysis (8D, 5-Why)",
+    "Process Audits (VDA 19.1/19.2)",
+    "SPC & Data Analysis (Minitab, Power BI)",
+    "Six Sigma Green Belt"
+  ],
+  "casestudies": [
+    {
+      "title": "50% Reduction in Corrosion Defects",
+      "summary": "Implemented a multi-stage VCI packaging and process control protocol across 3 supply chain tiers, cutting corrosion-related defects by half in 6 months.",
+      "tags": ["VCI", "Corrosion Control", "Supply Chain Audit"]
+    },
+    {
+      "title": "Coolant Life Extension Project",
+      "summary": "Designed a new monitoring and dosing system for central coolant systems, extending fluid life from 6 to 18 months, saving $150k annually in disposal costs.",
+      "tags": ["Chemical Management", "Sustainability", "Cost Reduction"]
+    }
+  ],
+  "articles": {
+    "particle-counter": {
+      "title": "Selecting the Right Particle Counter for VDA 19.1 Audits",
+      "summary": "A deep dive into the technical specifications and calibration requirements for particle counting in industrial cleanliness assessments.",
+      "template": "article_particle_counter.html"
+    }
+  },
+  "projects": [
+    {
+      "name": "Global VCI Standard Operating Procedure",
+      "description": "Authored and deployed a standardized global SOP for Volatile Corrosion Inhibitor (VCI) application, ensuring compliance across five international plants."
+    },
+    {
+      "name": "Machine Fluid Health Dashboard",
+      "description": "Developed a real-time Power BI dashboard integrating sensor data for key fluid parameters (pH, concentration, conductivity) to enable proactive maintenance."
+    }
+  ]
 }
