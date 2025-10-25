@@ -18,6 +18,75 @@
             background-color: rgba(17, 24, 39, 0.95); /* Darker background when scrolled */
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+
+        /* --- Floating Contact Stack Styling (New CSS) --- */
+        #floating-contact-stack {
+            /* Fixed position, slightly off the screen edge */
+            right: 0.5rem; 
+            top: 50%;
+            /* Initially hidden and slightly off-screen to the right */
+            opacity: 0;
+            transform: translateY(-50%) translateX(100%); 
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+            z-index: 50; 
+            /* Added margin to the right to prevent overlap with scrollbar when icons expand */
+            margin-right: 15px;
+        }
+        
+        #floating-contact-stack.show {
+            /* Slide into view when 'show' class is added by JS */
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* Styles for the individual rounded icon buttons with hover expansion */
+        .contact-icon-item {
+            /* Set the final, expanded width and keep it constant */
+            width: 170px; 
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: white;
+            border-radius: 9999px; /* Start rounded */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-decoration: none; 
+            
+            /* Initial state: Pushed right by 120px (170px width - 50px icon size = 120px hidden content) */
+            transform: translateX(120px); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            overflow: hidden; 
+        }
+        
+        /* State when hovering: Slide LEFT to reveal text (90% slide, leaving 10% or 12px hidden) */
+        .contact-icon-item:hover {
+            /* Slides 90% of the hidden 120px content. 10% of 120px is 12px. */
+            transform: translateX(12px); 
+            border-radius: 25px; /* Adjust border-radius for the 'open' look */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Styling for the Icon container (to maintain fixed size) */
+        .contact-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; 
+        }
+        
+        /* Styling for the Text Label (Now always visible within the button, just slides) */
+        .contact-label {
+            white-space: nowrap;
+            padding-right: 15px; /* Spacing for text */
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1f2937; 
+        }
+        /* --- End Floating Contact Stack Styling --- */
     </style>
 
     <!-- Google Analytics (GA4) Code - Measurement ID: G-365191627 -->
@@ -32,6 +101,31 @@
 
 <body>
     {% if data is defined %}
+    
+    <!-- Floating Contact Icon Stack (Scroll-Triggered) - INSERTED HERE -->
+    <!-- Hidden on small screens, fixed on the right side -->
+    <div id="floating-contact-stack" class="hidden md:flex fixed flex-col space-y-3">
+        
+        <!-- Phone/Call Icon with Hover Text -->
+        <a href="tel:{{ data.phone_number }}" title="Call Me" class="contact-icon-item">
+            <div class="contact-icon">📞</div>
+            <span class="contact-label">Call Us</span>
+        </a>
+        
+        <!-- Email Icon with Hover Text -->
+        <a href="mailto:{{ data.email_address }}" title="Email Me" class="contact-icon-item">
+            <div class="contact-icon">📧</div>
+            <span class="contact-label">Email</span>
+        </a>
+        
+        <!-- LinkedIn Icon with Hover Text -->
+        <a href="{{ data.linkedin_url }}" target="_blank" title="Connect on LinkedIn" class="contact-icon-item">
+            <div class="contact-icon">🔗</div>
+            <span class="contact-label">LinkedIn</span>
+        </a>
+
+    </div>
+    
     <!-- Navigation Bar - Fixed and Transparent -->
     <header id="navbar" class="fixed top-0 left-0 w-full z-50 py-4 header-bg">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -189,10 +283,10 @@
                     I am available for consultation on technical cleanliness auditing, failure analysis, and chemical process optimization.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <a href="mailto:your.email@example.com" class="px-6 py-3 bg-cyan-500 text-white font-semibold rounded-full hover:bg-cyan-600 transition duration-300 shadow-lg">
+                    <a href="mailto:{{ data.email_address }}" class="px-6 py-3 bg-cyan-500 text-white font-semibold rounded-full hover:bg-cyan-600 transition duration-300 shadow-lg">
                         Email Me
                     </a>
-                    <a href="#" target="_blank" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full hover:bg-gray-200 transition duration-300 shadow-lg">
+                    <a href="{{ data.linkedin_url }}" target="_blank" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full hover:bg-gray-200 transition duration-300 shadow-lg">
                         Connect on LinkedIn
                     </a>
                 </div>
@@ -205,24 +299,64 @@
     </footer>
     {% endif %}
 
-    <!-- JavaScript for Dynamic Navigation Bar & Mobile Menu -->
+    <!-- JavaScript for Dynamic Navigation Bar & Floating Contact Panel -->
     <script>
-        // Navbar transparency and scroll effect
+        // Debounce function to limit how often a function is called
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const navbar = document.getElementById('navbar');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
+            // Element for the new floating contact stack
+            const floatingContactStack = document.getElementById('floating-contact-stack');
+            
+            // Calculate the 50% scroll height trigger point for the floating icons
+            const triggerScrollPoint = window.innerHeight * 0.5;
 
-            // Scroll listener for background change
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
+            // --- 1. Combined Scroll Listener for Navbar and Floating Contact Panel ---
+            const handleScroll = () => {
+                const scrollY = window.scrollY;
+
+                // 1A. Navbar background change
+                if (scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
-            });
 
-            // Toggle mobile menu
+                // 1B. Floating Contact Panel visibility logic
+                if (floatingContactStack) {
+                    if (scrollY > triggerScrollPoint) {
+                        // Show the bar
+                        if (!floatingContactStack.classList.contains('show')) {
+                            floatingContactStack.classList.add('show');
+                        }
+                    } else {
+                        // Hide the bar when scrolling back near the top
+                        if (floatingContactStack.classList.contains('show')) {
+                            floatingContactStack.classList.remove('show');
+                        }
+                    }
+                }
+            };
+            
+            // Attach the debounced scroll listener
+            window.addEventListener('scroll', debounce(handleScroll, 10));
+            // Run on load to handle initial position
+            handleScroll();
+
+            // --- 2. Mobile Menu Toggle ---
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
