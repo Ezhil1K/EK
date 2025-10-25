@@ -52,8 +52,8 @@
                 <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Technical Case Studies & Problem Solving</h2>
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Jinja2 Loop for Case Studies -->
-                    {% for case in data.casestudies %}
+                    <!-- Jinja2 Loop for Case Studies - Added |default([]) for safety -->
+                    {% for case in data.casestudies | default([]) %}
                     <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col">
                         <img src="{{ case.image }}" alt="{{ case.title }} image" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col justify-between flex-grow">
@@ -78,13 +78,13 @@
         <section id="skills" class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Core Technical Skills</h2>
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Jinja2 Loop for Skills Categories -->
-                {% for category in data.skills %}
+                <!-- Jinja2 Loop for Skills Categories - Added |default([]) for safety -->
+                {% for category in data.skills | default([]) %}
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500 h-full">
                     <h3 class="text-xl font-bold text-gray-800 mb-4">{{ category.category }}</h3>
                     <ul class="space-y-2 text-gray-600 list-disc list-inside">
-                        <!-- Inner Loop for Skill Items -->
-                        {% for item in category.items %}
+                        <!-- Inner Loop for Skill Items - Added |default([]) for safety -->
+                        {% for item in category.items | default([]) %}
                         <li class="hover:text-cyan-600 transition duration-150 text-sm">{{ item }}</li>
                         {% endfor %}
                     </ul>
@@ -98,8 +98,8 @@
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Key Applications & Projects</h2>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Jinja2 Loop for Projects -->
-                    {% for project in data.projects %}
+                    <!-- Jinja2 Loop for Projects - Added |default([]) for safety -->
+                    {% for project in data.projects | default([]) %}
                     <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-cyan-400 hover:shadow-xl transition duration-300 flex flex-col justify-between">
                         <div>
                             <!-- Using 'name' for title as per new JSON structure -->
@@ -120,8 +120,8 @@
         <section id="articles" class="container mx-auto px-4 py-16">
             <h2 class="text-4xl font-bold text-gray-800 mb-12 text-center">Technical Articles & Insights</h2>
             <div class="max-w-4xl mx-auto space-y-6">
-                <!-- Jinja2 Loop for Articles -->
-                {% for article in data.articles %}
+                <!-- Jinja2 Loop for Articles - Added |default([]) for safety -->
+                {% for article in data.articles | default([]) %}
                 <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition duration-300 flex justify-between items-center border-l-4 border-cyan-400">
                     <div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ article.title }}</h3>
