@@ -1,71 +1,64 @@
-import json
 import os
-from flask import Flask, render_template
-from datetime import datetime
+import json
+from flask import Flask, render_template, abort
 
-# Initialize Flask App
-# Note: For Vercel deployment, the application entry point should remain 'app'
-app = Flask(__name__)
+# Set up the Flask application instance
+app = Flask(__name__, template_folder='templates', static_folder='images')
 
-# Define the path to the data file
-DATA_PATH = 'templates/content.json'
+# Define the path to the content JSON file
+CONTENT_PATH = os.path.join(os.path.dirname(__file__), 'content.json')
 
-# --- Safe Default Data Structure ---
-# This dictionary ensures that the Jinja templates always have values for the keys
-# they expect, preventing KeyErrors even if content.json fails to load.
-def get_safe_default_data(error_msg="Check content.json"):
-    return {
-        "logo_url": "https://placehold.co/32x32/10b981/ffffff?text=EK", # New safe default
-        "hero_video_url": "",
-        "about_me": f"Data Loading Error: {error_msg}. Please update content.json.",
-        "casestudies": [],
-        "skills": [],
-        "projects": [],
-        "articles": [],
-        "email_address": "ezhil.1ek@hotmail.com", # Safe default for template rendering
-        "linkedin_url": "#",
-        "phone_number": "+91-99-786-45456", # Safe default for template rendering
-        "current_year": datetime.now().year, # Safe default for footer
-        "error_message": error_msg
-    }
+def load_data():
+    """Load the content data from content.json."""
+    try:
+        with open(CONTENT_PATH, 'r') as f:
+            data = json.load(f)
+            # Ensure the current year is available for the footer
+            data['current_year'] = 2025 # Placeholder/default year
+            return data
+    except FileNotFoundError:
+        print(f"Error: {CONTENT_PATH} not found.")
+        return {}
+    except json.JSONDecodeError:
+        print(f"Error: Invalid JSON format in {CONTENT_PATH}.")
+        return {}
 
-# --- Data Loading Logic ---
-# Load data globally once when the application starts
-site_data = get_safe_default_data("Initialising...")
-try:
-    # Use app.open_resource for a path guaranteed to work by Flask/Vercel
-    # Added 'encoding' for safety
-    with app.open_resource(DATA_PATH, 'r', encoding='utf-8') as f:
-        site_data = json.load(f)
-        # Ensure current_year is available in loaded data if not explicitly set in JSON
-        if 'current_year' not in site_data:
-             site_data['current_year'] = datetime.now().year
-
-    print("DEBUG: Data loaded successfully using app.open_resource.")
-except FileNotFoundError:
-    error_msg = f"File not found at {DATA_PATH}. Current working directory: {os.getcwd()}"
-    print(f"ERROR: {error_msg}")
-    site_data = get_safe_default_data(error_msg)
-except json.JSONDecodeError as e:
-    error_msg = f"Failed to decode JSON from {DATA_PATH}: {e}"
-    print(f"ERROR: {error_msg}")
-    site_data = get_safe_default_data(error_msg)
-except Exception as e:
-    error_msg = f"CRITICAL ERROR during data loading: {e}"
-    print(f"CRITICAL ERROR: {error_msg}")
-    site_data = get_safe_default_data(error_msg)
-
-
-# --- Flask Routes ---
 @app.route('/')
-def home():
-    # Defensive check: ensure the data object being passed is always a dictionary,
-    # even if an unexpected error occurred during global loading.
-    final_data = site_data if isinstance(site_data, dict) else get_safe_default_data("Route-level Data Fail")
-    
-    # Pass the loaded data (which is guaranteed to have the minimum required keys)
-    return render_template('index.html', data=final_data)
+def index():
+    """Route for the home page."""
+    data = load_data()
+    return render_template('index.html', data=data)
 
-# If running locally (not strictly necessary for Vercel, but good practice)
+@app.route('/article/<slug>')
+def article(slug):
+    """Route for specific articles, using the slug for routing."""
+    data = load_data()
+    # Check if the requested article slug exists in the articles dictionary in content.json
+    if slug in data.get('articles', {}):
+        template_name = data['articles'][slug].get('template', f'article_{slug}.html')
+        
+        # Check if the specific template file exists
+        if not os.path.exists(os.path.join(app.template_folder, template_name)):
+            # If the template file is missing, return 404
+            return abort(404) 
+
+        return render_template(template_name, data=data)
+    else:
+        # If the slug is not found in content.json, return 404
+        return abort(404)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """Custom error handler for 404 Not Found errors."""
+    data = load_data()
+    return render_template('404.html', data=data), 404
+
+# Vercel requires this standard handler in a file named 'api/index.py'
+# However, based on your file structure, 'app.py' seems to be the main entry point 
+# which Vercel will wrap if 'api/index.py' is missing or points to it.
+# If you are using 'api/index.py', the content of that file should simply be:
+# from app import app
+# 
+# Otherwise, for local testing:
 if __name__ == '__main__':
     app.run(debug=True)
