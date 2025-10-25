@@ -1,51 +1,44 @@
 {
-    "hero_video_url": "https://cdn.coverr.co/videos/coverr-a-close-up-of-a-metal-part-being-cleaned-by-a-cnc-machine-1191/1080p.mp4",
-    "phone_number": "+11234567890",
-    "email_address": "technical.specialist@example.com",
-    "linkedin_url": "https://www.linkedin.com/in/yourprofile",
-    "about_me": "I am a dedicated Technical Specialist with over a decade of experience in optimizing manufacturing processes, specializing in technical cleanliness standards (VDA 19.1, ISO 16232) and advanced rust prevention strategies. My expertise lies in bridging the gap between material science, chemical engineering, and production line efficiency to eliminate costly failures and improve product longevity in high-precision industries like automotive and aerospace. I use data-driven methods, microscopy, and chemical analysis to solve complex surface contamination and corrosion problems at the root cause.",
+    "logo_url": "uploaded:image_d8cfdd.png-ba989038-aed2-412b-abdd-70f0a6810aeb",
+    "hero_video_url": "https://www.youtube.com/embed/g2qJg7z_xHk?autoplay=1&mute=1&controls=0&loop=1&playlist=g2qJg7z_xHk",
+    "about_me": "Hello! I am a Chemical System Technical Specialist, passionate about bridging Material Science, Technical Cleanliness, Rust Prevention, and Process Engineering to deliver high-performance and sustainable industrial solutions. My expertise lies in optimizing chemical processes and ensuring material integrity in complex environments. I thrive on translating intricate scientific principles into practical, impactful solutions.",
     "casestudies": [
         {
-            "title": "Eliminating Inter-stage Corrosion in Hydraulic Components",
-            "summary": "Implemented a new non-silicate, pH-neutral cleaner and optimized drying cycle (vacuum assist) to eliminate flash rusting of precision steel parts between machining and heat treatment, reducing scrap rates by 18% quarterly.",
-            "detail_link": "#"
+            "title": "Optimizing Cleaning Process for Sensitive Automotive Components",
+            "description": "Reduced solvent usage by 40% and improved cleanliness standards (particle count reduction by 95%) for critical engine parts, leading to zero field failures related to contamination.",
+            "link": "#case-study-1",
+            "image": "https://placehold.co/400x250/3498db/ffffff?text=Case+Study+1"
         },
         {
-            "title": "Optimizing Cleaning Process for EV Battery Housings",
-            "summary": "Developed a custom particle analysis protocol for aluminum housing surfaces, achieving an ISO 16232 cleanliness level C (150 μm particle maximum) by changing ultrasonic bath frequency and filtration media.",
-            "detail_link": "#"
+            "title": "Developing a Sustainable Rust Prevention Strategy",
+            "description": "Implemented a VCI (Volatile Corrosion Inhibitor) packaging system that extended the shelf life of highly reactive metal components from 6 months to 2 years, cutting down warranty claims significantly.",
+            "link": "#case-study-2",
+            "image": "https://placehold.co/400x250/2ecc71/ffffff?text=Case+Study+2"
+        },
+        {
+            "title": "Process Engineering for High-Purity Chemical Delivery",
+            "description": "Redesigned the chemical delivery line for a semiconductor manufacturing facility, achieving POU (Point-of-Use) chemical purity levels exceeding industry standards and boosting production yield by 8%.",
+            "link": "#case-study-3",
+            "image": "https://placehold.co/400x250/f39c12/ffffff?text=Case+Study+3"
         }
     ],
     "skills": [
-        "Technical Cleanliness Auditing (VDA 19.1)",
-        "Corrosion Failure Analysis",
-        "Process Optimization (Six Sigma)",
-        "Material Science & Metallurgy",
-        "Chemical Process Engineering",
-        "Jinja2 & Flask Development"
+        {"category": "Material Science", "items": ["Corrosion Kinetics", "Surface Analysis (SEM, EDS)", "Polymer Chemistry"]},
+        {"category": "Chemical Processing", "items": ["Process Optimization", "Chemical Analysis (HPLC, GC)", "Fluid Dynamics"]},
+        {"category": "Technical Cleanliness", "items": ["Particle Analysis (ISO 16232)", "Cleanroom Protocols", "Aqueous/Solvent Cleaning"]},
+        {"category": "Data & Engineering", "items": ["Statistical Process Control (SPC)", "MATLAB/Python Simulation", "Failure Analysis (RCA)"]}
     ],
     "projects": [
-        {
-            "title": "Interactive Rust Prediction Tool",
-            "summary": "Developed a Flask application that models corrosion risk based on component material, humidity, and VCI packaging choice.",
-            "link": "#"
-        },
-        {
-            "title": "Automated Cleanliness Reporting System",
-            "summary": "Created Python scripts to process image analysis data (microscopy) and generate VDA 19-compliant reports automatically.",
-            "link": "#"
-        }
+        {"name": "Automated Corrosion Testing Rig", "year": "2024", "link": "#project-1"},
+        {"name": "Biodegradable Degreaser Formulation", "year": "2023", "link": "#project-2"},
+        {"name": "IoT Sensor Integration for Process Monitoring", "year": "2022", "link": "#project-3"}
     ],
     "articles": [
-        {
-            "title": "The Role of VCI in Extended Storage Protection",
-            "summary": "A deep dive into Vapor Corrosion Inhibitor technologies and their selection criteria for various metal alloys.",
-            "link": "#"
-        },
-        {
-            "title": "Understanding Particulate vs. Film Contamination",
-            "summary": "Explaining the difference between measuring non-volatile residue (NVR) and particle counts, and their impact on critical assemblies.",
-            "link": "#"
-        }
-    ]
+        {"title": "The Future of VCI Technology in Global Supply Chains", "date": "Oct 2025", "link": "#article-1"},
+        {"title": "Best Practices for Maintaining Technical Cleanliness in EV Manufacturing", "date": "Sep 2025", "link": "#article-2"},
+        {"title": "Advanced Spectroscopy in Failure Analysis", "date": "Aug 2025", "link": "#article-3"}
+    ],
+    "email_address": "ezhil.1ek@hotmail.com",
+    "linkedin_url": "https://linkedin.com/in/yourprofile",
+    "phone_number": "+91-99-786-45456"
 }
