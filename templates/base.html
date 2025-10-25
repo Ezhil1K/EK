@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CRITICAL FIX: Correctly defining the Jinja 'title' block to prevent 500 server error -->
+    <!-- Defines a Jinja block for the page title, allowing child templates to override this default title. This also fixes the critical 500 server error caused by incorrect Jinja syntax. -->
     <title>{% block title %}Technical Specialist - Cleanliness, Rust Prevention & Chemical{% endblock %}</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
