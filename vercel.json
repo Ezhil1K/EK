@@ -6,7 +6,9 @@
       "use": "@vercel/python",
       "config": {
         "includeFiles": [
-          "templates/content.json"
+          "templates/**",  <-- **FIXED: Includes ALL files in the templates directory**
+          "images/**",     <-- **RECOMMENDED: Include all images/assets**
+          "requirements.txt" <-- **RECOMMENDED: Include dependencies file**
         ]
       }
     }
