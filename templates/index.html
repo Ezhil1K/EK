@@ -3,15 +3,15 @@
 {% block title %}Technical Specialist - Cleanliness, Rust Prevention & Chemical - Home{% endblock %}
 
 {% block content %}
+    <!-- Data check is handled in app.py, but we use defensive filters on all loops -->
     {% if data is defined %}
     
     <!-- Hero Section with Looping Video (Now YouTube Embed) -->
     <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Video (YouTube Embed) -->
-        <!-- Note: YouTube embeds require an iframe. The URL is set to autoplay, mute, and loop via parameters in content.json -->
         <iframe 
             class="absolute z-0 w-full h-full object-cover pointer-events-none" 
-            src="{{ data.hero_video_url }}"
+            src="{{ data.hero_video_url | default('') }}"
             title="Hero Background Video" 
             frameborder="0" 
             allow="autoplay; encrypted-media; gyroscope; picture-in-picture" 
@@ -42,7 +42,7 @@
         <section id="about" class="container mx-auto px-4 py-12">
             <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center border-b-4 border-cyan-500 inline-block pb-1">About Me</h2>
             <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed bg-white p-8 rounded-xl shadow-lg">
-                <p>{{ data.about_me }}</p>
+                <p>{{ data.about_me | default('Loading about me content...') }}</p>
             </div>
         </section>
 
@@ -55,15 +55,13 @@
                     <!-- Jinja2 Loop for Case Studies - Added |default([]) for safety -->
                     {% for case in data.casestudies | default([]) %}
                     <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col">
-                        <img src="{{ case.image }}" alt="{{ case.title }} image" class="w-full h-48 object-cover">
+                        <img src="{{ case.image | default('https://placehold.co/400x250/2563eb/ffffff?text=Image') }}" alt="{{ case.title | default('Case Study') }} image" class="w-full h-48 object-cover">
                         <div class="p-6 flex flex-col justify-between flex-grow">
                             <div>
-                                <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ case.title }}</h3>
-                                <!-- Using 'description' as per new JSON -->
-                                <p class="text-gray-600 mb-4 text-sm">{{ case.description }}</p>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ case.title | default('Untitled Case Study') }}</h3>
+                                <p class="text-gray-600 mb-4 text-sm">{{ case.description | default('No summary available.') }}</p>
                             </div>
-                            <!-- Using 'link' as per new JSON -->
-                            <a href="{{ case.link }}" class="text-cyan-600 font-medium hover:text-cyan-800 flex items-center self-start border-b-2 border-cyan-500 pb-1 mt-4">
+                            <a href="{{ case.link | default('#') }}" class="text-cyan-600 font-medium hover:text-cyan-800 flex items-center self-start border-b-2 border-cyan-500 pb-1 mt-4">
                                 View Full Analysis 
                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </a>
@@ -81,7 +79,7 @@
                 <!-- Jinja2 Loop for Skills Categories - Added |default([]) for safety -->
                 {% for category in data.skills | default([]) %}
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500 h-full">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">{{ category.category }}</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">{{ category.category | default('Skill Category') }}</h3>
                     <ul class="space-y-2 text-gray-600 list-disc list-inside">
                         <!-- Inner Loop for Skill Items - Added |default([]) for safety -->
                         {% for item in category.items | default([]) %}
@@ -103,11 +101,11 @@
                     <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-cyan-400 hover:shadow-xl transition duration-300 flex flex-col justify-between">
                         <div>
                             <!-- Using 'name' for title as per new JSON structure -->
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ project.name }}</h3>
-                            <p class="text-sm text-gray-500 mb-4">Year: {{ project.year }}</p>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ project.name | default('Untitled Project') }}</h3>
+                            <p class="text-sm text-gray-500 mb-4">Year: {{ project.year | default('N/A') }}</p>
                         </div>
                         <!-- Using 'link' as per new JSON -->
-                        <a href="{{ project.link }}" class="text-cyan-600 font-medium hover:text-cyan-800 flex items-center self-start">
+                        <a href="{{ project.link | default('#') }}" class="text-cyan-600 font-medium hover:text-cyan-800 flex items-center self-start">
                             Explore App &rarr;
                         </a>
                     </div>
@@ -124,10 +122,10 @@
                 {% for article in data.articles | default([]) %}
                 <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition duration-300 flex justify-between items-center border-l-4 border-cyan-400">
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ article.title }}</h3>
-                        <p class="text-sm text-gray-500">{{ article.date }}</p>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ article.title | default('Untitled Article') }}</h3>
+                        <p class="text-sm text-gray-500">{{ article.date | default('Unknown Date') }}</p>
                     </div>
-                    <a href="{{ article.link }}" class="text-sm text-cyan-500 hover:text-cyan-700 font-medium whitespace-nowrap ml-4">Read Article &rarr;</a>
+                    <a href="{{ article.link | default('#') }}" class="text-sm text-cyan-500 hover:text-cyan-700 font-medium whitespace-nowrap ml-4">Read Article &rarr;</a>
                 </div>
                 {% endfor %}
             </div>
@@ -141,10 +139,10 @@
                     I am available for consultation on technical cleanliness auditing, failure analysis, and chemical process optimization.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <a href="mailto:{{ data.email_address }}" class="px-6 py-3 bg-cyan-500 text-white font-semibold rounded-full hover:bg-cyan-600 transition duration-300 shadow-lg">
+                    <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="px-6 py-3 bg-cyan-500 text-white font-semibold rounded-full hover:bg-cyan-600 transition duration-300 shadow-lg">
                         Email Me
                     </a>
-                    <a href="{{ data.linkedin_url }}" target="_blank" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full hover:bg-gray-200 transition duration-300 shadow-lg">
+                    <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full hover:bg-gray-200 transition duration-300 shadow-lg">
                         Connect on LinkedIn
                     </a>
                 </div>
