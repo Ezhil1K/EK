@@ -45,21 +45,21 @@
         /* 1. Custom Red Hover Effect for Navigation Links */
         .main-nav-link:hover,
         .main-nav-link:focus {
-            color: #E74C3C !important; /* Specific red color (Hex for a good red) */
+            color: #E74C3C !important; /* Specific red color */
         }
 
-        /* 2. Cookie Consent Banner Styles */
+        /* 2. Cookie Consent Banner Styles (Fixed Red Button) */
         #cookie-consent-banner {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Subtle dark background */
+            background-color: rgba(0, 0, 0, 0.9);
             color: white;
             padding: 15px 25px;
             text-align: center;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 9999; /* High Z-index to ensure visibility */
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -68,7 +68,7 @@
         }
 
         #cookie-consent-banner.hidden {
-            transform: translateY(100%); /* Hides the banner off-screen */
+            transform: translateY(100%);
         }
 
         #cookie-consent-banner p {
@@ -82,7 +82,7 @@
         }
 
         #accept-cookies-btn {
-            background-color: #10b981; /* Tailwind Green 600 */
+            background-color: #E74C3C; /* RED THEME */
             color: white;
             border: none;
             padding: 8px 15px;
@@ -90,11 +90,11 @@
             border-radius: 4px;
             transition: background-color 0.2s;
             font-weight: 600;
-            flex-shrink: 0; /* Prevents button from shrinking */
+            flex-shrink: 0;
         }
 
         #accept-cookies-btn:hover {
-            background-color: #059669; /* Darker Green */
+            background-color: #C0392B; /* Darker Red */
         }
         /* END: Requested Style Changes */
         /* ---------------------------------------------------- */
@@ -106,7 +106,7 @@
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900">
                 <img
-                    rc="{{ url_for('static', filename='static/images/Logo_EK.png') }}"
+                    src="{{ url_for('static', filename='images/Logo_EK.png') }}"
                     alt="Ezhil K Logo"
                     class="w-8 h-8 rounded-full"
                     >
@@ -133,8 +133,8 @@
             <div class="space-y-4">
                 <p class="text-xl font-semibold">Technical Specialist - Ezhil</p>
                 <div class="flex justify-center space-x-6 text-gray-400">
-                    <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="hover:text-cyan-400 transition duration-200">Email</a>
-                    <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="hover:text-cyan-400 transition duration-200">LinkedIn</a>
+                    <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="hover:text-[#E74C3C] transition duration-200">Email</a>
+                    <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="hover:text-[#E74C3C] transition duration-200">LinkedIn</a>
                     <p class="hidden sm:inline-block">Phone: {{ data.phone_number | default('N/A') }}</p>
                 </div>
             </div>
