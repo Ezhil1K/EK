@@ -97,7 +97,7 @@
             background-color: #C0392B; /* Darker Red */
         }
         
-        /* --- START: New Floating Contact Stack CSS --- */
+        /* --- START: Floating Contact Stack CSS --- */
         .contact-item {
             display: flex;
             align-items: center;
@@ -131,15 +131,13 @@
                 margin-left: 8px; /* ml-2 equivalent */
             }
         }
-        /* --- END: New Floating Contact Stack CSS --- */
+        /* --- END: Floating Contact Stack CSS --- */
 
         /* END: Requested Style Changes */
         /* ---------------------------------------------------- */
     </style>
 </head>
-<body class="bg-white text-gray-800">
-
-    <header class="sticky top-0 z-50 bg-white shadow-md">
+<body class="bg-white text-gray-900"> <header class="sticky top-0 z-50 bg-white shadow-md">
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900">
                 <img
@@ -150,12 +148,12 @@
             </a>
 
             <div class="space-x-6 hidden md:flex">
-                <a href="#about" class="main-nav-link text-gray-600 font-medium transition duration-200">About</a>
-                <a href="#casestudies" class="main-nav-link text-gray-600 font-medium transition duration-200">Case Studies</a>
-                <a href="#skills" class="main-nav-link text-gray-600 font-medium transition duration-200">Skills</a>
-                <a href="#projects" class="main-nav-link text-gray-600 font-medium transition duration-200">Projects</a>
-                <a href="#articles" class="main-nav-link text-gray-600 font-medium transition duration-200">Articles</a>
-                <a href="#contact" class="main-nav-link text-gray-600 font-medium transition duration-200">Contact</a>
+                <a href="#about" class="main-nav-link text-gray-900 font-medium transition duration-200">About</a>
+                <a href="#casestudies" class="main-nav-link text-gray-900 font-medium transition duration-200">Case Studies</a>
+                <a href="#skills" class="main-nav-link text-gray-900 font-medium transition duration-200">Skills</a>
+                <a href="#projects" class="main-nav-link text-gray-900 font-medium transition duration-200">Projects</a>
+                <a href="#articles" class="main-nav-link text-gray-900 font-medium transition duration-200">Articles</a>
+                <a href="#contact" class="main-nav-link text-gray-900 font-medium transition duration-200">Contact</a>
             </div>
             
         </nav>
@@ -201,6 +199,7 @@
             <span class="ml-3 hidden sm:inline-block">LinkedIn</span>
         </a>
     </div>
+
     <div id="cookie-consent-banner" class="cookie-banner hidden">
         <p>
             This site uses cookies to enhance user experience. By using this website, you agree to our 
@@ -234,7 +233,6 @@
             const contactStack = document.getElementById('contact-stack');
             
             // Calculate 50% of the entire page content height
-            // We use document.documentElement.scrollHeight as a safer method for cross-browser compatibility
             const scrollThreshold = document.documentElement.scrollHeight * 0.5; 
 
             function checkScroll() {
