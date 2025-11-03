@@ -1,9 +1,11 @@
 import os
 import json
+from datetime import datetime # 1. Import datetime for accurate year
 from flask import Flask, render_template, abort
 
 # Set up the Flask application instance
-app = Flask(__name__, template_folder='templates', static_folder='images')
+# 3. Changed static_folder to 'static' for standard convention
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 # Define the path to the content JSON file
 CONTENT_PATH = os.path.join(os.path.dirname(__file__), 'content.json')
@@ -13,8 +15,8 @@ def load_data():
     try:
         with open(CONTENT_PATH, 'r') as f:
             data = json.load(f)
-            # Ensure the current year is available for the footer
-            data['current_year'] = 2025 # Placeholder/default year
+            # 1. Dynamically set the current year for the footer
+            data['current_year'] = datetime.now().year 
             return data
     except FileNotFoundError:
         print(f"Error: {CONTENT_PATH} not found.")
@@ -29,15 +31,25 @@ def index():
     data = load_data()
     return render_template('index.html', data=data)
 
+# 2. Add the required route for the Privacy Policy page
+@app.route('/privacy-policy')
+def privacy_policy():
+    """Route for the Privacy Policy page."""
+    data = load_data()
+    # The template for the policy page must be named 'privacy_policy.html'
+    return render_template('privacy_policy.html', data=data)
+
 @app.route('/article/<slug>')
 def article(slug):
     """Route for specific articles, using the slug for routing."""
     data = load_data()
     # Check if the requested article slug exists in the articles dictionary in content.json
     if slug in data.get('articles', {}):
+        # Safely get the template name, defaulting to a predictable format
         template_name = data['articles'][slug].get('template', f'article_{slug}.html')
         
         # Check if the specific template file exists
+        # NOTE: Flask's render_template handles this check, but checking the file path directly is good for debugging/safeguarding against misconfiguration.
         if not os.path.exists(os.path.join(app.template_folder, template_name)):
             # If the template file is missing, return 404
             return abort(404) 
@@ -51,6 +63,7 @@ def article(slug):
 def page_not_found(e):
     """Custom error handler for 404 Not Found errors."""
     data = load_data()
+    # The 404.html template will also inherit the cookie banner from base.html
     return render_template('404.html', data=data), 404
 
 # Vercel requires this standard handler in a file named 'api/index.py'
@@ -61,4 +74,5 @@ def page_not_found(e):
 # 
 # Otherwise, for local testing:
 if __name__ == '__main__':
+    # Set debug to True for local development
     app.run(debug=True)
