@@ -105,7 +105,11 @@
     <header class="sticky top-0 z-50 bg-white shadow-md">
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900">
-                <img src="{{ data.logo_url | default('https://placehold.co/32x32/10b981/ffffff?text=EK') }}" alt="Logo" class="w-8 h-8 rounded-full">
+                <img
+                    rc="{{ url_for('static', filename='images/Logo_EK.png') }}"
+                    alt="Ezhil K Logo"
+                    class="w-8 h-8 rounded-full"
+                    >
             </a>
 
             <div class="space-x-6 hidden md:flex">
