@@ -18,6 +18,7 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
+        /* Fade In Animation */
         .animate-fadeInUp {
             animation: fadeInUp 1s ease-out;
         }
@@ -40,7 +41,7 @@
         }
         
         /* ---------------------------------------------------- */
-        /* START: Requested Style Changes */
+        /* START: Custom Global Styles */
         
         /* 1. Custom Red Hover Effect for Navigation Links */
         .main-nav-link:hover,
@@ -48,7 +49,7 @@
             color: #E74C3C !important; /* Specific red color */
         }
 
-        /* 2. Cookie Consent Banner Styles (Fixed Red Button) */
+        /* 2. Cookie Consent Banner Styles */
         #cookie-consent-banner {
             position: fixed;
             bottom: 0;
@@ -97,7 +98,7 @@
             background-color: #C0392B; /* Darker Red */
         }
         
-        /* --- START: Floating Contact Stack CSS --- */
+        /* 3. Floating Contact Stack CSS */
         .contact-item {
             display: flex;
             align-items: center;
@@ -131,9 +132,7 @@
                 margin-left: 8px; /* ml-2 equivalent */
             }
         }
-        /* --- END: Floating Contact Stack CSS --- */
-
-        /* END: Requested Style Changes */
+        /* END: Custom Global Styles */
         /* ---------------------------------------------------- */
     </style>
 </head>
@@ -183,19 +182,19 @@
         
         <a href="tel:{{ data.phone_number | default('000-000-0000') }}" 
            class="contact-item bg-gray-900 text-white hover:bg-[#E74C3C] transition duration-300">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
             <span class="ml-3 hidden sm:inline-block">Phone</span>
         </a>
 
         <a href="mailto:{{ data.email_address | default('contact@example.com') }}" 
            class="contact-item bg-gray-900 text-white hover:bg-[#E74C3C] transition duration-300">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             <span class="ml-3 hidden sm:inline-block">Email</span>
         </a>
         
         <a href="{{ data.linkedin_url | default('#') }}" target="_blank" 
            class="contact-item bg-gray-900 text-white hover:bg-[#E74C3C] transition duration-300">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-9.452h3.554v9.452zm-5.632 0h-3.555v-5.759c0-1.396-.786-2.052-1.78-2.052-.98 0-1.78.656-1.78 2.052v5.759h-3.555v-9.452h3.555v1.439c.594-.967 1.503-1.621 2.898-1.621 2.073 0 3.782 1.397 3.782 4.499v5.135zM.001 3.597c0-.996.804-1.8 1.8-1.8s1.799.804 1.799 1.8-.804 1.8-1.799 1.8-1.8-.804-1.8-1.8z"></path></svg>
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-9.452h3.554v9.452zm-5.632 0h-3.555v-5.759c0-1.396-.786-2.052-1.78-2.052-.98 0-1.78.656-1.78 2.052v5.759h-3.555v-9.452h3.555v1.439c.594-.967 1.503-1.621 2.898-1.621 2.073 0 3.782 1.397 3.782 4.499v5.135zM.001 3.597c0-.996.804-1.8 1.8-1.8s1.799.804 1.799 1.8-.804 1.8-1.799 1.8-1.8-.804-1.8-1.8z"></path></svg>
             <span class="ml-3 hidden sm:inline-block">LinkedIn</span>
         </a>
     </div>
@@ -209,34 +208,27 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Cookie Banner Logic
             const banner = document.getElementById('cookie-consent-banner');
             const acceptBtn = document.getElementById('accept-cookies-btn');
             const consentKey = 'user_cookie_consent';
 
-            // Check if consent has already been given (using 'true' string in localStorage)
             if (localStorage.getItem(consentKey) !== 'true') {
-                // Wait briefly before showing to avoid FOUC (Flash of Unstyled Content)
                 setTimeout(() => {
                     banner.classList.remove('hidden');
                 }, 500);
             }
 
-            // Handle the accept button click
             acceptBtn.addEventListener('click', () => {
-                // Set consent in local storage
                 localStorage.setItem(consentKey, 'true');
-                // Hide the banner
                 banner.classList.add('hidden');
             });
 
-            // --- START: Floating Contact Stack JavaScript ---
+            // Floating Contact Stack Scroll Logic
             const contactStack = document.getElementById('contact-stack');
-            
-            // Calculate 50% of the entire page content height
             const scrollThreshold = document.documentElement.scrollHeight * 0.5; 
 
             function checkScroll() {
-                // Check if user has scrolled past 50% of the total page height
                 if (window.scrollY > scrollThreshold) {
                     contactStack.style.opacity = '1';
                 } else {
@@ -244,10 +236,8 @@
                 }
             }
 
-            // Initial check and subsequent checks on scroll
             window.addEventListener('scroll', checkScroll);
             checkScroll();
-            // --- END: Floating Contact Stack JavaScript ---
         });
     </script>
     </body>
