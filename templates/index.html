@@ -32,63 +32,81 @@
     </section>
 
     <section id="about" class="py-20 md:py-32 container mx-auto px-4 bg-white">
-        <div class="max-w-6xl mx-auto animate-fadeInUp grid md:grid-cols-2 gap-12 items-center">
-            
-            <div class="md:order-1 order-2">
-                <div class="relative p-4 bg-white rounded-xl shadow-2xl transform rotate-3 hover:rotate-0 transition duration-500">
-                    <img src="{{ url_for('static', filename='images/image_193d85.jpg') }}" 
-                         alt="Engineering Precision in Every System" 
-                         class="w-full h-auto rounded-lg shadow-lg"
-                    >
-                    <div class="absolute inset-0 border-4 border-[#E74C3C] opacity-30 rounded-xl pointer-events-none"></div>
-                </div>
-            </div>
+        <div class="max-w-6xl mx-auto animate-fadeInUp">
+            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900 border-b-4 border-[#E74C3C] inline-block pb-1">About Me</h2>
 
-            <div class="md:order-2 order-1">
-                <h2 class="text-4xl font-bold mb-4 text-gray-900">
-                    Engineering <span class="text-[#E74C3C]">Precision</span> in Every System
-                </h2>
-                <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                    With over a decade of specialized experience in technical cleanliness and chemical systems engineering, I deliver comprehensive solutions that meet the most stringent contamination control requirements across automotive, aerospace, and medical device industries.
-                </p>
-                <p class="text-gray-700 text-lg leading-relaxed mb-8">
-                    My expertise spans from system design and implementation to validation and ongoing optimization, ensuring your operations maintain peak efficiency while meeting all regulatory and quality standards.
-                </p>
+            <div class="grid md:grid-cols-2 gap-12 items-center bg-white p-8 shadow-xl rounded-xl">
                 
-                <div class="grid grid-cols-2 gap-x-6 gap-y-4">
-                    {% set checklist_items = [
-                        "Particle contamination analysis", 
-                        "Chemical dosing system design", 
-                        "Clean room protocol development", 
-                        "Process validation & documentation",
-                        "Regulatory compliance",
-                        "System optimization & efficiency"
-                    ] %}
-                    {% for item in checklist_items %}
-                    <div class="flex items-start text-gray-800">
-                        <svg class="w-5 h-5 mr-2 mt-1 text-[#E74C3C] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        <span>{{ item }}</span>
+                <div class="md:order-1 order-2">
+                    <div class="relative mb-6">
+                        <img src="{{ url_for('static', filename='images/image_193d85.jpg') }}" 
+                            alt="Chemical Engineering Labs" 
+                            class="w-full h-auto rounded-lg shadow-lg aspect-video object-cover"
+                        >
+                        <h3 class="text-2xl font-semibold text-gray-900 mt-4">Expertise in Process Control</h3>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
 
+                    <p class="text-gray-700 text-lg leading-relaxed mb-8">
+                        My expertise spans from system design and implementation to validation and ongoing optimization, ensuring your operations maintain peak efficiency while meeting all regulatory and quality standards.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                        {% set checklist_items = [
+                            "Particle contamination analysis", 
+                            "Chemical dosing system design", 
+                            "Clean room protocol development", 
+                            "Process validation & documentation",
+                            "Regulatory compliance",
+                            "System optimization & efficiency"
+                        ] %}
+                        {% for item in checklist_items %}
+                        <div class="flex items-start text-gray-800">
+                            <svg class="w-5 h-5 mr-2 mt-1 text-[#E74C3C] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            <span>{{ item }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="md:order-2 order-1">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">
+                        Engineering <span class="text-[#E74C3C]">Precision</span> in Every System
+                    </h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        With over a decade of specialized experience in technical cleanliness and chemical systems engineering, I deliver comprehensive solutions that meet the most stringent contamination control requirements across automotive, aerospace, and medical device industries.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        {{ data.about.description | default('A dedicated technical specialist in manufacturing and system optimization.') }}
+                    </p>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <section id="casestudies" class="py-20 md:py-32 bg-white w-full">
+    <section id="casestudies" class="py-20 md:py-32 bg-white w-full border-t border-gray-100">
         <div class="container mx-auto px-4 animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Impactful Case Studies</h2>
-            <div class="grid md:grid-cols-2 gap-10">
+            <div class="grid md:grid-cols-3 gap-8">
                 {% for study in data.casestudies %}
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-[#E74C3C] hover:shadow-xl transition duration-300 animate-fadeInUp"
+                <div class="bg-white rounded-xl shadow-lg border-t-4 border-[#E74C3C] hover:shadow-2xl transition duration-300 animate-fadeInUp overflow-hidden"
                     style="animation-delay: {{ loop.index0 * 0.15 }}s;">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">{{ study.title }}</h3>
-                    <p class="text-gray-600 mb-4">{{ study.summary }}</p>
-                    <div class="flex flex-wrap gap-2">
-                        {% for tag in study.tags %}
-                        <span class="text-xs font-medium bg-gray-200 text-gray-700 px-3 py-1 rounded-full">{{ tag }}</span>
-                        {% endfor %}
+                    
+                    <div class="relative h-48 w-full bg-gray-100 overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/placeholder_case_' + loop.index|string + '.jpg') }}" 
+                             alt="{{ study.title }} Image" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        >
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-3">{{ study.title }}</h3>
+                        <p class="text-gray-600 mb-4 text-sm">{{ study.summary }}</p>
+                        <div class="flex flex-wrap gap-2">
+                            {% for tag in study.tags %}
+                            <span class="text-xs font-medium bg-gray-200 text-gray-700 px-3 py-1 rounded-full">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -96,10 +114,10 @@
         </div>
     </section>
 
-    <section id="skills" class="py-20 md:py-32 container mx-auto px-4 bg-white">
+    <section id="skills" class="py-20 md:py-32 container mx-auto px-4 bg-white border-t border-gray-100">
         <div class="max-w-5xl mx-auto animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Core Competencies</h2>
-            <div class="flex flex-wrap justify-center gap-4">
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
                 {% for skill in data.skills %}
                 <span class="px-5 py-3 bg-gray-100 text-gray-800 font-medium rounded-full shadow-md hover:bg-red-100 transition duration-200 transform hover:scale-105 animate-fadeInUp"
                     style="animation-delay: {{ loop.index0 * 0.1 }}s;">
@@ -107,6 +125,8 @@
                 </span>
                 {% endfor %}
             </div>
+            
+            <h2 class="text-4xl font-bold mt-10 text-center text-gray-900 border-t-4 border-[#E74C3C] inline-block pt-1">Core Competencies</h2>
         </div>
     </section>
 
@@ -115,10 +135,20 @@
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Selected Projects</h2>
             <div class="space-y-10">
                 {% for project in data.projects %}
-                <div class="p-6 bg-white rounded-xl shadow-xl border-l-4 border-[#E74C3C] animate-fadeInUp"
+                <div class="flex flex-col md:flex-row p-6 bg-white rounded-xl shadow-xl border-l-4 border-[#E74C3C] hover:shadow-2xl transition duration-300 animate-fadeInUp"
                     style="animation-delay: {{ loop.index0 * 0.2 }}s;">
-                    <h3 class="text-3xl font-semibold mb-2 text-gray-900">{{ project.name }}</h3>
-                    <p class="text-gray-700">{{ project.description }}</p>
+                    
+                    <div class="md:w-1/4 w-full h-40 md:h-auto overflow-hidden rounded-lg mb-4 md:mb-0 md:mr-6 flex-shrink-0 bg-gray-100">
+                        <img src="{{ url_for('static', filename='images/placeholder_project_' + loop.index|string + '.jpg') }}" 
+                             alt="{{ project.name }} Image" 
+                             class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-2 text-gray-900">{{ project.name }}</h3>
+                        <p class="text-gray-700">{{ project.description }}</p>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
@@ -127,7 +157,6 @@
 
     <section id="articles" class="py-20 md:py-32 container mx-auto px-4 bg-white border-t border-gray-100">
         <div class="max-w-4xl mx-auto animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Technical Articles</h2>
             <div class="space-y-8">
                 {% for slug, article in data.articles.items() %}
                 <div class="p-6 border border-gray-200 rounded-lg hover:shadow-xl hover:border-[#E74C3C] transition duration-300">
@@ -140,6 +169,7 @@
                 </div>
                 {% endfor %}
             </div>
+            <h2 class="text-4xl font-bold mt-12 text-center text-gray-900 border-t-4 border-[#E74C3C] inline-block pt-1">Technical Articles</h2>
         </div>
     </section>
     
