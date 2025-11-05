@@ -56,28 +56,7 @@
             transition: color 0.2s;
         }
 
-
-        /* 2. Cookie Consent Banner Styles (Kept) */
-        #cookie-consent-banner {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            /* Kept dark for high contrast against white background */
-            background-color: rgba(0, 0, 0, 0.9); color: white;
-            padding: 15px 25px; text-align: center;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); z-index: 9999;
-            display: flex; justify-content: center; align-items: center; gap: 20px;
-            transition: transform 0.4s ease-in-out;
-        }
-        #cookie-consent-banner.hidden { transform: translateY(100%); }
-        #cookie-consent-banner a { color: var(--color-accent); text-decoration: underline; }
-
-        #accept-cookies-btn {
-            background-color: var(--color-accent); /* Red Accent */
-            color: white; border: none; padding: 8px 15px; cursor: pointer;
-            border-radius: 4px; transition: background-color 0.2s; font-weight: 600;
-        }
-        #accept-cookies-btn:hover { background-color: var(--color-accent-dark); }
-        
-        /* 3. Floating Contact Stack CSS (Kept) */
+        /* 2. Floating Contact Stack CSS (Kept) */
         .contact-item {
             display: flex; align-items: center; padding: 12px; border-radius: 9999px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
@@ -119,7 +98,7 @@
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900">
                 <img
-                    src="{{ url_for('static', filename='images/Logo_EK.jpg') }}"
+                    src="{{ url_for('static', filename='images/Logo_EK.png') }}"
                     alt="Ezhil K Logo"
                     class="w-10 h-10 rounded-sm"
                     >
