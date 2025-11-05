@@ -84,6 +84,62 @@
         </div>
     </section>
 
+    <section id="competencies" class="py-20 md:py-32 container mx-auto px-4 bg-white border-t border-gray-100">
+        <div class="max-w-6xl mx-auto animate-fadeInUp">
+            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900 border-b-4 border-[#E74C3C] inline-block pb-1">Core Competencies</h2>
+            
+            {% set competency_cards = [
+                {
+                    "title": "Microscopic Analysis",
+                    "summary": "Advanced particle characterization and morphology assessment.",
+                    "icon_path": "M17 11a1 1 0 010 2h-1a1 1 0 010-2h1zM5 11a1 1 0 010 2H4a1 1 0 010-2h1zM10 3a1 1 0 011 1v1h2V4a1 1 0 012 0v1h1a2 2 0 012 2v2a2 2 0 01-2 2h-1v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1H4a2 2 0 01-2-2V7a2 2 0 012-2h1V4a1 1 0 012 0v1h2V4a1 1 0 011-1z"
+                },
+                {
+                    "title": "Corrosion Control",
+                    "summary": "Expert VCI/HIC protocol design and implementation (Rust Prevention).",
+                    "icon_path": "M13 10V3L4 14h6v7l9-11h-6z"
+                },
+                {
+                    "title": "Chemical Engineering",
+                    "summary": "Process optimization, fluid life extension, and waste reduction.",
+                    "icon_path": "M12 2a1 1 0 00-1 1v3H7a1 1 0 00-1 1v2a1 1 0 001 1h4v3a1 1 0 001 1h4a1 1 0 001-1V7a1 1 0 00-1-1h-4V3a1 1 0 00-1-1zM5 13a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1v-4a1 1 0 00-1-1H5zm12-2a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1v-4a1 1 0 00-1-1h-4z"
+                },
+                {
+                    "title": "Process Monitoring",
+                    "summary": "Real-time system oversight using IoT and Power BI dashboards.",
+                    "icon_path": "M10 12a2 2 0 100-4 2 2 0 000 4zM12 2a10 10 0 100 20 10 10 0 000-20zM8 10a4 4 0 118 0 4 4 0 01-8 0z"
+                },
+                {
+                    "title": "Auditing & RCA",
+                    "summary": "VDA 19.1/19.2 compliance and 8D/5-Why root cause analysis.",
+                    "icon_path": "M12 2a10 10 0 100 20 10 10 0 000-20zM9 16l-3-3 1.4-1.4L9 13.2l5.6-5.6L16 9l-7 7z"
+                },
+                {
+                    "title": "Documentation & SOPs",
+                    "summary": "Authored and deployed standardized global operating procedures.",
+                    "icon_path": "M9 2a2 2 0 00-2 2v1H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2h-2V4a2 2 0 00-2-2h-4zm0 2h4v1H9V4zM5 7h14v10H5V7z"
+                }
+            ] %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                {% for card in competency_cards %}
+                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#E74C3C] hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] animate-fadeInUp"
+                    style="animation-delay: {{ loop.index0 * 0.1 }}s;">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 bg-red-100 rounded-full mr-4">
+                            <svg class="w-8 h-8 text-[#E74C3C]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="{{ card.icon_path }}" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">{{ card.title }}</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm pl-12">{{ card.summary }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
     <section id="casestudies" class="py-20 md:py-32 bg-white w-full border-t border-gray-100">
         <div class="container mx-auto px-4 animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Impactful Case Studies</h2>
@@ -94,8 +150,8 @@
                     
                     <div class="relative h-48 w-full bg-gray-100 overflow-hidden">
                         <img src="{{ url_for('static', filename='images/placeholder_case_' + loop.index|string + '.jpg') }}" 
-                             alt="{{ study.title }} Image" 
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                            alt="{{ study.title }} Image" 
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                         >
                     </div>
 
@@ -114,22 +170,6 @@
         </div>
     </section>
 
-    <section id="skills" class="py-20 md:py-32 container mx-auto px-4 bg-white border-t border-gray-100">
-        <div class="max-w-5xl mx-auto animate-fadeInUp">
-            
-            <div class="flex flex-wrap justify-center gap-4 mb-10">
-                {% for skill in data.skills %}
-                <span class="px-5 py-3 bg-gray-100 text-gray-800 font-medium rounded-full shadow-md hover:bg-red-100 transition duration-200 transform hover:scale-105 animate-fadeInUp"
-                    style="animation-delay: {{ loop.index0 * 0.1 }}s;">
-                    {{ skill }}
-                </span>
-                {% endfor %}
-            </div>
-            
-            <h2 class="text-4xl font-bold mt-10 text-center text-gray-900 border-t-4 border-[#E74C3C] inline-block pt-1">Core Competencies</h2>
-        </div>
-    </section>
-
     <section id="projects" class="py-20 md:py-32 bg-white w-full text-gray-900 border-t border-gray-100">
         <div class="container mx-auto px-4 animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Selected Projects</h2>
@@ -140,8 +180,8 @@
                     
                     <div class="relative h-48 w-full bg-gray-100 overflow-hidden">
                         <img src="{{ url_for('static', filename='images/placeholder_project_' + loop.index|string + '.jpg') }}" 
-                             alt="{{ project.name }} Image" 
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                            alt="{{ project.name }} Image" 
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                         >
                     </div>
 
@@ -163,8 +203,8 @@
                     
                     <div class="relative h-56 w-full bg-gray-100 overflow-hidden">
                         <img src="{{ url_for('static', filename='images/placeholder_article_' + loop.index|string + '.jpg') }}" 
-                             alt="{{ article.title }} Image" 
-                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                            alt="{{ article.title }} Image" 
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                         >
                     </div>
 
