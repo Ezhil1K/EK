@@ -6,21 +6,21 @@
 
 {% block content %}
 <div class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-    <section id="hero" class="relative w-full min-h-screen bg-gray-900 flex items-center justify-center text-white p-4 overflow-hidden">
-        <div id="hero-carousel" class="absolute inset-0 z-0 opacity-50">
+    <section id="hero" class="relative w-full min-h-screen bg-gray-50 flex items-center justify-center text-gray-900 p-4 overflow-hidden">
+        <div id="hero-carousel" class="absolute inset-0 z-0 opacity-20">
             <img src="{{ url_for('static', filename='images/hero_1.jpg') }}" alt="Hero Image 1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100">
             <img src="{{ url_for('static', filename='images/hero_2.jpg') }}" alt="Hero Image 2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
             <img src="{{ url_for('static', filename='images/hero_3.jpg') }}" alt="Hero Image 3" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
         </div>
 
-        <div class="container mx-auto text-center z-10 p-6 bg-gray-900/70 rounded-xl shadow-2xl animate-fadeInUp max-w-4xl">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight text-white">
+        <div class="container mx-auto text-center z-10 p-6 bg-white/90 rounded-xl shadow-2xl animate-fadeInUp max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight text-gray-900">
                 Technical Specialist
             </h1>
-            <h2 class="text-3xl md:text-4xl font-light mb-6 text-gray-300">
+            <h2 class="text-3xl md:text-4xl font-light mb-6 text-gray-700">
                 {{ data.hero.subtitle | default('Precision Engineering for Quality.') }}
             </h2>
-            <p class="text-xl max-w-2xl mx-auto text-gray-300">
+            <p class="text-xl max-w-2xl mx-auto text-gray-600">
                 {{ data.hero.tagline | default('Expertise in industrial cleaning, corrosion control, and chemical management.') }}
             </p>
             <div class="mt-10">
@@ -31,11 +31,48 @@
         </div>
     </section>
 
-    <section id="about" class="py-20 md:py-32 container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-6 text-gray-900 border-b-4 border-[#E74C3C] inline-block pb-1">About Me</h2>
-            <h3 class="text-2xl text-gray-800 font-semibold mb-6">{{ data.about.headline | default('Expertise in Process Control') }}</h3>
-            <p class="text-gray-700 text-lg leading-relaxed">{{ data.about.description | default('A dedicated technical specialist in manufacturing.') }}</p>
+    <section id="about" class="py-20 md:py-32 container mx-auto px-4 bg-white">
+        <div class="max-w-6xl mx-auto animate-fadeInUp grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="md:order-1 order-2">
+                <div class="relative p-4 bg-white rounded-xl shadow-2xl transform rotate-3 hover:rotate-0 transition duration-500">
+                    <img src="{{ url_for('static', filename='images/image_193d85.jpg') }}" 
+                         alt="Engineering Precision in Every System" 
+                         class="w-full h-auto rounded-lg shadow-lg"
+                    >
+                    <div class="absolute inset-0 border-4 border-[#E74C3C] opacity-30 rounded-xl pointer-events-none"></div>
+                </div>
+            </div>
+
+            <div class="md:order-2 order-1">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">
+                    Engineering <span class="text-[#E74C3C]">Precision</span> in Every System
+                </h2>
+                <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                    With over a decade of specialized experience in technical cleanliness and chemical systems engineering, I deliver comprehensive solutions that meet the most stringent contamination control requirements across automotive, aerospace, and medical device industries.
+                </p>
+                <p class="text-gray-700 text-lg leading-relaxed mb-8">
+                    My expertise spans from system design and implementation to validation and ongoing optimization, ensuring your operations maintain peak efficiency while meeting all regulatory and quality standards.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+                    {% set checklist_items = [
+                        "Particle contamination analysis", 
+                        "Chemical dosing system design", 
+                        "Clean room protocol development", 
+                        "Process validation & documentation",
+                        "Regulatory compliance",
+                        "System optimization & efficiency"
+                    ] %}
+                    {% for item in checklist_items %}
+                    <div class="flex items-start text-gray-800">
+                        <svg class="w-5 h-5 mr-2 mt-1 text-[#E74C3C] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        <span>{{ item }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -59,7 +96,7 @@
         </div>
     </section>
 
-    <section id="skills" class="py-20 md:py-32 container mx-auto px-4">
+    <section id="skills" class="py-20 md:py-32 container mx-auto px-4 bg-white">
         <div class="max-w-5xl mx-auto animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Core Competencies</h2>
             <div class="flex flex-wrap justify-center gap-4">
@@ -73,15 +110,15 @@
         </div>
     </section>
 
-    <section id="projects" class="py-20 md:py-32 bg-gray-900 w-full text-white">
+    <section id="projects" class="py-20 md:py-32 bg-gray-50 w-full text-gray-900">
         <div class="container mx-auto px-4 animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-12 text-center text-white">Selected Projects</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Selected Projects</h2>
             <div class="space-y-10">
                 {% for project in data.projects %}
-                <div class="p-6 bg-gray-800 rounded-xl shadow-xl border-l-4 border-[#E74C3C] animate-fadeInUp"
+                <div class="p-6 bg-white rounded-xl shadow-xl border-l-4 border-[#E74C3C] animate-fadeInUp"
                     style="animation-delay: {{ loop.index0 * 0.2 }}s;">
-                    <h3 class="text-3xl font-semibold mb-2 text-white">{{ project.name }}</h3>
-                    <p class="text-gray-300">{{ project.description }}</p>
+                    <h3 class="text-3xl font-semibold mb-2 text-gray-900">{{ project.name }}</h3>
+                    <p class="text-gray-700">{{ project.description }}</p>
                 </div>
                 {% endfor %}
             </div>
@@ -106,7 +143,7 @@
         </div>
     </section>
     
-    </div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
