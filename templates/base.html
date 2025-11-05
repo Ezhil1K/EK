@@ -16,19 +16,26 @@
 
       gtag('config', 'G-P9619ZPB2G');
     </script>
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        /* Fade In Animation */
-        .animate-fadeInUp {
-            animation: fadeInUp 1s ease-out;
+        /* Define Accent Colors via CSS Custom Properties */
+        :root {
+            --color-accent: #E74C3C; /* Your Logo Red */
+            --color-accent-dark: #C0392B; /* Darker Red for hover */
         }
+        
+        body { font-family: 'Inter', sans-serif; }
+        /* Enable smooth scrolling for in-page navigation (e.g., clicking #contact) */
+        html { scroll-behavior: smooth; }
+
+        /* Animation Setup */
+        .animate-fadeInUp { animation: fadeInUp 1s ease-out; }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Custom scroll behavior for the fixed header */
-        html { scroll-behavior: smooth; }
-        /* Ensure the iframe for YouTube background covers the section */
+        
+        /* Iframe Fix for Hero Background Video */
         #hero iframe {
             position: absolute;
             top: 50%;
@@ -39,111 +46,94 @@
             height: auto;
             transform: translate(-50%, -50%);
         }
-        
+
         /* ---------------------------------------------------- */
-        /* START: Custom Global Styles */
+        /* START: Custom Global Styles - RED ACCENT & CONTACT STACK */
         
-        /* 1. Custom Red Hover Effect for Navigation Links */
+        /* 1. Navigation Link Hover Effect */
         .main-nav-link:hover,
         .main-nav-link:focus {
-            color: #E74C3C !important; /* Specific red color */
+            color: var(--color-accent) !important; 
         }
 
         /* 2. Cookie Consent Banner Styles */
         #cookie-consent-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 15px 25px;
-            text-align: center;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: rgba(0, 0, 0, 0.9); color: white;
+            padding: 15px 25px; text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); z-index: 9999;
+            display: flex; justify-content: center; align-items: center; gap: 20px;
             transition: transform 0.4s ease-in-out;
         }
 
-        #cookie-consent-banner.hidden {
-            transform: translateY(100%);
-        }
-
-        #cookie-consent-banner p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-
-        #cookie-consent-banner a {
-            color: #E74C3C; /* Match link color to hover red */
-            text-decoration: underline;
-        }
+        #cookie-consent-banner.hidden { transform: translateY(100%); }
+        #cookie-consent-banner p { margin: 0; font-size: 0.9rem; }
+        #cookie-consent-banner a { color: var(--color-accent); text-decoration: underline; }
 
         #accept-cookies-btn {
-            background-color: #E74C3C; /* RED THEME */
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-            font-weight: 600;
+            background-color: var(--color-accent); /* Red Accent */
+            color: white; border: none; padding: 8px 15px; cursor: pointer;
+            border-radius: 4px; transition: background-color 0.2s; font-weight: 600;
             flex-shrink: 0;
         }
 
-        #accept-cookies-btn:hover {
-            background-color: #C0392B; /* Darker Red */
-        }
+        #accept-cookies-btn:hover { background-color: var(--color-accent-dark); }
         
-        /* 3. Floating Contact Stack CSS */
+        /* 3. Floating Contact Stack CSS - REDESIGNED (White -> Red) */
         .contact-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            border-radius: 9999px; /* rounded-full equivalent */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transform: translateX(0);
-            transition: transform 0.3s ease-in-out, background-color 0.3s;
-            overflow: hidden; 
+            /* Default: Red border, White BG, Red Icon/Text */
+            display: flex; align-items: center; padding: 12px; border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transform: translateX(0);
+            transition: transform 0.3s ease-in-out, background-color 0.3s, color 0.3s;
+            overflow: hidden;
+            background-color: white;
+            border: 2px solid var(--color-accent);
         }
 
-        /* Hover effect: Slides the item horizontally to the right */
+        /* Default icon color */
+        .contact-item svg {
+            color: var(--color-accent); 
+            transition: color 0.3s;
+        }
+
+        /* Hover effect: Slides and flips colors */
         .contact-item:hover {
             transform: translateX(10px); 
+            background-color: var(--color-accent); /* BG flips to Red */
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Hide text on small screens and by default */
-        .contact-item span {
-            white-space: nowrap;
-            transition: opacity 0.3s, margin 0.3s, max-width 0.3s;
-            max-width: 0;
-            opacity: 0;
+        /* Hover icon/text color */
+        .contact-item:hover span, 
+        .contact-item:hover svg {
+            color: white; /* Text/Icon flips to White */
         }
 
-        /* Show text only on hover and on larger screens (Tailwind's sm breakpoint) */
+        /* Text transition/display logic */
+        .contact-item span {
+            white-space: nowrap; transition: opacity 0.3s, margin 0.3s, max-width 0.3s;
+            max-width: 0; opacity: 0; color: var(--color-accent); /* Default text color is Red */
+        }
         @media (min-width: 640px) {
             .contact-item:hover span {
-                max-width: 150px; 
-                opacity: 1;
-                margin-left: 8px; /* ml-2 equivalent */
+                max-width: 150px; opacity: 1; margin-left: 8px;
             }
         }
         /* END: Custom Global Styles */
         /* ---------------------------------------------------- */
     </style>
 </head>
-<body class="bg-white text-gray-900"> <header class="sticky top-0 z-50 bg-white shadow-md">
+<body class="bg-white text-gray-900"> 
+
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900">
                 <img
                     src="{{ url_for('static', filename='images/Logo_EK.png') }}"
                     alt="Ezhil K Logo"
-                    class="w-12 h-12 rounded-sm" 
+                    class="w-10 h-10 rounded-sm"
                     >
+                <span class="text-xl font-bold">Ezhil <span class="text-[#E74C3C]">K</span></span>
             </a>
 
             <div class="space-x-6 hidden md:flex">
@@ -152,9 +142,8 @@
                 <a href="#skills" class="main-nav-link text-gray-900 font-medium transition duration-200">Skills</a>
                 <a href="#projects" class="main-nav-link text-gray-900 font-medium transition duration-200">Projects</a>
                 <a href="#articles" class="main-nav-link text-gray-900 font-medium transition duration-200">Articles</a>
-                <a href="#contact" class="main-nav-link text-gray-900 font-medium transition duration-200">Contact</a>
+                <a href="#contact" class="px-3 py-1 border-2 border-[#E74C3C] text-[#E74C3C] rounded-full hover:bg-[#E74C3C] hover:text-white font-medium transition duration-300">Contact</a>
             </div>
-            
         </nav>
     </header>
 
@@ -179,25 +168,25 @@
     </footer>
     
     <div id="contact-stack" class="fixed bottom-6 right-6 z-40 space-y-3 opacity-0 transition-opacity duration-500">
-    
-    <a href="tel:{{ data.phone_number | default('000-000-0000') }}" 
-       class="contact-item bg-gray-900 text-white hover:bg-white hover:text-gray-900 transition duration-300">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-        <span class="ml-3 hidden sm:inline-block">Phone</span>
-    </a>
+        
+        <a href="tel:{{ data.phone_number | default('000-000-0000') }}" 
+           class="contact-item rounded-full">
+             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+             <span class="ml-3 hidden sm:inline-block">Call Now</span>
+        </a>
 
-    <a href="mailto:{{ data.email_address | default('contact@example.com') }}" 
-       class="contact-item bg-gray-900 text-white hover:bg-white hover:text-gray-900 transition duration-300">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-        <span class="ml-3 hidden sm:inline-block">Email</span>
-    </a>
-    
-    <a href="{{ data.linkedin_url | default('#') }}" target="_blank" 
-       class="contact-item bg-gray-900 text-white hover:bg-white hover:text-gray-900 transition duration-300">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-9.452h3.554v9.452zm-5.632 0h-3.555v-5.759c0-1.396-.786-2.052-1.78-2.052-.98 0-1.78.656-1.78 2.052v5.759h-3.555v-9.452h3.555v1.439c.594-.967 1.503-1.621 2.898-1.621 2.073 0 3.782 1.397 3.782 4.499v5.135zM.001 3.597c0-.996.804-1.8 1.8-1.8s1.799.804 1.799 1.8-.804 1.8-1.799 1.8-1.8-.804-1.8-1.8z"></path></svg>
-        <span class="ml-3 hidden sm:inline-block">LinkedIn</span>
-    </a>
-</div>
+        <a href="mailto:{{ data.email_address | default('contact@example.com') }}" 
+           class="contact-item rounded-full">
+             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+             <span class="ml-3 hidden sm:inline-block">Email Me</span>
+        </a>
+        
+        <a href="{{ data.linkedin_url | default('#') }}" target="_blank" 
+           class="contact-item rounded-full">
+             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-9.452h3.554v9.452zm-5.632 0h-3.555v-5.759c0-1.396-.786-2.052-1.78-2.052-.98 0-1.78.656-1.78 2.052v5.759h-3.555v-9.452h3.555v1.439c.594-.967 1.503-1.621 2.898-1.621 2.073 0 3.782 1.397 3.782 4.499v5.135zM.001 3.597c0-.996.804-1.8 1.8-1.8s1.799.804 1.799 1.8-.804 1.8-1.799 1.8-1.8-.804-1.8-1.8z"></path></svg>
+             <span class="ml-3 hidden sm:inline-block">LinkedIn</span>
+        </a>
+    </div>
 
     <div id="cookie-consent-banner" class="cookie-banner hidden">
         <p>
@@ -206,6 +195,7 @@
         </p>
         <button id="accept-cookies-btn" class="accept-btn">I Understand</button>
     </div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Cookie Banner Logic
@@ -224,9 +214,10 @@
                 banner.classList.add('hidden');
             });
 
-            // Floating Contact Stack Scroll Logic
+            // Floating Contact Stack Scroll Logic (Appears halfway down the page)
             const contactStack = document.getElementById('contact-stack');
-            const scrollThreshold = document.documentElement.scrollHeight * 0.5; 
+            // Calculate scroll threshold (50% of the total scrollable height)
+            const scrollThreshold = document.documentElement.scrollHeight * 0.5;
 
             function checkScroll() {
                 if (window.scrollY > scrollThreshold) {
@@ -237,8 +228,8 @@
             }
 
             window.addEventListener('scroll', checkScroll);
-            checkScroll();
+            checkScroll(); // Run once on load
         });
     </script>
-    </body>
+</body>
 </html>
