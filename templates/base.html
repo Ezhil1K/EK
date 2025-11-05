@@ -22,6 +22,7 @@
         :root {
             --color-accent: #E74C3C; /* Your Logo Red */
             --color-accent-dark: #C0392B; /* Darker Red for hover */
+            --header-height: 65px; /* Height of the sticky header */
         }
         
         /* Ensures the base body color is white */
@@ -38,13 +39,28 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
+        /* --- MOBILE MENU TRANSITION (New/Updated for smooth slide) --- */
+        .mobile-menu-closed {
+            max-height: 0;
+            opacity: 0;
+            visibility: hidden;
+            border-bottom: none !important; /* Ensures no line when closed */
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s;
+        }
+        .mobile-menu-open {
+            max-height: calc(100vh - var(--header-height)); /* Allows full screen height below header */
+            opacity: 1;
+            visibility: visible;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s;
+        }
         /* ---------------------------------------------------- */
+        
         /* START: Custom Global Styles - UNIFORM RED ACCENT */
         
-        /* 1. Navigation & Footer Link Hover Effect (Default Black/Gray, Hover Red) */
+        /* 1. Navigation & Footer Link Hover Effect */
         .main-nav-link {
-            color: rgb(17 24 39); /* text-gray-900 */
+            color: rgb(17 24 39); 
             transition: color 0.2s;
         }
         .main-nav-link:hover,
@@ -89,13 +105,12 @@
             }
         }
         /* END: Custom Global Styles */
-        /* ---------------------------------------------------- */
     </style>
 </head>
 <body class="bg-white text-gray-900"> 
 
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
-        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md h-[var(--header-height)]">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center h-full">
             <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900">
                 <img
                     src="{{ url_for('static', filename='images/Logo_EK.png') }}"
@@ -109,15 +124,17 @@
                 <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
-            <div id="main-nav-links" class="hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-sm border-t border-gray-200 p-4 
-                                            md:relative md:top-auto md:left-auto md:w-auto md:border-none md:p-0 
-                                            md:flex md:space-x-6 flex-col md:flex-row space-y-3 md:space-y-0">
-                <a href="{{ url_for('index') }}#about" class="main-nav-link font-medium">About</a>
-                <a href="{{ url_for('index') }}#casestudies" class="main-nav-link font-medium">Case Studies</a>
-                <a href="{{ url_for('index') }}#competencies" class="main-nav-link font-medium">Competencies</a>
-                <a href="{{ url_for('index') }}#projects" class="main-nav-link font-medium">Projects</a>
-                <a href="{{ url_for('index') }}#articles" class="main-nav-link font-medium">Articles</a>
-                <a href="{{ url_for('index') }}#contact" class="px-3 py-1 border-2 border-[#E74C3C] text-[#E74C3C] rounded-full hover:bg-[#E74C3C] hover:text-white font-medium transition duration-300 self-start md:self-auto">Contact</a>
+            <div id="main-nav-links" class="absolute top-[var(--header-height)] left-0 w-full overflow-hidden bg-white/95 backdrop-blur-md shadow-lg p-6 space-y-4 text-xl border-t border-gray-200 
+                                            md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:overflow-hidden md:shadow-none md:p-0 md:border-t-0 
+                                            md:flex md:space-x-6 flex-col md:flex-row md:space-y-0">
+
+                <a href="{{ url_for('index') }}#about" class="main-nav-link font-medium block py-2">About</a>
+                <a href="{{ url_for('index') }}#casestudies" class="main-nav-link font-medium block py-2">Case Studies</a>
+                <a href="{{ url_for('index') }}#competencies" class="main-nav-link font-medium block py-2">Competencies</a>
+                <a href="{{ url_for('index') }}#projects" class="main-nav-link font-medium block py-2">Projects</a>
+                <a href="{{ url_for('index') }}#articles" class="main-nav-link font-medium block py-2">Articles</a>
+
+                <a href="{{ url_for('index') }}#contact" class="w-full text-center mt-4 px-3 py-2 border-2 border-[#E74C3C] text-[#E74C3C] rounded-lg hover:bg-[#E74C3C] hover:text-white font-semibold transition duration-300 md:w-auto md:self-auto">Contact</a>
             </div>
         </nav>
     </header>
@@ -130,7 +147,7 @@
         <div class="container mx-auto px-4 text-center">
             <div class="space-y-4">
                 <p class="text-xl font-semibold text-gray-900">Technical Specialist - Ezhil</p>
-                </div>
+            </div>
             <div class="mt-8 pt-6 border-t border-gray-200 text-sm text-gray-500">
                 &copy; {{ data.current_year | default(2025) }} Ezhil K. All rights reserved.
             </div>
@@ -169,19 +186,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- 3. MOBILE NAVIGATION LOGIC (New) ---
+            // --- 3. MOBILE NAVIGATION LOGIC (Updated for transition) ---
             const menuButton = document.getElementById('mobile-menu-button');
             const navLinks = document.getElementById('main-nav-links');
             const iconOpen = document.getElementById('icon-open');
             const iconClose = document.getElementById('icon-close');
-            const mdBreakpoint = 768; // Tailwind's 'md' breakpoint in px
+            const mdBreakpoint = 768;
 
             if (menuButton && navLinks) {
+                // Set initial state to closed
+                navLinks.classList.add('mobile-menu-closed');
+
                 menuButton.addEventListener('click', () => {
-                    // Toggles the 'hidden' class on the navigation links
-                    navLinks.classList.toggle('hidden'); 
-                    
-                    // Toggles the hamburger/close icons
+                    // Toggle the open/closed classes for smooth animation
+                    navLinks.classList.toggle('mobile-menu-closed');
+                    navLinks.classList.toggle('mobile-menu-open');
+
+                    // Toggle the hamburger/close icons
                     iconOpen.classList.toggle('hidden');
                     iconClose.classList.toggle('hidden');
                 });
@@ -190,8 +211,9 @@
                 document.querySelectorAll('#main-nav-links a').forEach(link => {
                     link.addEventListener('click', () => {
                         // Check if menu is open AND screen is mobile size
-                        if (!navLinks.classList.contains('hidden') && window.innerWidth < mdBreakpoint) {
-                            navLinks.classList.add('hidden');
+                        if (navLinks.classList.contains('mobile-menu-open') && window.innerWidth < mdBreakpoint) {
+                            navLinks.classList.remove('mobile-menu-open');
+                            navLinks.classList.add('mobile-menu-closed');
                             iconOpen.classList.remove('hidden');
                             iconClose.classList.add('hidden');
                         }
