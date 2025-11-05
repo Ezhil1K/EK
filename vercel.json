@@ -1,4 +1,4 @@
-  {
+{
   "version": 2,
   "builds": [
     {
@@ -27,3 +27,5 @@
     }
   ]
 }
+
+Please commit this code, and it should resolve the Vercel deployment error and bring your styling back!
