@@ -25,7 +25,6 @@
         }
         
         body { font-family: 'Inter', sans-serif; }
-        /* Enable smooth scrolling for in-page navigation (e.g., clicking #contact) */
         html { scroll-behavior: smooth; }
 
         /* Animation Setup */
@@ -48,15 +47,19 @@
         }
 
         /* ---------------------------------------------------- */
-        /* START: Custom Global Styles - RED ACCENT & CONTACT STACK */
+        /* START: Custom Global Styles - REVISED */
         
-        /* 1. Navigation Link Hover Effect */
+        /* 1. Navigation Link Hover Effect (Default Black, Hover Red) */
+        .main-nav-link {
+            color: rgb(17 24 39); /* text-gray-900 */
+            transition: color 0.2s;
+        }
         .main-nav-link:hover,
         .main-nav-link:focus {
             color: var(--color-accent) !important; 
         }
 
-        /* 2. Cookie Consent Banner Styles */
+        /* 2. Cookie Consent Banner Styles (Kept) */
         #cookie-consent-banner {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background-color: rgba(0, 0, 0, 0.9); color: white;
@@ -79,11 +82,13 @@
 
         #accept-cookies-btn:hover { background-color: var(--color-accent-dark); }
         
-        /* 3. Floating Contact Stack CSS - REDESIGNED (White -> Red) */
+        /* 3. Floating Contact Stack CSS - FIXED SIMULTANEOUS SLIDE */
         .contact-item {
             /* Default: Red border, White BG, Red Icon/Text */
             display: flex; align-items: center; padding: 12px; border-radius: 9999px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transform: translateX(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            /* Individual slide on hover relies on this base state */
+            transform: translateX(0); 
             transition: transform 0.3s ease-in-out, background-color 0.3s, color 0.3s;
             overflow: hidden;
             background-color: white;
@@ -98,6 +103,7 @@
 
         /* Hover effect: Slides and flips colors */
         .contact-item:hover {
+            /* THIS TRIGGER ensures only the hovered item slides */
             transform: translateX(10px); 
             background-color: var(--color-accent); /* BG flips to Red */
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
@@ -133,15 +139,14 @@
                     alt="Ezhil K Logo"
                     class="w-10 h-10 rounded-sm"
                     >
-                <span class="text-xl font-bold">Ezhil <span class="text-[#E74C3C]">K</span></span>
             </a>
 
             <div class="space-x-6 hidden md:flex">
-                <a href="#about" class="main-nav-link text-gray-900 font-medium transition duration-200">About</a>
-                <a href="#casestudies" class="main-nav-link text-gray-900 font-medium transition duration-200">Case Studies</a>
-                <a href="#skills" class="main-nav-link text-gray-900 font-medium transition duration-200">Skills</a>
-                <a href="#projects" class="main-nav-link text-gray-900 font-medium transition duration-200">Projects</a>
-                <a href="#articles" class="main-nav-link text-gray-900 font-medium transition duration-200">Articles</a>
+                <a href="#about" class="main-nav-link font-medium">About</a>
+                <a href="#casestudies" class="main-nav-link font-medium">Case Studies</a>
+                <a href="#skills" class="main-nav-link font-medium">Skills</a>
+                <a href="#projects" class="main-nav-link font-medium">Projects</a>
+                <a href="#articles" class="main-nav-link font-medium">Articles</a>
                 <a href="#contact" class="px-3 py-1 border-2 border-[#E74C3C] text-[#E74C3C] rounded-full hover:bg-[#E74C3C] hover:text-white font-medium transition duration-300">Contact</a>
             </div>
         </nav>
@@ -183,7 +188,7 @@
         
         <a href="{{ data.linkedin_url | default('#') }}" target="_blank" 
            class="contact-item rounded-full">
-             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-9.452h3.554v9.452zm-5.632 0h-3.555v-5.759c0-1.396-.786-2.052-1.78-2.052-.98 0-1.78.656-1.78 2.052v5.759h-3.555v-9.452h3.555v1.439c.594-.967 1.503-1.621 2.898-1.621 2.073 0 3.782 1.397 3.782 4.499v5.135zM.001 3.597c0-.996.804-1.8 1.8-1.8s1.799.804 1.799 1.8-.804 1.8-1.799 1.8-1.8-.804-1.8-1.8z"></path></svg>
+             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.297-4 0v5.604h-3v-11h3v1.765c1.393-2.586 7-2.777 7 2.476v6.759z"/></svg>
              <span class="ml-3 hidden sm:inline-block">LinkedIn</span>
         </a>
     </div>
@@ -198,7 +203,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Cookie Banner Logic
+            // Cookie Banner Logic (Kept)
             const banner = document.getElementById('cookie-consent-banner');
             const acceptBtn = document.getElementById('accept-cookies-btn');
             const consentKey = 'user_cookie_consent';
@@ -214,9 +219,8 @@
                 banner.classList.add('hidden');
             });
 
-            // Floating Contact Stack Scroll Logic (Appears halfway down the page)
+            // Floating Contact Stack Scroll Logic (Kept)
             const contactStack = document.getElementById('contact-stack');
-            // Calculate scroll threshold (50% of the total scrollable height)
             const scrollThreshold = document.documentElement.scrollHeight * 0.5;
 
             function checkScroll() {
@@ -228,7 +232,7 @@
             }
 
             window.addEventListener('scroll', checkScroll);
-            checkScroll(); // Run once on load
+            checkScroll(); 
         });
     </script>
 </body>
