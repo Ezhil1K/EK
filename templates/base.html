@@ -134,7 +134,7 @@
                 <a href="{{ url_for('index') }}#projects" class="main-nav-link font-medium block py-2">Projects</a>
                 <a href="{{ url_for('index') }}#articles" class="main-nav-link font-medium block py-2">Articles</a>
                 
-                </div>
+            </div>
         </nav>
     </header>
 
@@ -194,7 +194,14 @@
 
             if (menuButton && navLinks) {
                 // Set initial state to closed
-                navLinks.classList.add('mobile-menu-closed');
+                // NOTE: We do NOT add mobile-menu-closed class by default anymore. 
+                // The desktop classes (md:flex) will handle visibility on large screens.
+                // We only apply the classes when the button is clicked on mobile.
+                
+                // On initial load, if screen is small, hide the menu
+                if (window.innerWidth < mdBreakpoint) {
+                    navLinks.classList.add('mobile-menu-closed');
+                }
 
                 menuButton.addEventListener('click', () => {
                     // Toggle the open/closed classes for smooth animation
@@ -217,6 +224,21 @@
                             iconClose.classList.add('hidden');
                         }
                     });
+                });
+                
+                // Handle window resize (desktop -> mobile or vice versa)
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= mdBreakpoint) {
+                        // Ensure desktop view is clean
+                        navLinks.classList.remove('mobile-menu-closed', 'mobile-menu-open');
+                        iconOpen.classList.remove('hidden');
+                        iconClose.classList.add('hidden');
+                    } else {
+                        // Ensure mobile view starts closed
+                        if (!navLinks.classList.contains('mobile-menu-open')) {
+                             navLinks.classList.add('mobile-menu-closed');
+                        }
+                    }
                 });
             }
             // ----------------------------------------------------
