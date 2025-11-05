@@ -1,0 +1,8 @@
+/*
+  This file is a minimal placeholder.
+  It will be overwritten by Vercel's automatic Tailwind build process.
+  This ensures the file path exists during the initial deployment phase.
+*/
+.placeholder-loaded {
+    display: block !important;
+}
