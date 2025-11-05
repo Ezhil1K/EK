@@ -1,6 +1,10 @@
-{
+  {
   "version": 2,
   "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    },
     {
       "src": "app.py",
       "use": "@vercel/python",
@@ -9,8 +13,8 @@
         "includeFiles": [
           "content.json",
           "templates/**",
-          "static/**",         
-          "tailwind.config.js",  
+          "static/**",
+          "tailwind.config.js",
           "requirements.txt"
         ]
       }
