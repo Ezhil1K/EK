@@ -9,7 +9,8 @@
         "includeFiles": [
           "content.json",
           "templates/**",
-          "images/**",
+          "static/**",         
+          "tailwind.config.js",  
           "requirements.txt"
         ]
       }
