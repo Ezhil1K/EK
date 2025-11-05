@@ -40,16 +40,16 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- MOBILE MENU TRANSITION (New/Updated for smooth slide) --- */
+        /* --- MOBILE MENU TRANSITION --- */
         .mobile-menu-closed {
             max-height: 0;
             opacity: 0;
             visibility: hidden;
-            border-bottom: none !important; /* Ensures no line when closed */
+            border-bottom: none !important; 
             transition: max-height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s;
         }
         .mobile-menu-open {
-            max-height: calc(100vh - var(--header-height)); /* Allows full screen height below header */
+            max-height: calc(100vh - var(--header-height)); 
             opacity: 1;
             visibility: visible;
             transition: max-height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s;
@@ -127,14 +127,11 @@
             <div id="main-nav-links" class="absolute top-[var(--header-height)] left-0 w-full overflow-hidden bg-white/95 backdrop-blur-md shadow-lg p-6 space-y-4 text-xl border-t border-gray-200 
                                             md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:overflow-hidden md:shadow-none md:p-0 md:border-t-0 
                                             md:flex md:space-x-6 flex-col md:flex-row md:space-y-0">
-
                 <a href="{{ url_for('index') }}#about" class="main-nav-link font-medium block py-2">About</a>
                 <a href="{{ url_for('index') }}#casestudies" class="main-nav-link font-medium block py-2">Case Studies</a>
                 <a href="{{ url_for('index') }}#competencies" class="main-nav-link font-medium block py-2">Competencies</a>
                 <a href="{{ url_for('index') }}#projects" class="main-nav-link font-medium block py-2">Projects</a>
                 <a href="{{ url_for('index') }}#articles" class="main-nav-link font-medium block py-2">Articles</a>
-
-                <a href="{{ url_for('index') }}#contact" class="w-full text-center mt-4 px-3 py-2 border-2 border-[#E74C3C] text-[#E74C3C] rounded-lg hover:bg-[#E74C3C] hover:text-white font-semibold transition duration-300 md:w-auto md:self-auto">Contact</a>
             </div>
         </nav>
     </header>
@@ -186,7 +183,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- 3. MOBILE NAVIGATION LOGIC (Updated for transition) ---
+            // --- 3. MOBILE NAVIGATION LOGIC ---
             const menuButton = document.getElementById('mobile-menu-button');
             const navLinks = document.getElementById('main-nav-links');
             const iconOpen = document.getElementById('icon-open');
