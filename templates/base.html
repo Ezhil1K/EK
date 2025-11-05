@@ -24,7 +24,12 @@
             --color-accent-dark: #C0392B; /* Darker Red for hover */
         }
         
-        body { font-family: 'Inter', sans-serif; }
+        /* Ensures the base body color is white */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: white; 
+            color: #111827; /* text-gray-900 */
+        }
         html { scroll-behavior: smooth; }
 
         /* Animation Setup */
@@ -34,91 +39,70 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Iframe Fix for Hero Background Video */
-        #hero iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-        }
-
         /* ---------------------------------------------------- */
-        /* START: Custom Global Styles - REVISED */
+        /* START: Custom Global Styles - UNIFORM RED ACCENT */
         
-        /* 1. Navigation Link Hover Effect (Default Black, Hover Red) */
+        /* 1. Navigation & Footer Link Hover Effect (Default Black/Gray, Hover Red) */
         .main-nav-link {
             color: rgb(17 24 39); /* text-gray-900 */
             transition: color 0.2s;
         }
         .main-nav-link:hover,
-        .main-nav-link:focus {
+        .main-nav-link:focus,
+        .footer-link:hover {
             color: var(--color-accent) !important; 
         }
+        .footer-link {
+            transition: color 0.2s;
+        }
+
 
         /* 2. Cookie Consent Banner Styles (Kept) */
         #cookie-consent-banner {
             position: fixed; bottom: 0; left: 0; width: 100%;
+            /* Kept dark for high contrast against white background */
             background-color: rgba(0, 0, 0, 0.9); color: white;
             padding: 15px 25px; text-align: center;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); z-index: 9999;
             display: flex; justify-content: center; align-items: center; gap: 20px;
             transition: transform 0.4s ease-in-out;
         }
-
         #cookie-consent-banner.hidden { transform: translateY(100%); }
-        #cookie-consent-banner p { margin: 0; font-size: 0.9rem; }
         #cookie-consent-banner a { color: var(--color-accent); text-decoration: underline; }
 
         #accept-cookies-btn {
             background-color: var(--color-accent); /* Red Accent */
             color: white; border: none; padding: 8px 15px; cursor: pointer;
             border-radius: 4px; transition: background-color 0.2s; font-weight: 600;
-            flex-shrink: 0;
         }
-
         #accept-cookies-btn:hover { background-color: var(--color-accent-dark); }
         
-        /* 3. Floating Contact Stack CSS - FIXED SIMULTANEOUS SLIDE */
+        /* 3. Floating Contact Stack CSS (Kept) */
         .contact-item {
-            /* Default: Red border, White BG, Red Icon/Text */
             display: flex; align-items: center; padding: 12px; border-radius: 9999px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-            /* Individual slide on hover relies on this base state */
             transform: translateX(0); 
             transition: transform 0.3s ease-in-out, background-color 0.3s, color 0.3s;
             overflow: hidden;
             background-color: white;
             border: 2px solid var(--color-accent);
         }
-
-        /* Default icon color */
         .contact-item svg {
             color: var(--color-accent); 
             transition: color 0.3s;
         }
-
-        /* Hover effect: Slides and flips colors */
         .contact-item:hover {
-            /* THIS TRIGGER ensures only the hovered item slides */
             transform: translateX(10px); 
-            background-color: var(--color-accent); /* BG flips to Red */
+            background-color: var(--color-accent); 
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
         }
-
-        /* Hover icon/text color */
         .contact-item:hover span, 
         .contact-item:hover svg {
-            color: white; /* Text/Icon flips to White */
+            color: white; 
         }
-
-        /* Text transition/display logic */
         .contact-item span {
             white-space: nowrap; transition: opacity 0.3s, margin 0.3s, max-width 0.3s;
-            max-width: 0; opacity: 0; color: var(--color-accent); /* Default text color is Red */
+            max-width: 0; opacity: 0; color: var(--color-accent); 
         }
         @media (min-width: 640px) {
             .contact-item:hover span {
@@ -135,7 +119,7 @@
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900">
                 <img
-                    src="{{ url_for('static', filename='images/Logo_EK.png') }}"
+                    src="{{ url_for('static', filename='images/Logo_EK.jpg') }}"
                     alt="Ezhil K Logo"
                     class="w-10 h-10 rounded-sm"
                     >
@@ -156,17 +140,17 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-white text-gray-700 py-12 border-t border-gray-200">
         <div class="container mx-auto px-4 text-center">
             <div class="space-y-4">
-                <p class="text-xl font-semibold">Technical Specialist - Ezhil</p>
-                <div class="flex justify-center space-x-6 text-gray-400">
-                    <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="hover:text-[#E74C3C] transition duration-200">Email</a>
-                    <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="hover:text-[#E74C3C] transition duration-200">LinkedIn</a>
+                <p class="text-xl font-semibold text-gray-900">Technical Specialist - Ezhil</p>
+                <div class="flex justify-center space-x-6 text-gray-600">
+                    <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="footer-link transition duration-200">Email</a>
+                    <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="footer-link transition duration-200">LinkedIn</a>
                     <p class="hidden sm:inline-block">Phone: {{ data.phone_number | default('N/A') }}</p>
                 </div>
             </div>
-            <div class="mt-8 pt-6 border-t border-gray-700 text-sm text-gray-500">
+            <div class="mt-8 pt-6 border-t border-gray-200 text-sm text-gray-500">
                 &copy; {{ data.current_year | default(2025) }} Ezhil K. All rights reserved.
             </div>
         </div>
@@ -203,7 +187,7 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Cookie Banner Logic (Kept)
+            // Cookie Banner Logic
             const banner = document.getElementById('cookie-consent-banner');
             const acceptBtn = document.getElementById('accept-cookies-btn');
             const consentKey = 'user_cookie_consent';
@@ -219,7 +203,7 @@
                 banner.classList.add('hidden');
             });
 
-            // Floating Contact Stack Scroll Logic (Kept)
+            // Floating Contact Stack Scroll Logic
             const contactStack = document.getElementById('contact-stack');
             const scrollThreshold = document.documentElement.scrollHeight * 0.5;
 
