@@ -6,7 +6,7 @@
   "linkedin_url": "https://linkedin.com/in/ezhil_k_spec",
   "hero": {
     "subtitle": "Precision Engineering for a Rust-Free Future.",
-    "video_id": "dQw4w9WgXcQ", 
+    "video_id": "dQw4w9WgXcQ",
     "tagline": "Specializing in industrial cleaning processes, corrosion control, and chemical management to elevate manufacturing quality."
   },
   "about": {
@@ -38,16 +38,23 @@
       "title": "Selecting the Right Particle Counter for VDA 19.1 Audits",
       "summary": "A deep dive into the technical specifications and calibration requirements for particle counting in industrial cleanliness assessments.",
       "template": "article_particle_counter.html"
+    },
+    "cleanliness-risks": {
+      "title": "The Hidden Risks in Your Cleanliness Reports",
+      "summary": "Revealing the four critical challenges—including occupancy, thresholding, and misclassification—that compromise particle counting accuracy and lead to system failures.",
+      "slug": "cleanliness-risks-report"
     }
   },
   "projects": [
     {
       "name": "Global VCI Standard Operating Procedure",
-      "description": "Authored and deployed a standardized global SOP for Volatile Corrosion Inhibitor (VCI) application, ensuring compliance across five international plants."
+      "description": "Authored and deployed a standardized global SOP for Volatile Corrosion Inhibitor (VCI) application, ensuring compliance across five international plants.",
+      "tags": ["VCI", "Global Standard", "Process Compliance"] 
     },
     {
       "name": "Machine Fluid Health Dashboard",
-      "description": "Developed a real-time Power BI dashboard integrating sensor data for key fluid parameters (pH, concentration, conductivity) to enable proactive maintenance."
+      "description": "Developed a real-time Power BI dashboard integrating sensor data for key fluid parameters (pH, concentration, conductivity) to enable proactive maintenance.",
+      "tags": ["Power BI", "IoT", "Chemical Management"]
     }
   ]
 }
