@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-    <section id="hero" class="relative w-full min-h-screen bg-gray-50 flex items-center justify-center text-gray-900 p-4 overflow-hidden">
+    <section id="hero" class="relative w-full min-h-screen bg-white flex items-center justify-center text-gray-900 p-4 overflow-hidden">
         <div id="hero-carousel" class="absolute inset-0 z-0 opacity-20">
             <img src="{{ url_for('static', filename='images/hero_1.jpg') }}" alt="Hero Image 1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100">
             <img src="{{ url_for('static', filename='images/hero_2.jpg') }}" alt="Hero Image 2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
@@ -76,7 +76,7 @@
         </div>
     </section>
 
-    <section id="casestudies" class="py-20 md:py-32 bg-gray-50 w-full">
+    <section id="casestudies" class="py-20 md:py-32 bg-white w-full">
         <div class="container mx-auto px-4 animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Impactful Case Studies</h2>
             <div class="grid md:grid-cols-2 gap-10">
@@ -110,7 +110,7 @@
         </div>
     </section>
 
-    <section id="projects" class="py-20 md:py-32 bg-gray-50 w-full text-gray-900">
+    <section id="projects" class="py-20 md:py-32 bg-white w-full text-gray-900 border-t border-gray-100">
         <div class="container mx-auto px-4 animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Selected Projects</h2>
             <div class="space-y-10">
@@ -125,7 +125,7 @@
         </div>
     </section>
 
-    <section id="articles" class="py-20 md:py-32 container mx-auto px-4 bg-white">
+    <section id="articles" class="py-20 md:py-32 container mx-auto px-4 bg-white border-t border-gray-100">
         <div class="max-w-4xl mx-auto animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Technical Articles</h2>
             <div class="space-y-8">
