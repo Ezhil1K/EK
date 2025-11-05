@@ -6,31 +6,26 @@
 
 {% block content %}
 <div class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-    <section id="hero" class="relative w-full min-h-screen bg-gray-900 flex items-center justify-center text-white p-4">
-        <div class="absolute inset-0 overflow-hidden opacity-30">
-            <iframe
-                src="https://www.youtube.com/embed/{{ data.hero.video_id | default('o8hP_t_7k_s') }}?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&playlist={{ data.hero.video_id | default('o8hP_t_7k_s') }}"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-                title="Background Video"
-                class="absolute z-0 w-full h-full"
-            ></iframe>
+    <section id="hero" class="relative w-full min-h-screen bg-gray-900 flex items-center justify-center text-white p-4 overflow-hidden">
+        <div id="hero-carousel" class="absolute inset-0 z-0 opacity-50">
+            <img src="{{ url_for('static', filename='images/hero_1.jpg') }}" alt="Hero Image 1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100">
+            <img src="{{ url_for('static', filename='images/hero_2.jpg') }}" alt="Hero Image 2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+            <img src="{{ url_for('static', filename='images/hero_3.jpg') }}" alt="Hero Image 3" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
         </div>
 
         <div class="container mx-auto text-center z-10 p-6 bg-gray-900/70 rounded-xl shadow-2xl animate-fadeInUp max-w-4xl">
             <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight text-white">
                 Technical Specialist
             </h1>
-            <h2 class="text-3xl md:text-4xl font-light mb-6 text-cyan-400">
+            <h2 class="text-3xl md:text-4xl font-light mb-6 text-gray-300">
                 {{ data.hero.subtitle | default('Precision Engineering for Quality.') }}
             </h2>
             <p class="text-xl max-w-2xl mx-auto text-gray-300">
                 {{ data.hero.tagline | default('Expertise in industrial cleaning, corrosion control, and chemical management.') }}
             </p>
             <div class="mt-10">
-                <a href="#contact" class="inline-block px-8 py-3 bg-[#E74C3C] text-white text-lg font-semibold rounded-full shadow-lg hover:bg-[#C0392B] transition duration-300 transform hover:scale-105">
-                    Contact for Collaboration
+                <a href="mailto:{{ data.email_address | default('#') }}" class="inline-block px-8 py-3 bg-[#E74C3C] text-white text-lg font-semibold rounded-full shadow-lg hover:bg-[#C0392B] transition duration-300 transform hover:scale-105">
+                    Email Me Now
                 </a>
             </div>
         </div>
@@ -50,7 +45,7 @@
             <div class="grid md:grid-cols-2 gap-10">
                 {% for study in data.casestudies %}
                 <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-[#E74C3C] hover:shadow-xl transition duration-300 animate-fadeInUp"
-                     style="animation-delay: {{ loop.index0 * 0.15 }}s;">
+                    style="animation-delay: {{ loop.index0 * 0.15 }}s;">
                     <h3 class="text-2xl font-semibold text-gray-900 mb-4">{{ study.title }}</h3>
                     <p class="text-gray-600 mb-4">{{ study.summary }}</p>
                     <div class="flex flex-wrap gap-2">
@@ -69,8 +64,8 @@
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Core Competencies</h2>
             <div class="flex flex-wrap justify-center gap-4">
                 {% for skill in data.skills %}
-                <span class="px-5 py-3 bg-gray-100 text-gray-800 font-medium rounded-full shadow-md hover:bg-[#FADBD8] transition duration-200 transform hover:scale-105 animate-fadeInUp"
-                      style="animation-delay: {{ loop.index0 * 0.1 }}s;">
+                <span class="px-5 py-3 bg-gray-100 text-gray-800 font-medium rounded-full shadow-md hover:bg-red-100 transition duration-200 transform hover:scale-105 animate-fadeInUp"
+                    style="animation-delay: {{ loop.index0 * 0.1 }}s;">
                     {{ skill }}
                 </span>
                 {% endfor %}
@@ -84,7 +79,7 @@
             <div class="space-y-10">
                 {% for project in data.projects %}
                 <div class="p-6 bg-gray-800 rounded-xl shadow-xl border-l-4 border-[#E74C3C] animate-fadeInUp"
-                     style="animation-delay: {{ loop.index0 * 0.2 }}s;">
+                    style="animation-delay: {{ loop.index0 * 0.2 }}s;">
                     <h3 class="text-3xl font-semibold mb-2 text-white">{{ project.name }}</h3>
                     <p class="text-gray-300">{{ project.description }}</p>
                 </div>
@@ -93,12 +88,12 @@
         </div>
     </section>
 
-    <section id="articles" class="py-20 md:py-32 container mx-auto px-4">
+    <section id="articles" class="py-20 md:py-32 container mx-auto px-4 bg-white">
         <div class="max-w-4xl mx-auto animate-fadeInUp">
             <h2 class="text-4xl font-bold mb-12 text-center text-gray-900">Technical Articles</h2>
             <div class="space-y-8">
                 {% for slug, article in data.articles.items() %}
-                <div class="p-6 border border-gray-200 rounded-lg hover:shadow-lg transition duration-300">
+                <div class="p-6 border border-gray-200 rounded-lg hover:shadow-xl hover:border-[#E74C3C] transition duration-300">
                     <h3 class="text-2xl font-semibold text-gray-900 mb-2">{{ article.title }}</h3>
                     <p class="text-gray-600 mb-4">{{ article.summary }}</p>
                     <a href="/article/{{ slug }}" class="text-[#E74C3C] font-medium hover:text-[#C0392B] flex items-center">
@@ -110,23 +105,30 @@
             </div>
         </div>
     </section>
+    
+    </div>
 
-    <section id="contact" class="py-20 md:py-32 bg-gray-900 w-full text-white">
-        <div class="container mx-auto px-4 text-center animate-fadeInUp">
-            <h2 class="text-4xl font-bold mb-6 text-white">Get In Touch</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">
-                Ready to optimize your processes or discuss a corrosion challenge? Let's connect.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8">
-                <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="inline-block px-6 py-3 bg-white text-[#E74C3C] font-semibold rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
-                    Email Me
-                </a>
-                <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="inline-block px-6 py-3 border-2 border-white text-white font-semibold rounded-full shadow-lg hover:bg-white hover:text-[#E74C3C] transition duration-300">
-                    Connect on LinkedIn
-                </a>
-            </div>
-        </div>
-    </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('hero-carousel');
+        const images = carousel.querySelectorAll('img');
+        let currentIndex = 0;
 
-</div>
+        function showNextImage() {
+            // Fade out current image
+            images[currentIndex].classList.remove('opacity-100');
+            images[currentIndex].classList.add('opacity-0');
+
+            // Move to next image, loop if at end
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Fade in next image
+            images[currentIndex].classList.remove('opacity-0');
+            images[currentIndex].classList.add('opacity-100');
+        }
+
+        // Start carousel after a delay
+        setInterval(showNextImage, 5000); // Change image every 5 seconds
+    });
+</script>
 {% endblock content %}
