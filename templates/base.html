@@ -1,177 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Technical Specialist – Cleanliness & Rust Prevention{% endblock %}</title>
-  <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-accent: #E74C3C;
-      --color-accent-dark: #C0392B;
-      --header-height: 65px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Technical Specialist – Cleanliness & Rust Prevention{% endblock %}</title>
+  
+    <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
+  
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* 🎨 Modernized Color Palette & Variables */
+    :root {
+      --color-accent: #4F46E5; /* Professional Indigo (Tailwind Indigo-600) */
+      --color-accent-dark: #4338CA; /* Darker Indigo (Tailwind Indigo-700) */
+      --color-critical: #E74C3C; /* Used sparingly for key CTAs/Highlights (Original Red) */
+      --header-height: 65px;
+    }
+    
+    body { font-family: 'Inter', sans-serif; background: #f7fafc; color: #111827; }
+    html { scroll-behavior: smooth; }
+    
+    /* Navigation Hover Effect */
+    .main-nav-link, .footer-link { transition: color 0.2s; }
+    .main-nav-link:hover, .main-nav-link:focus, .footer-link:hover { 
+        color: var(--color-accent) !important; 
     }
-    body { font-family: 'Inter', sans-serif; background: #f7fafc; color: #111827; }
-    html { scroll-behavior: smooth; }
-    .main-nav-link, .footer-link { transition: color 0.2s; }
-    .main-nav-link:hover, .main-nav-link:focus, .footer-link:hover { color: var(--color-accent) !important; }
-    .footer-link { transition: color 0.2s; }
-    .contact-item {
-      display: flex; align-items: center; padding: 12px 20px; border-radius: 9999px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); background: white; border: 2px solid var(--color-accent);
-      transition: transform 0.3s, background-color 0.3s, color 0.3s;
-      overflow: hidden; margin-bottom: 0.5rem;
+    
+    /* Floating Contact Button Styling (Refined for new color) */
+    .contact-item {
+      display: flex; align-items: center; padding: 12px 20px; border-radius: 9999px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow */
+      background: white; border: 2px solid var(--color-accent);
+      transition: transform 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
+      overflow: hidden; margin-bottom: 0.5rem;
+    }
+    .contact-item svg { color: var(--color-accent); transition: color 0.3s; }
+    .contact-item:hover { 
+        transform: translateY(-2px); /* Subtle lift on hover */
+        background-color: var(--color-accent); 
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
     }
-    .contact-item svg { color: var(--color-accent); transition: color 0.3s; }
-    .contact-item:hover { transform: translateX(10px); background-color: var(--color-accent); box-shadow: 0 6px 10px rgba(0,0,0,0.13);}
-    .contact-item:hover span, .contact-item:hover svg { color: white; }
-    .contact-item span {
-      white-space: nowrap; max-width: 0; opacity: 0; color: var(--color-accent);
-      transition: opacity 0.3s, margin 0.3s, max-width 0.3s;
-    }
-    @media (min-width: 640px) {
-      .contact-item:hover span { max-width: 150px; opacity: 1; margin-left: 10px;}
-    }
-    .animate-fadeInUp { animation: fadeInUp 1s ease-out; }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .mobile-menu-closed {
-      max-height: 0; opacity: 0; visibility: hidden; border-bottom: none !important; 
-      transition: max-height 0.4s, opacity 0.4s, visibility 0.4s;
-    }
-    .mobile-menu-open {
-      max-height: 350px; opacity: 1; visibility: visible;
-      transition: max-height 0.4s, opacity 0.4s, visibility 0.4s;
-    }
-  </style>
+    .contact-item:hover span, .contact-item:hover svg { color: white; }
+    .contact-item span {
+      white-space: nowrap; max-width: 0; opacity: 0; 
+      color: var(--color-accent); /* Set initial text color to accent */
+      transition: opacity 0.3s, margin 0.3s, max-width 0.3s;
+    }
+    @media (min-width: 640px) {
+      .contact-item:hover span { max-width: 150px; opacity: 1; margin-left: 10px;}
+    }
+    
+    /* Animation classes kept */
+    .animate-fadeInUp { animation: fadeInUp 1s ease-out; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    
+    /* Mobile Menu classes kept */
+    .mobile-menu-closed {
+      max-height: 0; opacity: 0; visibility: hidden; border-bottom: none !important; 
+      transition: max-height 0.4s, opacity 0.4s, visibility 0.4s;
+    }
+    .mobile-menu-open {
+      max-height: 350px; opacity: 1; visibility: visible;
+      transition: max-height 0.4s, opacity 0.4s, visibility 0.4s;
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-900">
 
-  <!-- Navigation -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md h-[var(--header-height)]">
-    <nav class="container mx-auto px-4 py-3 flex justify-between items-center h-full">
-      <a href="/" class="flex items-center space-x-2 text-2xl font-extrabold text-gray-900 tracking-tight">
-        <img src="{{ url_for('static', filename='images/Logo_EK.png') }}" alt="Ezhil K Logo" class="w-10 h-10 rounded-sm">
-        <span class="hidden sm:inline">Ezhil K</span>
-      </a>
-      <button id="mobile-menu-button" class="md:hidden p-2 text-gray-900 focus:outline-none" aria-label="Open main menu">
-        <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-      </button>
-      <div id="main-nav-links" class="absolute top-[var(--header-height)] left-0 w-full overflow-hidden bg-white/95 backdrop-blur-md shadow-lg p-6 space-y-4 text-lg border-t border-gray-200 
-        md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:overflow-visible md:shadow-none md:p-0 md:border-t-0 md:flex md:space-x-8 flex-col md:flex-row md:space-y-0">
-        <a href="#about" class="main-nav-link font-semibold block py-2">About</a>
-        <a href="#casestudies" class="main-nav-link font-semibold block py-2">Case Studies</a>
-        <a href="#competencies" class="main-nav-link font-semibold block py-2">Competencies</a>
-        <a href="#projects" class="main-nav-link font-semibold block py-2">Projects</a>
-        <a href="#articles" class="main-nav-link font-semibold block py-2">Articles</a>
-        <a href="#contact" class="main-nav-link font-semibold block py-2">Contact</a>
-      </div>
-    </nav>
-  </header>
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm h-[var(--header-height)] border-b border-gray-100">
+    <nav class="container mx-auto px-4 py-3 flex justify-between items-center h-full">
+            <a href="/" class="flex items-center space-x-2 text-2xl font-extrabold text-gray-900 tracking-tight">
+        <img src="{{ url_for('static', filename='images/Logo_EK.png') }}" alt="Ezhil K Logo" class="w-10 h-10">
+        <span class="hidden sm:inline">Ezhil K</span>
+      </a>
+            <button id="mobile-menu-button" class="md:hidden p-2 text-gray-900 focus:outline-none" aria-label="Open main menu">
+        <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+            <div id="main-nav-links" class="absolute top-[var(--header-height)] left-0 w-full overflow-hidden bg-white/95 backdrop-blur-md shadow-lg p-6 space-y-4 text-lg border-t border-gray-200 
+        md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:overflow-visible md:shadow-none md:p-0 md:border-t-0 md:flex md:space-x-8 flex-col md:flex-row md:space-y-0">
+        <a href="#about" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">About</a>
+        <a href="#casestudies" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Case Studies</a>
+        <a href="#competencies" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Competencies</a>
+        <a href="#projects" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Projects</a>
+        <a href="#articles" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Articles</a>
+        <a href="#contact" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
 
-  <footer class="bg-white text-gray-700 py-8 border-t border-gray-200">
-    <div class="container mx-auto px-4 text-center">
-      <p class="text-2xl font-bold text-gray-900 mb-3 leading-tight">Technical Specialist <span class="text-[#E74C3C]">— Ezhil</span></p>
-      <div class="mt-4 pt-6 border-t border-gray-200 text-sm text-gray-500">
-        &copy; {{ data.current_year | default(2025) }} Ezhil K. All rights reserved.
-      </div>
-    </div>
-  </footer>
+    <footer class="bg-white text-gray-700 py-8 border-t border-gray-200">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-2xl font-bold text-gray-900 mb-3 leading-tight">Technical Specialist <span style="color: var(--color-accent)">— Ezhil</span></p>
+      <div class="mt-4 pt-6 border-t border-gray-200 text-sm text-gray-500">
+        &copy; {{ data.current_year | default(2025) }} Ezhil K. All rights reserved.
+      </div>
+    </div>
+  </footer>
 
-  <!-- Floating Contact (shows on scroll) -->
-  <div id="contact-stack" class="fixed bottom-7 right-7 z-40 space-y-3 opacity-0 transition-opacity duration-500">
-    <a href="tel:{{ data.phone_number | default('000-000-0000') }}" class="contact-item rounded-full" aria-label="Call">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-      <span class="ml-2 font-medium text-base hidden sm:inline-block">Call Now</span>
-    </a>
-    <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="contact-item rounded-full" aria-label="Email">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-      <span class="ml-2 font-medium text-base hidden sm:inline-block">Email Me</span>
-    </a>
-    <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="contact-item rounded-full" rel="noopener" aria-label="LinkedIn">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.297-4 0v5.604h-3v-11h3v1.765c1.393-2.586 7-2.777 7 2.476v6.759z"/></svg>
-      <span class="ml-2 font-medium text-base hidden sm:inline-block">LinkedIn</span>
-    </a>
-  </div>
+    <div id="contact-stack" class="fixed bottom-7 right-7 z-40 space-y-3 opacity-0 transition-opacity duration-500">
+        <a href="tel:{{ data.phone_number | default('000-000-0000') }}" class="contact-item" aria-label="Call">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+      <span class="ml-2 font-medium text-base hidden sm:inline-block">Call Now</span>
+    </a>
+        <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="contact-item" aria-label="Email">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+      <span class="ml-2 font-medium text-base hidden sm:inline-block">Email Me</span>
+      
+    </a>
+        <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="contact-item" rel="noopener" aria-label="LinkedIn">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.297-4 0v5.604h-3v-11h3v1.765c1.393-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      <span class="ml-2 font-medium text-base hidden sm:inline-block">LinkedIn</span>
+    </a>
+  </div>
 
-  <!-- Cookie Consent -->
-  <div id="cookie-consent-banner" class="fixed left-4 bottom-4 bg-white border border-gray-300 rounded-lg shadow p-4 flex items-center hidden z-50" style="min-width:260px;">
-    <p class="mr-6 text-gray-700 text-sm">This site uses cookies to enhance user experience. By using this site, you agree to our <a href="/privacy-policy" class="text-[#E74C3C] underline" target="_blank">Privacy Policy</a>.</p>
-    <button id="accept-cookies-btn" class="ml-2 px-4 py-2 rounded bg-[#E74C3C] text-white font-bold hover:bg-[#C0392B] transition">I Understand</button>
-  </div>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // --- MOBILE NAV LOGIC
-      const menuButton = document.getElementById('mobile-menu-button');
-      const navLinks = document.getElementById('main-nav-links');
-      const iconOpen = document.getElementById('icon-open');
-      const iconClose = document.getElementById('icon-close');
-      const mdBreakpoint = 768;
-      if (menuButton && navLinks) {
-        if (window.innerWidth < mdBreakpoint) { navLinks.classList.add('mobile-menu-closed'); }
-        menuButton.addEventListener('click', () => {
-          navLinks.classList.toggle('mobile-menu-closed');
-          navLinks.classList.toggle('mobile-menu-open');
-          iconOpen.classList.toggle('hidden');
-          iconClose.classList.toggle('hidden');
-        });
-        document.querySelectorAll('#main-nav-links a').forEach(link => {
-          link.addEventListener('click', () => {
-            if (navLinks.classList.contains('mobile-menu-open') && window.innerWidth < mdBreakpoint) {
-              navLinks.classList.remove('mobile-menu-open');
-              navLinks.classList.add('mobile-menu-closed');
-              iconOpen.classList.remove('hidden');
-              iconClose.classList.add('hidden');
-            }
-          });
-        });
-        window.addEventListener('resize', () => {
-          if (window.innerWidth >= mdBreakpoint) {
-            navLinks.classList.remove('mobile-menu-closed', 'mobile-menu-open');
-            iconOpen.classList.remove('hidden');
-            iconClose.classList.add('hidden');
-          } else {
-            if (!navLinks.classList.contains('mobile-menu-open')) { navLinks.classList.add('mobile-menu-closed'); }
-          }
-        });
-      }
+    <div id="cookie-consent-banner" class="fixed left-4 bottom-4 bg-white border border-gray-300 rounded-lg shadow p-4 flex items-center hidden z-50" style="min-width:260px;">
+    <p class="mr-6 text-gray-700 text-sm">This site uses cookies to enhance user experience. By using this site, you agree to our <a href="/privacy-policy" style="color: var(--color-critical)" class="underline" target="_blank">Privacy Policy</a>.</p>
+    <button id="accept-cookies-btn" class="ml-2 px-4 py-2 rounded bg-[var(--color-critical)] text-white font-bold hover:bg-[var(--color-accent-dark)] transition">I Understand</button>
+  </div>
+  
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- MOBILE NAV LOGIC (Functional code retained)
+      const menuButton = document.getElementById('mobile-menu-button');
+      const navLinks = document.getElementById('main-nav-links');
+      const iconOpen = document.getElementById('icon-open');
+      const iconClose = document.getElementById('icon-close');
+      const mdBreakpoint = 768;
+      if (menuButton && navLinks) {
+        if (window.innerWidth < mdBreakpoint) { navLinks.classList.add('mobile-menu-closed'); }
+        menuButton.addEventListener('click', () => {
+          navLinks.classList.toggle('mobile-menu-closed');
+          navLinks.classList.toggle('mobile-menu-open');
+          iconOpen.classList.toggle('hidden');
+          iconClose.classList.toggle('hidden');
+        });
+        document.querySelectorAll('#main-nav-links a').forEach(link => {
+          link.addEventListener('click', () => {
+            if (navLinks.classList.contains('mobile-menu-open') && window.innerWidth < mdBreakpoint) {
+              navLinks.classList.remove('mobile-menu-open');
+              navLinks.classList.add('mobile-menu-closed');
+              iconOpen.classList.remove('hidden');
+              iconClose.classList.add('hidden');
+            }
+          });
+        });
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= mdBreakpoint) {
+            navLinks.classList.remove('mobile-menu-closed', 'mobile-menu-open');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+          } else {
+            if (!navLinks.classList.contains('mobile-menu-open')) { navLinks.classList.add('mobile-menu-closed'); }
+          }
+        });
+      }
 
-      // Cookie Banner
-      const banner = document.getElementById('cookie-consent-banner');
-      const acceptBtn = document.getElementById('accept-cookies-btn');
-      const consentKey = 'user_cookie_consent';
-      if (banner && localStorage.getItem(consentKey) !== 'true') {
-        setTimeout(() => { banner.classList.remove('hidden'); }, 500);
-      }
-      if (acceptBtn) {
-        acceptBtn.addEventListener('click', () => {
-          localStorage.setItem(consentKey, 'true');
-          banner.classList.add('hidden');
-        });
-      }
+      // Cookie Banner (Functional code retained)
+      const banner = document.getElementById('cookie-consent-banner');
+      const acceptBtn = document.getElementById('accept-cookies-btn');
+      const consentKey = 'user_cookie_consent';
+      if (banner && localStorage.getItem(consentKey) !== 'true') {
+        setTimeout(() => { banner.classList.remove('hidden'); }, 500);
+      }
+      if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+          localStorage.setItem(consentKey, 'true');
+          banner.classList.add('hidden');
+        });
+      }
 
-      // Floating Contact on Scroll
-      const contactStack = document.getElementById('contact-stack');
-      const scrollThreshold = document.documentElement.scrollHeight * 0.5;
-      function checkScroll() {
-        if (window.scrollY > scrollThreshold) {
-          contactStack.style.opacity = '1';
-        } else {
-          contactStack.style.opacity = '0';
-        }
-      }
-      window.addEventListener('scroll', checkScroll);
-      checkScroll();
-    });
-  </script>
+      // Floating Contact on Scroll (Functional code retained)
+      const contactStack = document.getElementById('contact-stack');
+      const scrollThreshold = document.documentElement.scrollHeight * 0.5;
+      function checkScroll() {
+        if (window.scrollY > scrollThreshold) {
+          contactStack.style.opacity = '1';
+        } else {
+          contactStack.style.opacity = '0';
+        }
+      }
+      window.addEventListener('scroll', checkScroll);
+      checkScroll();
+    });
+  </script>
 </body>
 </html>
