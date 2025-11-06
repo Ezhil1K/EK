@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 { "scripts": { "build": "npx tailwindcss -i ./static/input.css -o ./static/dist/output.css --minify", "dev": "npx tailwindcss -i ./static/input.css -o ./static/dist/output.css --watch" }, "devDependencies": { "tailwindcss": "^3.4.1" } }
+=======
+{ "scripts": { "build": "npx tailwindcss -i ./static/input.css -o ./static/dist/output.css --minify", "dev": "npx tailwindcss -i ./static/input.css -o ./static/dist/output.css --watch" }, "devDependencies": { "tailwindcss": "^3.4.1" } }
+>>>>>>> 2a2f0d5d69cfb099ac6f2a9fd52efb0208279a96

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -229,4 +230,237 @@
         handleScroll(); 
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ data.title | default('Technical Specialist Portfolio') }}{% endblock %}</title>
+    <!-- Assuming your compiled Tailwind CSS is here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/output.css') }}">
+    <!-- Typography Pairing: Using Inter, as suggested for body text -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+    {# --- FIXED HEADER (NAVIGATION BAR) --- #}
+    <!-- Scroll-Aware Sticky Navbar implemented via JS and transition-all -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-lg border-b border-gray-100 transition-all duration-300">
+        <!-- Content padding changes dynamically via JS for the shrinking effect -->
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center transition-all duration-300" id="header-content">
+            
+            <!-- LOGO: Logo Integration -->
+            <a href="#hero" class="flex items-center hover:opacity-80 transition duration-200" aria-label="Home">
+                <img src="{{ url_for('static', filename='images/Logo_EK.png') }}"
+                     alt="Technical Cleanliness Expert" 
+                     class="h-10 md:h-12">
+            </a>
+            
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-6 text-lg font-medium items-center">
+                <a href="#about" class="text-gray-600 hover:text-primary-red transition duration-200">About</a>
+                <a href="#competencies" class="text-gray-600 hover:text-primary-red transition duration-200">Competencies</a>
+                <a href="#casestudies" class="text-gray-600 hover:text-primary-red transition duration-200">Case Studies</a>
+                <a href="#projects" class="text-gray-600 hover:text-primary-red transition duration-200">Projects</a>
+                <a href="#articles" class="text-gray-600 hover:text-primary-red transition duration-200">Articles</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-primary-red p-2 rounded-lg transition duration-200" aria-label="Toggle menu">
+                 <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                 <svg id="close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-200">
+            <nav class="flex flex-col p-4 space-y-2 text-lg font-medium">
+                <a href="#about" class="block p-2 text-gray-700 hover:bg-gray-100 hover:text-primary-red transition duration-200 rounded-lg">About</a>
+                <a href="#competencies" class="block p-2 text-gray-700 hover:bg-gray-100 hover:text-primary-red transition duration-200 rounded-lg">Competencies</a>
+                <a href="#casestudies" class="block p-2 text-gray-700 hover:bg-gray-100 hover:text-primary-red transition duration-200 rounded-lg">Case Studies</a>
+                <a href="#projects" class="block p-2 text-gray-700 hover:bg-gray-100 hover:text-primary-red transition duration-200 rounded-lg">Projects</a>
+                <a href="#articles" class="block p-2 text-gray-700 hover:bg-gray-100 hover:text-primary-red transition duration-200 rounded-lg">Articles</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="pt-20"> 
+        {% block content %}{% endblock %}
+    </main>
+    
+    {# Floating CTA Button (Bottom Right) with sliding animation #}
+    <div class="fixed bottom-6 right-6 z-50 space-y-3">
+        
+        <a href="tel:{{ data.phone_number | default('#') }}"
+           class="group block relative w-16 h-16 bg-primary-red rounded-full shadow-xl flex items-center justify-center text-white transition-all duration-300 overflow-hidden hover:w-48 hover:bg-white hover:text-primary-red" 
+           aria-label="Call Now">
+            
+            <svg class="w-8 h-8 absolute left-1/2 transform -translate-x-1/2 group-hover:left-4 group-hover:translate-x-0 transition-all duration-300" 
+                 fill="currentColor" viewBox="0 0 24 24"><path d="M20.001 16.687l-3.321-1.789c-.569-.307-1.29-.153-1.685.354l-1.049 1.34c-1.666-1.03-3.69-3.05-4.721-4.717l1.34-1.049c.507-.395.661-1.116.354-1.685l-1.789-3.32c-.307-.568-1.028-.875-1.68-.535l-2.616 1.39c-1.077.57-1.674 1.76-1.46 2.95 1.09 5.86 5.86 10.63 11.72 11.72 1.19.214 2.38-.383 2.95-1.46l1.39-2.616c.339-.652.032-1.373-.537-1.68z"/></svg>
+            
+            <span class="absolute text-base font-semibold whitespace-nowrap opacity-0 left-10 group-hover:opacity-100 group-hover:left-14 transition-all duration-300 delay-100">
+                Call Now
+            </span>
+        </a>
+
+        <a href="mailto:{{ data.email_address | default('#') }}"
+           class="group block relative w-16 h-16 bg-primary-red rounded-full shadow-xl flex items-center justify-center text-white transition-all duration-300 overflow-hidden hover:w-64 hover:bg-white hover:text-primary-red" 
+           aria-label="Start a Conversation">
+            
+            <svg class="w-8 h-8 absolute left-1/2 transform -translate-x-1/2 group-hover:left-4 group-hover:translate-x-0 transition-all duration-300" 
+                 fill="currentColor" viewBox="0 0 24 24"><path d="M0 4c0-1.104.896-2 2-2h20c1.104 0 2 .896 2 2v16c0 1.104-.896 2-2 2h-20c-1.104 0-2-.896-2-2v-16zm2 0v.696l10 7.5 10-7.5v-.696h-20zm0 16h20v-11.458l-10 7.5-10-7.5v11.458z"/></svg>
+            
+            <!-- Floating CTA Button: Updated text based on feedback -->
+            <span class="absolute text-base font-semibold whitespace-nowrap opacity-0 left-10 group-hover:opacity-100 group-hover:left-14 transition-all duration-300 delay-100">
+                Start a Conversation
+            </span>
+        </a>
+
+        <a href="{{ data.social_media.linkedin | default('#') }}" target="_blank"
+           class="group block relative w-16 h-16 bg-primary-red rounded-full shadow-xl flex items-center justify-center text-white transition-all duration-300 overflow-hidden hover:w-48 hover:bg-white hover:text-primary-red" 
+           aria-label="LinkedIn">
+            
+            <svg class="w-8 h-8 absolute left-1/2 transform -translate-x-1/2 group-hover:left-4 group-hover:translate-x-0 transition-all duration-300" 
+                 fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.317-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            
+            <span class="absolute text-base font-semibold whitespace-nowrap opacity-0 left-10 group-hover:opacity-100 group-hover:left-14 transition-all duration-300 delay-100">
+                LinkedIn
+            </span>
+        </a>
+    </div>
+
+    {# --- FOOTER SECTION (Modern 3-Column Design) --- #}
+    <footer class="bg-gray-900 text-white pt-16" id="contact">
+        <div class="container mx-auto px-4">
+            
+            <!-- Footer Content Grid -->
+            <!-- Layout: Description (Left), Navigation (Center), Services (Left) -->
+            <div class="grid grid-cols-2 gap-12 pb-12 border-b border-gray-700
+                        md:grid-cols-3 lg:grid-cols-3">
+                
+                <!-- Column 1: Brand & Description (Always left-aligned) -->
+                <div class="col-span-2 md:col-span-1 md:text-left">
+                    <a href="#hero" class="flex items-center space-x-2 mb-4">
+                        <img src="{{ url_for('static', filename='images/Logo_EK.png') }}" alt="Technical Cleanliness Expert Logo" class="h-6">
+                        <span class="text-xl font-bold text-primary-red">Technical Cleanliness</span>
+                    </a>
+                    <p class="text-sm text-gray-400 mb-6 max-w-xs">
+                        Expert technical cleanliness specialist delivering precision particle analysis, chemical systems optimization, and quality excellence for automotive and industrial manufacturing.
+                    </p>
+                </div>
+
+                <!-- Column 2: Navigation (Center Aligned on Desktop) -->
+                <div class="md:col-start-2 md:col-end-3 text-left md:text-center">
+                    <h4 class="text-xl font-semibold mb-5">Navigation</h4>
+                    <div class="space-y-3 text-sm">
+                        <a href="#hero" class="block text-gray-400 hover:text-primary-red transition duration-200">Home</a>
+                        <a href="#about" class="block text-gray-400 hover:text-primary-red transition duration-200">About</a>
+                        <a href="#competencies" class="block text-gray-400 hover:text-primary-red transition duration-200">Skills</a>
+                        <a href="#projects" class="block text-gray-400 hover:text-primary-red transition duration-200">Projects</a>
+                        <a href="#articles" class="block text-gray-400 hover:text-primary-red transition duration-200">Articles</a>
+                        <a href="#contact" class="block text-gray-400 hover:text-primary-red transition duration-200">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Services (Left Aligned on Desktop) -->
+                <div class="col-span-1 md:col-start-3 md:col-end-4 text-left">
+                    <h4 class="text-xl font-semibold mb-5">Services</h4>
+                    <div class="space-y-3 text-sm">
+                        <p class="text-gray-400">Particle Analysis</p>
+                        <p class="text-gray-400">Chemical Systems</p>
+                        <p class="text-gray-400">Quality Management</p>
+                        <p class="text-gray-400">Process Optimization</p>
+                        <p class="text-gray-400">Team Training</p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Footer Bottom Bar (Copyright & Socials/Back to Top) -->
+            <div class="flex flex-col md:flex-row justify-between items-center py-6 text-sm">
+                
+                <!-- Copyright -->
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    &copy; 2025 Technical Cleanliness Expert. All rights reserved.
+                </p>
+
+                <div class="flex items-center space-x-6">
+                    <!-- Social Media Links -->
+                    <div class="flex space-x-3">
+                        <a href="{{ data.social_media.linkedin | default('#') }}" target="_blank" class="w-9 h-9 flex items-center justify-center bg-gray-800 text-gray-300 rounded-lg hover:bg-primary-red transition duration-300" aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.317-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="{{ data.social_media.github | default('#') }}" target="_blank" class="w-9 h-9 flex items-center justify-center bg-gray-800 text-gray-300 rounded-lg hover:bg-primary-red transition duration-300" aria-label="GitHub">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.352 3.438 9.873 8.207 11.419.75.136 1.05-.344 1.05-.777v-2.846c-3.344.736-4.041-1.611-4.041-1.611-.547-1.387-1.334-1.756-1.334-1.756-1.082-.742.083-.728.083-.728 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.497.998.108-.77.42-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.653.242 2.873.118 3.176.766.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .436.29.924 1.06.772 4.77-1.547 8.202-6.067 8.202-11.419 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <!-- Added a generic social link/icon (e.g., Twitter/X) to match the number of icons in the image -->
+                        <a href="{{ data.social_media.twitter | default('#') }}" target="_blank" class="w-9 h-9 flex items-center justify-center bg-gray-800 text-gray-300 rounded-lg hover:bg-primary-red transition duration-300" aria-label="Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.322 0-6.002 2.68-6.002 6 0 .463.054.912.152 1.344-4.989-.251-9.431-2.648-12.408-6.298-.515.88-.809 1.9-.809 3.005 0 2.083 1.066 3.92 2.673 4.995-.246-.007-.492-.075-.707-.193v.075c0 2.906 2.067 5.334 4.8 5.883-.585.161-1.2.247-1.823.247-.446 0-.878-.044-1.299-.124.766 2.38 2.985 4.135 5.617 4.189-2.058 1.619-4.661 2.59-7.49 2.59-.485 0-.965-.027-1.434-.083 2.652 1.705 5.8 2.704 9.227 2.704 11.084 0 17.168-9.18 17.168-17.172 0-.26-.006-.52-.016-.78.995-.719 1.862-1.609 2.542-2.724z"/></svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Back to Top Button -->
+                    <a href="#header" class="inline-flex items-center text-primary-red group">
+                        <span class="mr-2">Back to Top</span>
+                        <span class="w-8 h-8 flex items-center justify-center bg-primary-red text-white rounded-full group-hover:bg-red-700 transition duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle Script ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (menuButton && mobileMenu && menuIcon && closeIcon) {
+            menuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                // Toggle between hamburger and close icons
+                menuIcon.classList.toggle('hidden', !isHidden);
+                closeIcon.classList.toggle('hidden', isHidden);
+            });
+            
+            // Close menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+        }
+        
+        // --- Scroll-Aware Sticky Navbar Script ---
+        const header = document.getElementById('header');
+        const headerContent = document.getElementById('header-content');
+        const scrollThreshold = 50; // Pixels scrolled before header changes
+
+        function handleScroll() {
+            if (window.scrollY > scrollThreshold) {
+                // Shrink the padding and strengthen the shadow on scroll
+                headerContent.classList.remove('py-3');
+                headerContent.classList.add('py-2');
+                header.classList.add('shadow-xl', 'border-gray-200');
+            } else {
+                // Restore the original state
+                headerContent.classList.remove('py-2');
+                headerContent.classList.add('py-3');
+                header.classList.remove('shadow-xl', 'border-gray-200');
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        // Run once on load to catch initial scroll position
+        handleScroll(); 
+    </script>
+</body>
+>>>>>>> 2a2f0d5d69cfb099ac6f2a9fd52efb0208279a96
 </html>
