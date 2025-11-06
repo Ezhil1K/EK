@@ -1,55 +1,60 @@
 {
-  "title": "Technical Specialist - Cleanliness & Rust Prevention",
-  "logo_url": "/images/logo_EK.png",
-  "email_address": "ezhil.1ek@example.com",
-  "phone_number": "+91 99786 45456",
-  "linkedin_url": "https://linkedin.com/in/ezhil_k_spec",
-  "hero": {
-    "subtitle": "Precision Engineering for a Rust-Free Future.",
-    "video_id": "dQw4w9WgXcQ",
-    "tagline": "Specializing in industrial cleaning processes, corrosion control, and chemical management to elevate manufacturing quality."
-  },
-  "about": {
-    "headline": "Over 10 Years Driving Quality and Efficiency",
-    "description": "I am a dedicated Technical Specialist with a decade of experience focused on achieving zero-defect production standards in automotive and heavy machinery sectors. My expertise lies in designing, implementing, and auditing complex cleanliness processes, specifically **rust prevention** using VCI/HIC technologies, and advanced **chemical management** systems (e.g., coolants, cutting oils, pre-treatment). I translate data-driven insights into actionable process improvements that directly reduce costs and prevent warranty claims."
-  },
-  "skills": [
-    "Cleanliness & Rust Prevention (VCI/HIC)",
-    "Chemical Management & Auditing (Coolants, Oils)",
-    "Root Cause Analysis (8D, 5-Why)",
-    "Process Audits (VDA 19.1/19.2)",
-    "SPC & Data Analysis (Minitab, Power BI)",
-    "Six Sigma Green Belt"
-  ],
-  "casestudies": [
-    {
-      "title": "50% Reduction in Corrosion Defects",
-      "summary": "Implemented a multi-stage VCI packaging and process control protocol across 3 supply chain tiers, cutting corrosion-related defects by half in 6 months.",
-      "tags": ["VCI", "Corrosion Control", "Supply Chain Audit"]
+    "title": "Technical Specialist - Cleanliness & Rust Prevention",
+    "logo_url": "/images/logo_EK.png",
+    "email_address": "ezhil.1ek@example.com",
+    "phone_number": "+91 99786 45456",
+    
+    "social_media": {
+        "linkedin": "https://linkedin.com/in/ezhil_k_spec",
+        "github": "#" 
     },
-    {
-      "title": "Coolant Life Extension Project",
-      "summary": "Designed a new monitoring and dosing system for central coolant systems, extending fluid life from 6 to 18 months, saving $150k annually in disposal costs.",
-      "tags": ["Chemical Management", "Sustainability", "Cost Reduction"]
-    }
-  ],
-  "articles": {
-    "cleanliness-risks": {
-      "title": "The Hidden Risks in Your Cleanliness Reports",
-      "summary": "Revealing the four critical challenges—including occupancy, thresholding, and misclassification—that compromise particle counting accuracy and lead to system failures.",
-      "slug": "cleanliness-risks"
-    }
-  },
-  "projects": [
-    {
-      "name": "Global VCI Standard Operating Procedure",
-      "description": "Authored and deployed a standardized global SOP for Volatile Corrosion Inhibitor (VCI) application, ensuring compliance across five international plants.",
-      "tags": ["VCI", "Global Standard", "Process Compliance"]
+    
+    "hero": {
+        "subtitle": "Precision Engineering for a Rust-Free Future.",
+        "video_id": "dQw4w9WgXcQ",
+        "tagline": "Specializing in industrial cleaning processes, corrosion control, and chemical management to elevate manufacturing quality."
     },
-    {
-      "name": "Machine Fluid Health Dashboard",
-      "description": "Developed a real-time Power BI dashboard integrating sensor data for key fluid parameters (pH, concentration, conductivity) to enable proactive maintenance.",
-      "tags": ["Power BI", "IoT", "Chemical Management"]
-    }
-  ]
+    "about": {
+        "headline": "Over 10 Years Driving Quality and Efficiency",
+        "description": "I am a dedicated Technical Specialist with a decade of experience focused on achieving zero-defect production standards in automotive and heavy machinery sectors. My expertise lies in designing, implementing, and auditing complex cleanliness processes, specifically **rust prevention** using VCI/HIC technologies, and advanced **chemical management** systems (e.g., coolants, cutting oils, pre-treatment). I translate data-driven insights into actionable process improvements that directly reduce costs and prevent warranty claims."
+    },
+    "skills": [
+        "Cleanliness & Rust Prevention (VCI/HIC)",
+        "Chemical Management & Auditing (Coolants, Oils)",
+        "Root Cause Analysis (8D, 5-Why)",
+        "Process Audits (VDA 19.1/19.2)",
+        "SPC & Data Analysis (Minitab, Power BI)",
+        "Six Sigma Green Belt"
+    ],
+    "casestudies": [
+        {
+            "title": "50% Reduction in Corrosion Defects",
+            "summary": "Implemented a multi-stage VCI packaging and process control protocol across 3 supply chain tiers, cutting corrosion-related defects by half in 6 months.",
+            "tags": ["VCI", "Corrosion Control", "Supply Chain Audit"]
+        },
+        {
+            "title": "Coolant Life Extension Project",
+            "summary": "Designed a new monitoring and dosing system for central coolant systems, extending fluid life from 6 to 18 months, saving $150k annually in disposal costs.",
+            "tags": ["Chemical Management", "Sustainability", "Cost Reduction"]
+        }
+    ],
+    "articles": {
+        "cleanliness-risks": {
+            "title": "The Hidden Risks in Your Cleanliness Reports",
+            "summary": "Revealing the four critical challenges—including occupancy, thresholding, and misclassification—that compromise particle counting accuracy and lead to system failures.",
+            "slug": "cleanliness-risks"
+        }
+    },
+    "projects": [
+        {
+            "name": "Global VCI Standard Operating Procedure",
+            "description": "Authored and deployed a standardized global SOP for Volatile Corrosion Inhibitor (VCI) application, ensuring compliance across five international plants.",
+            "tags": ["VCI", "Global Standard", "Process Compliance"]
+        },
+        {
+            "name": "Machine Fluid Health Dashboard",
+            "description": "Developed a real-time Power BI dashboard integrating sensor data for key fluid parameters (pH, concentration, conductivity) to enable proactive maintenance.",
+            "tags": ["Power BI", "IoT", "Chemical Management"]
+        }
+    ]
 }
