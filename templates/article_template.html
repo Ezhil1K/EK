@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title | default("Generic Article") }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16 md:py-24 max-w-4xl bg-white shadow-lg rounded-xl mt-8 mb-12">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-6">{{ article.title | default("Article Title Missing") }}</h1>
+    <p class="text-xl font-light text-gray-700 leading-relaxed mb-8 border-b pb-4">
+        {{ article.summary | default("No summary provided.") }}
+    </p>
+    <div class="text-gray-600">
+        <!-- Placeholder content. You need to create a dedicated HTML file in the templates folder 
+             (e.g., templates/article_vci_vs_oil.html) to fill this article content. -->
+        <p class="mb-4">
+            This article is a placeholder template. To see the full content for "{{ article.title }}", please create a dedicated file 
+            in your templates directory (e.g., `templates/article_{{ article.title | lower | replace(' ', '_') }}.html`) 
+            and update the article route in `app.py` to point to it.
+        </p>
+        <p class="text-sm text-gray-500 mt-8">Slug: {{ article.slug }}</p>
+    </div>
+</div>
+{% endblock content %}
