@@ -7,44 +7,43 @@
   
     <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
   
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* 🎨 Modernized Color Palette & Variables */
+    /* 🔴 Branding Color: Red accents defined here for robustness */
     :root {
-      --color-accent: #4F46E5; /* Professional Indigo (Tailwind Indigo-600) */
-      --color-accent-dark: #4338CA; /* Darker Indigo (Tailwind Indigo-700) */
-      --color-critical: #E74C3C; /* Used sparingly for key CTAs/Highlights (Original Red) */
+      --color-accent: #E74C3C; /* Primary Red */
+      --color-accent-dark: #C0392B; /* Darker Red */
       --header-height: 65px;
     }
     
     body { font-family: 'Inter', sans-serif; background: #f7fafc; color: #111827; }
     html { scroll-behavior: smooth; }
     
-    /* Navigation Hover Effect */
+    /* Navigation and Footer Link Hover */
     .main-nav-link, .footer-link { transition: color 0.2s; }
     .main-nav-link:hover, .main-nav-link:focus, .footer-link:hover { 
         color: var(--color-accent) !important; 
     }
     
-    /* Floating Contact Button Styling (Refined for new color) */
+    /* Floating Contact Button Styling (Red Branding) */
     .contact-item {
       display: flex; align-items: center; padding: 12px 20px; border-radius: 9999px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
       background: white; border: 2px solid var(--color-accent);
       transition: transform 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
       overflow: hidden; margin-bottom: 0.5rem;
     }
     .contact-item svg { color: var(--color-accent); transition: color 0.3s; }
     .contact-item:hover { 
-        transform: translateY(-2px); /* Subtle lift on hover */
+        transform: translateY(-2px);
         background-color: var(--color-accent); 
         box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
     }
     .contact-item:hover span, .contact-item:hover svg { color: white; }
     .contact-item span {
       white-space: nowrap; max-width: 0; opacity: 0; 
-      color: var(--color-accent); /* Set initial text color to accent */
+      color: var(--color-accent); 
       transition: opacity 0.3s, margin 0.3s, max-width 0.3s;
     }
     @media (min-width: 640px) {
@@ -123,8 +122,8 @@
   </div>
 
     <div id="cookie-consent-banner" class="fixed left-4 bottom-4 bg-white border border-gray-300 rounded-lg shadow p-4 flex items-center hidden z-50" style="min-width:260px;">
-    <p class="mr-6 text-gray-700 text-sm">This site uses cookies to enhance user experience. By using this site, you agree to our <a href="/privacy-policy" style="color: var(--color-critical)" class="underline" target="_blank">Privacy Policy</a>.</p>
-    <button id="accept-cookies-btn" class="ml-2 px-4 py-2 rounded bg-[var(--color-critical)] text-white font-bold hover:bg-[var(--color-accent-dark)] transition">I Understand</button>
+    <p class="mr-6 text-gray-700 text-sm">This site uses cookies to enhance user experience. By using this site, you agree to our <a href="/privacy-policy" style="color: var(--color-accent)" class="underline" target="_blank">Privacy Policy</a>.</p>
+    <button id="accept-cookies-btn" class="ml-2 px-4 py-2 rounded bg-[var(--color-accent)] text-white font-bold hover:bg-[var(--color-accent-dark)] transition">I Understand</button>
   </div>
   
     <script>
