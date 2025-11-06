@@ -10,62 +10,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* 🔴 Branding Color: Red accents defined here for robustness */
+    /* Define header height directly in style */
     :root {
-      --color-accent: #E74C3C; /* Primary Red */
-      --color-accent-dark: #C0392B; /* Darker Red */
       --header-height: 65px;
     }
     
     body { font-family: 'Inter', sans-serif; background: #f7fafc; color: #111827; }
     html { scroll-behavior: smooth; }
     
-    /* Navigation and Footer Link Hover */
-    .main-nav-link, .footer-link { transition: color 0.2s; }
-    .main-nav-link:hover, .main-nav-link:focus, .footer-link:hover { 
-        color: var(--color-accent) !important; 
-    }
-    
-    /* Floating Contact Button Styling (Red Branding) */
+    /* --- Floating Contact Button Custom Styling (Uses direct color classes) --- */
     .contact-item {
       display: flex; align-items: center; padding: 12px 20px; border-radius: 9999px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-      background: white; border: 2px solid var(--color-accent);
+      background: white; border: 2px solid #E74C3C; /* Hardcoded border for stability */
       transition: transform 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
       overflow: hidden; margin-bottom: 0.5rem;
     }
-    .contact-item svg { color: var(--color-accent); transition: color 0.3s; }
+    /* Use standard Tailwind hover classes for the color changes on SVG/text */
     .contact-item:hover { 
         transform: translateY(-2px);
-        background-color: var(--color-accent); 
+        background-color: #E74C3C; /* Hardcoded hover background */
         box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
     }
-    .contact-item:hover span, .contact-item:hover svg { color: white; }
+    
+    /* The rest of the custom classes remain */
     .contact-item span {
       white-space: nowrap; max-width: 0; opacity: 0; 
-      color: var(--color-accent); 
       transition: opacity 0.3s, margin 0.3s, max-width 0.3s;
     }
     @media (min-width: 640px) {
       .contact-item:hover span { max-width: 150px; opacity: 1; margin-left: 10px;}
     }
-    
-    /* Animation classes kept */
+
+    /* Animation and Mobile Menu classes kept */
     .animate-fadeInUp { animation: fadeInUp 1s ease-out; }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    
-    /* Mobile Menu classes kept */
-    .mobile-menu-closed {
-      max-height: 0; opacity: 0; visibility: hidden; border-bottom: none !important; 
-      transition: max-height 0.4s, opacity 0.4s, visibility 0.4s;
-    }
-    .mobile-menu-open {
-      max-height: 350px; opacity: 1; visibility: visible;
-      transition: max-height 0.4s, opacity 0.4s, visibility 0.4s;
-    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+    .mobile-menu-closed { max-height: 0; opacity: 0; visibility: hidden; border-bottom: none !important; transition: max-height 0.4s, opacity 0.4s, visibility 0.4s; }
+    .mobile-menu-open { max-height: 350px; opacity: 1; visibility: visible; transition: max-height 0.4s, opacity 0.4s, visibility 0.4s; }
   </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -82,12 +63,12 @@
       </button>
             <div id="main-nav-links" class="absolute top-[var(--header-height)] left-0 w-full overflow-hidden bg-white/95 backdrop-blur-md shadow-lg p-6 space-y-4 text-lg border-t border-gray-200 
         md:relative md:top-auto md:left-auto md:w-auto md:h-auto md:overflow-visible md:shadow-none md:p-0 md:border-t-0 md:flex md:space-x-8 flex-col md:flex-row md:space-y-0">
-        <a href="#about" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">About</a>
-        <a href="#casestudies" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Case Studies</a>
-        <a href="#competencies" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Competencies</a>
-        <a href="#projects" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Projects</a>
-        <a href="#articles" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Articles</a>
-        <a href="#contact" class="main-nav-link font-semibold block py-2 hover:text-[var(--color-accent)]">Contact</a>
+        <a href="#about" class="main-nav-link font-semibold block py-2 hover:text-primary-red">About</a>
+        <a href="#casestudies" class="main-nav-link font-semibold block py-2 hover:text-primary-red">Case Studies</a>
+        <a href="#competencies" class="main-nav-link font-semibold block py-2 hover:text-primary-red">Competencies</a>
+        <a href="#projects" class="main-nav-link font-semibold block py-2 hover:text-primary-red">Projects</a>
+        <a href="#articles" class="main-nav-link font-semibold block py-2 hover:text-primary-red">Articles</a>
+        <a href="#contact" class="main-nav-link font-semibold block py-2 hover:text-primary-red">Contact</a>
       </div>
     </nav>
   </header>
@@ -98,7 +79,7 @@
 
     <footer class="bg-white text-gray-700 py-8 border-t border-gray-200">
     <div class="container mx-auto px-4 text-center">
-      <p class="text-2xl font-bold text-gray-900 mb-3 leading-tight">Technical Specialist <span style="color: var(--color-accent)">— Ezhil</span></p>
+      <p class="text-2xl font-bold text-gray-900 mb-3 leading-tight">Technical Specialist <span class="text-primary-red">— Ezhil</span></p>
       <div class="mt-4 pt-6 border-t border-gray-200 text-sm text-gray-500">
         &copy; {{ data.current_year | default(2025) }} Ezhil K. All rights reserved.
       </div>
@@ -107,23 +88,23 @@
 
     <div id="contact-stack" class="fixed bottom-7 right-7 z-40 space-y-3 opacity-0 transition-opacity duration-500">
         <a href="tel:{{ data.phone_number | default('000-000-0000') }}" class="contact-item" aria-label="Call">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-      <span class="ml-2 font-medium text-base hidden sm:inline-block">Call Now</span>
+      <svg class="w-6 h-6 text-primary-red contact-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+      <span class="ml-2 font-medium text-base hidden sm:inline-block text-primary-red">Call Now</span>
     </a>
         <a href="mailto:{{ data.email_address | default('contact@example.com') }}" class="contact-item" aria-label="Email">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-      <span class="ml-2 font-medium text-base hidden sm:inline-block">Email Me</span>
+      <svg class="w-6 h-6 text-primary-red contact-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+      <span class="ml-2 font-medium text-base hidden sm:inline-block text-primary-red">Email Me</span>
       
     </a>
         <a href="{{ data.linkedin_url | default('#') }}" target="_blank" class="contact-item" rel="noopener" aria-label="LinkedIn">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.297-4 0v5.604h-3v-11h3v1.765c1.393-2.586 7-2.777 7 2.476v6.759z"/></svg>
-      <span class="ml-2 font-medium text-base hidden sm:inline-block">LinkedIn</span>
+      <svg class="w-6 h-6 text-primary-red contact-item-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.297-4 0v5.604h-3v-11h3v1.765c1.393-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      <span class="ml-2 font-medium text-base hidden sm:inline-block text-primary-red">LinkedIn</span>
     </a>
   </div>
 
     <div id="cookie-consent-banner" class="fixed left-4 bottom-4 bg-white border border-gray-300 rounded-lg shadow p-4 flex items-center hidden z-50" style="min-width:260px;">
-    <p class="mr-6 text-gray-700 text-sm">This site uses cookies to enhance user experience. By using this site, you agree to our <a href="/privacy-policy" style="color: var(--color-accent)" class="underline" target="_blank">Privacy Policy</a>.</p>
-    <button id="accept-cookies-btn" class="ml-2 px-4 py-2 rounded bg-[var(--color-accent)] text-white font-bold hover:bg-[var(--color-accent-dark)] transition">I Understand</button>
+    <p class="mr-6 text-gray-700 text-sm">This site uses cookies to enhance user experience. By using this site, you agree to our <a href="/privacy-policy" class="text-primary-red underline" target="_blank">Privacy Policy</a>.</p>
+    <button id="accept-cookies-btn" class="ml-2 px-4 py-2 rounded bg-primary-red text-white font-bold hover:bg-dark-red transition">I Understand</button>
   </div>
   
     <script>
