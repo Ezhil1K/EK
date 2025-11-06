@@ -1,30 +1,30 @@
 {
-    "title": "Technical Specialist - Cleanliness & Rust Prevention",
+    "title": "Technical Cleanliness & Rust Prevention",
     "logo_url": "/images/logo_EK.png",
-    "email_address": "ezhil.1ek@example.com",
+    "email_address": "ezhil.1ek@hotmail.com",
     "phone_number": "+91 99786 45456",
     
     "social_media": {
-        "linkedin": "https://linkedin.com/in/ezhil_k_spec",
+        "linkedin": "https://www.linkedin.com/in/ezhilarasan-kandiah/",
         "github": "#" 
     },
     
     "hero": {
         "subtitle": "Precision Engineering for a Rust-Free Future.",
         "video_id": "dQw4w9WgXcQ",
-        "tagline": "Specializing in industrial cleaning processes, corrosion control, and chemical management to elevate manufacturing quality."
+        "tagline": "Specializing in Technical Cleanliness, Industrial Cleaning Processes, Rust Prevention, and Chemical Management to elevate manufacturing quality."
     },
     "about": {
         "headline": "Over 10 Years Driving Quality and Efficiency",
-        "description": "I am a dedicated Technical Specialist with a decade of experience focused on achieving zero-defect production standards in automotive and heavy machinery sectors. My expertise lies in designing, implementing, and auditing complex cleanliness processes, specifically **rust prevention** using VCI/HIC technologies, and advanced **chemical management** systems (e.g., coolants, cutting oils, pre-treatment). I translate data-driven insights into actionable process improvements that directly reduce costs and prevent warranty claims."
+        "description": "I am a dedicated Technical cleanliness expert with nearly a decade of experience focused on achieving zero-defect production standards in automotive sector. My expertise lies in designing, implementing, and auditing complex cleanliness processes, rust prevention and advanced chemical management. I translate data-driven insights into actionable process improvements that directly reduce costs and prevent warranty claims."
     },
     "skills": [
-        "Cleanliness & Rust Prevention (VCI/HIC)",
-        "Chemical Management & Auditing (Coolants, Oils)",
-        "Root Cause Analysis (8D, 5-Why)",
+        "Technical Cleanliness",
+        "Rust Prevention:,
         "Process Audits (VDA 19.1/19.2)",
+        "Root Cause Analysis (8D, 5-Why)",
+        "TecSa Training",
         "SPC & Data Analysis (Minitab, Power BI)",
-        "Six Sigma Green Belt"
     ],
     "casestudies": [
         {
@@ -57,4 +57,5 @@
             "tags": ["Power BI", "IoT", "Chemical Management"]
         }
     ]
+
 }
