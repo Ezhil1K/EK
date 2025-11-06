@@ -4,6 +4,13 @@ from flask import Flask, render_template, url_for, send_from_directory
 
 app = Flask(__name__)
 
+# --- CONTEXT PROCESSOR (The Fix!) ---
+@app.context_processor
+def inject_now():
+    """Makes the current datetime object available as 'now' in all templates."""
+    # Now you can use {{ now.year }} or {{ now }} anywhere in your Jinja templates
+    return {'now': datetime.now()}
+
 # --- Load Content Data ---
 def load_data():
     """Loads content from JSON file, using a safe fallback."""
@@ -24,7 +31,7 @@ def load_data():
         "email_address": "ezhil.k.contact@example.com",
         "linkedin_url": "https://linkedin.com/in/ezhilk",
         "logo_url": "images/logo.png",
-        "current_year": datetime.now().year,
+        # NOTE: current_year is now removed here because it's dynamically provided by the 'now' context processor
         "hero": {
             "subtitle": "Precision Engineering for Quality (Chemical Specialist)",
             "tagline": "Expertise in industrial cleaning, corrosion control, and chemical management."
@@ -57,7 +64,13 @@ def load_data():
         "articles": {
             "cleanliness-risks": {"title": "The Hidden Costs of Technical Cleanliness Risks", "summary": "An analysis of how particle contamination affects warranty costs and component failure rates."},
             "vci-vs-oil": {"title": "VCI vs. Oil-Based Rust Prevention: A Comparative Review", "summary": "Detailed pros and cons of modern corrosion control methods in storage and transit."}
-        }
+        },
+        # Added a placeholder social media structure for the base.html footer
+        "social_media": {
+             "linkedin": "https://linkedin.com/in/ezhilk",
+             "github": "#",
+        },
+        "phone_number": "+1-555-123-4567"
     }
 
     # Merge data, prioritizing loaded content but ensuring structure from defaults
@@ -71,6 +84,7 @@ def load_data():
 @app.route('/')
 def index():
     data = load_data()
+    # Passing the dictionary as 'data' is compatible with your existing index.html
     return render_template('index.html', data=data)
 
 @app.route('/article/<slug>')
@@ -79,7 +93,6 @@ def article(slug):
     # Simple article detail page placeholder
     if slug in data.get('articles', {}):
         article_data = data['articles'][slug]
-        # In a real app, you would fetch the full content here.
         return render_template('article_template.html', data=data, article=article_data)
     
     return render_template('404.html', data=data), 404
@@ -95,4 +108,6 @@ def page_not_found(e):
     return render_template('404.html', data=data), 404
 
 if __name__ == '__main__':
+    # Ensure you create a dummy article_template.html and 404.html 
+    # if you run this locally, or comment out the article route logic.
     app.run(debug=True)
