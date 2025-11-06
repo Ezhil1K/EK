@@ -5,42 +5,65 @@
 {% endblock %}
 
 {% block content %}
-<div class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-  <!-- HERO SECTION -->
-  <section id="hero" class="relative w-full min-h-screen bg-white flex items-center justify-center text-gray-900 p-4 overflow-hidden">
-    <div id="hero-carousel" class="absolute inset-0 z-0 opacity-20">
-      <img src="{{ url_for('static', filename='images/hero_1.jpg') }}" alt="Technical Cleanliness in Action" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100">
-      <img src="{{ url_for('static', filename='images/hero_2.jpg') }}" alt="Industrial Lab – Rust Prevention Process" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-      <img src="{{ url_for('static', filename='images/hero_3.jpg') }}" alt="Chemical Specialist at Work" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+<div class="relative min-h-screen flex flex-col items-center overflow-hidden">
+
+  <section id="hero" class="relative w-full min-h-screen bg-gray-900 flex items-center justify-center text-white p-4 overflow-hidden">
+    <div id="hero-background" class="absolute inset-0 z-0">
+      <img src="{{ url_for('static', filename='images/hero_1.jpg') }}" 
+           alt="Technical Cleanliness in Action" 
+           class="absolute inset-0 w-full h-full object-cover opacity-30 transition duration-500">
     </div>
-    <div class="container mx-auto text-center z-10 p-8 bg-white/90 rounded-2xl shadow-2xl animate-fadeInUp max-w-3xl">
-      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-gray-900">Technical Specialist</h1>
-      <h2 class="text-2xl md:text-4xl font-light mb-5 text-gray-700">{{ data.hero.subtitle | default('Precision Engineering for Quality.') }}</h2>
-      <p class="text-xl max-w-2xl mx-auto text-gray-600 font-medium">{{ data.hero.tagline | default('Expertise in industrial cleaning, corrosion control, and chemical management.') }}</p>
+    
+    <div class="container mx-auto text-center z-10 p-8 pt-24 pb-24 max-w-4xl animate-fadeInUp">
+      <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 tracking-tighter leading-tight text-white">
+        Technical Specialist
+      </h1>
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extralight mb-8 text-gray-300">
+        {{ data.hero.subtitle | default('Precision Engineering for a Rust-Free Future.') }}
+      </h2>
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto text-gray-400 font-medium mb-12">
+        {{ data.hero.tagline | default('Expertise in industrial cleaning, corrosion control, and chemical management to elevate manufacturing quality.') }}
+      </p>
       <div class="mt-10">
         <a href="mailto:{{ data.email_address | default('#') }}"
-          class="inline-block px-8 py-3 bg-[#E74C3C] text-white text-lg font-semibold rounded-full shadow-lg hover:bg-[#C0392B] hover:scale-105 transition duration-300 transform">
-          Contact Me
+          class="inline-block px-10 py-4 bg-[var(--color-critical)] text-white text-xl font-bold rounded-lg shadow-xl hover:bg-[var(--color-accent-dark)] hover:scale-[1.03] transition duration-300 transform border-b-4 border-[var(--color-accent-dark)]">
+          Start a Conversation
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
-  <section id="about" class="py-16 md:py-24 container mx-auto px-4 bg-white">
-    <div class="max-w-6xl mx-auto animate-fadeInUp">
-      <h2 class="text-4xl font-bold mb-10 text-left text-gray-900 border-b-4 border-[#E74C3C] pb-1 leading-tight">About Me</h2>
-      <div class="grid md:grid-cols-2 gap-12 items-center bg-white p-8 shadow-xl rounded-xl">
+  <section id="about" class="py-20 md:py-32 container mx-auto px-4 bg-white">
+    <div class="max-w-7xl mx-auto animate-fadeInUp">
+      <h2 class="text-5xl font-extrabold mb-16 text-gray-900 border-l-8 border-[var(--color-critical)] pl-4 leading-none">
+        About Me
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-16 items-start bg-white p-6 md:p-10 shadow-2xl rounded-2xl border-t-8 border-[var(--color-critical)]">
+        
         <div class="md:order-1 order-2">
-          <div class="relative mb-5">
-            <img src="{{ url_for('static', filename='images/image_193d85.jpg') }}"
-                 alt="Chemical Engineering Labs, Process Control" class="w-full h-auto rounded-lg shadow-lg aspect-video object-cover">
-            <h3 class="text-2xl font-semibold text-gray-900 mt-4">Expertise in Process Control</h3>
-          </div>
+          <h3 class="text-4xl font-bold mb-4 text-gray-900 leading-tight">
+            Engineering <span class="text-[var(--color-critical)]">Precision</span> in Every System
+          </h3>
+          <p class="text-gray-700 text-lg leading-relaxed mb-6 border-l-4 border-gray-200 pl-4">
+            Over a decade of expertise in technical cleanliness and chemical systems engineering—delivering robust, contamination-free solutions for automotive, aerospace, and medical device industries.
+          </p>
           <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            {{ data.about.description | default('A dedicated technical specialist in manufacturing and system optimization.') }}
+          </p>
+          <img src="{{ url_for('static', filename='images/image_193d85.jpg') }}"
+            alt="Chemical Engineering Labs, Process Control" class="w-full h-auto rounded-xl shadow-xl aspect-video object-cover mt-8">
+        </div>
+        
+        <div class="md:order-2 order-1">
+          <h3 class="text-3xl font-semibold text-gray-900 mb-6 border-b pb-2">
+            Core Expertise & Process Control
+          </h3>
+          <p class="text-gray-700 text-lg leading-relaxed mb-8">
             My expertise spans system design, implementation, validation, and continuous optimization—ensuring operations meet strict regulatory and quality standards.
           </p>
-          <ul class="grid grid-cols-2 gap-x-6 gap-y-3">
+          
+          <ul class="grid grid-cols-1 gap-y-4">
             {% set checklist_items = [
               "Particle contamination analysis",
               "Chemical dosing system design",
@@ -50,32 +73,21 @@
               "System optimization & efficiency"
             ] %}
             {% for item in checklist_items %}
-              <li class="flex items-start text-gray-800">
-                <svg class="w-5 h-5 mr-2 mt-1 text-[#E74C3C]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                <span>{{ item }}</span>
+              <li class="flex items-start text-gray-800 p-3 bg-gray-50 rounded-lg shadow-sm border-l-4 border-[var(--color-critical)] transition hover:bg-gray-100">
+                <svg class="w-6 h-6 mr-3 mt-0.5 text-[var(--color-critical)] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                <span class="font-medium text-lg">{{ item }}</span>
               </li>
             {% endfor %}
           </ul>
-        </div>
-        <div class="md:order-2 order-1">
-          <h3 class="text-3xl font-bold mb-4 text-gray-900 leading-tight">
-            Engineering <span class="text-[#E74C3C]">Precision</span> in Every System
-          </h3>
-          <p class="text-gray-700 text-lg leading-relaxed mb-6">
-            Over a decade of expertise in technical cleanliness and chemical systems engineering—delivering robust, contamination-free solutions for automotive, aerospace, and medical device industries.
-          </p>
-          <p class="text-gray-700 text-lg leading-relaxed mb-1">
-            {{ data.about.description | default('A dedicated technical specialist in manufacturing and system optimization.') }}
-          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- COMPETENCIES -->
-  <section id="competencies" class="py-16 md:py-24 container mx-auto px-4 bg-gray-50 border-t border-gray-200">
-    <div class="max-w-6xl mx-auto animate-fadeInUp">
-      <h2 class="text-4xl font-bold mb-10 text-left text-gray-900 border-b-4 border-[#E74C3C] pb-1 leading-tight">Core Competencies</h2>
+  <section id="competencies" class="py-20 md:py-32 container mx-auto px-4 bg-gray-50 border-t border-b border-gray-200">
+    <div class="max-w-7xl mx-auto animate-fadeInUp">
+      <h2 class="text-5xl font-extrabold mb-16 text-gray-900 border-l-8 border-[var(--color-critical)] pl-4 leading-none">Core Competencies</h2>
+      
       {% set competency_cards = [
         {"title": "Microscopic Analysis", "summary": "Advanced particle characterization and morphology assessment.","icon_path": "M17 11a1 1 0 010 2h-1a1 1 0 010-2h1zM5 11a1 1 0 010 2H4a1 1 0 010-2h1zM10 3a1 1 0 011 1v1h2V4a1 1 0 012 0v1h1a2 2 0 012 2v2a2 2 0 01-2 2h-1v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1H4a2 2 0 01-2-2V7a2 2 0 012-2h1V4a1 1 0 012 0v1h2V4a1 1 0 011-1z"},
         {"title": "Corrosion Control", "summary": "Expert VCI/HIC protocol design and implementation (Rust Prevention).","icon_path": "M13 10V3L4 14h6v7l9-11h-6z"},
@@ -84,41 +96,41 @@
         {"title": "Auditing & RCA", "summary": "VDA 19.1/19.2 compliance and 8D/5-Why root cause analysis.","icon_path": "M12 2a10 10 0 100 20 10 10 0 000-20zM9 16l-3-3 1.4-1.4L9 13.2l5.6-5.6L16 9l-7 7z"},
         {"title": "Documentation & SOPs", "summary": "Authored and deployed standardized global operating procedures.","icon_path": "M9 2a2 2 0 00-2 2v1H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2h-2V4a2 2 0 00-2-2h-4zm0 2h4v1H9V4zM5 7h14v10H5V7z"}
       ] %}
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {% for card in competency_cards %}
-          <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#E74C3C] hover:shadow-2xl hover:scale-105 transition duration-300 transform animate-fadeInUp" style="animation-delay: {{ loop.index0 * 0.1 }}s;">
-            <div class="flex items-center mb-4">
-              <div class="p-3 bg-red-100 rounded-full mr-4">
-                <svg class="w-8 h-8 text-[#E74C3C]" fill="currentColor" viewBox="0 0 24 24">
+          <div class="bg-white p-6 rounded-xl shadow-xl border-l-8 border-[var(--color-critical)] hover:shadow-2xl hover:scale-[1.02] transition duration-300 transform animate-fadeInUp" style="animation-delay: {{ loop.index0 * 0.1 }}s;">
+            <div class="flex items-start mb-4">
+              <div class="p-3 bg-red-50 rounded-full mr-4 flex-shrink-0">
+                <svg class="w-8 h-8 text-[var(--color-critical)]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="{{ card.icon_path }}" />
                 </svg>
               </div>
-              <h3 class="text-xl font-bold text-gray-900">{{ card.title }}</h3>
+              <h3 class="text-xl font-bold text-gray-900 mt-1">{{ card.title }}</h3>
             </div>
-            <p class="text-gray-600 text-base pl-12">{{ card.summary }}</p>
+            <p class="text-gray-600 text-base pl-[52px]">{{ card.summary }}</p>
           </div>
         {% endfor %}
       </div>
     </div>
   </section>
 
-  <!-- CASE STUDIES -->
-  <section id="casestudies" class="py-16 md:py-24 bg-white w-full border-t border-gray-200">
-    <div class="container mx-auto px-4 animate-fadeInUp">
-      <h2 class="text-4xl font-bold mb-10 text-left text-gray-900 border-b-4 border-[#E74C3C] pb-1 leading-tight">Impactful Case Studies</h2>
-      <div class="grid md:grid-cols-3 gap-8">
+  <section id="casestudies" class="py-20 md:py-32 bg-white w-full border-t border-gray-200">
+    <div class="container mx-auto px-4 max-w-7xl animate-fadeInUp">
+      <h2 class="text-5xl font-extrabold mb-16 text-gray-900 border-l-8 border-[var(--color-critical)] pl-4 leading-none">Impactful Case Studies</h2>
+      <div class="grid md:grid-cols-3 gap-10">
         {% for study in data.casestudies %}
-          <div class="bg-white rounded-xl shadow-lg border-t-4 border-[#E74C3C] hover:shadow-2xl transition duration-300 animate-fadeInUp overflow-hidden" style="animation-delay: {{ loop.index0 * 0.15 }}s;">
+          <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 animate-fadeInUp overflow-hidden border border-gray-100" style="animation-delay: {{ loop.index0 * 0.15 }}s;">
             <div class="relative h-48 w-full bg-gray-100 overflow-hidden">
               <img src="{{ url_for('static', filename='images/placeholder_case_' + loop.index|string + '.jpg') }}"
-                   alt="{{ study.title }} impactful engineering project" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                  alt="{{ study.title }} impactful engineering project" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-semibold text-gray-900 mb-3">{{ study.title }}</h3>
-              <p class="text-gray-600 mb-4 text-sm">{{ study.summary }}</p>
-              <div class="flex flex-wrap gap-2">
+              <h3 class="text-2xl font-bold text-gray-900 mb-3 leading-snug">{{ study.title }}</h3>
+              <p class="text-gray-600 mb-4 text-base">{{ study.summary }}</p>
+              <div class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
                 {% for tag in study.tags %}
-                  <span class="text-xs font-medium bg-gray-200 text-gray-700 px-3 py-1 rounded-full">{{ tag }}</span>
+                  <span class="text-xs font-semibold bg-gray-200 text-gray-800 px-3 py-1 rounded-full">{{ tag }}</span>
                 {% endfor %}
               </div>
             </div>
@@ -128,18 +140,17 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="py-16 md:py-24 bg-white border-t border-gray-200">
-    <div class="container mx-auto px-4 animate-fadeInUp">
-      <h2 class="text-4xl font-bold mb-10 text-left text-gray-900 border-b-4 border-[#E74C3C] pb-1 leading-tight">Selected Projects</h2>
-      <div class="grid md:grid-cols-3 gap-8">
+  <section id="projects" class="py-20 md:py-32 bg-gray-50 border-t border-gray-200">
+    <div class="container mx-auto px-4 max-w-7xl animate-fadeInUp">
+      <h2 class="text-5xl font-extrabold mb-16 text-gray-900 border-l-8 border-[var(--color-critical)] pl-4 leading-none">Selected Projects</h2>
+      <div class="grid md:grid-cols-3 gap-10">
         {% for project in data.projects %}
-          <div class="bg-white rounded-xl shadow-lg border-t-4 border-[#E74C3C] hover:shadow-2xl transition duration-300 animate-fadeInUp overflow-hidden" style="animation-delay: {{ loop.index0 * 0.2 }}s;">
+          <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 animate-fadeInUp overflow-hidden border border-gray-100" style="animation-delay: {{ loop.index0 * 0.2 }}s;">
             <div class="relative h-48 w-full bg-gray-100 overflow-hidden">
-              <img src="{{ url_for('static', filename='images/placeholder_project_' + loop.index|string + '.jpg') }}" alt="{{ project.name }} project sample" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              <img src="{{ url_for('static', filename='images/placeholder_project_' + loop.index|string + '.jpg') }}" alt="{{ project.name }} project sample" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-semibold mb-2 text-gray-900">{{ project.name }}</h3>
+              <h3 class="text-2xl font-bold mb-2 text-gray-900 leading-snug">{{ project.name }}</h3>
               <p class="text-gray-700 text-base">{{ project.description }}</p>
             </div>
           </div>
@@ -148,21 +159,20 @@
     </div>
   </section>
 
-  <!-- ARTICLES -->
-  <section id="articles" class="py-16 md:py-24 container mx-auto px-4 bg-white border-t border-gray-200">
-    <div class="max-w-6xl mx-auto animate-fadeInUp">
-      <h2 class="text-4xl font-bold mb-10 text-left text-gray-900 border-b-4 border-[#E74C3C] pb-1 leading-tight">Technical Articles</h2>
-      <div class="grid md:grid-cols-2 gap-8">
+  <section id="articles" class="py-20 md:py-32 container mx-auto px-4 bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto animate-fadeInUp">
+      <h2 class="text-5xl font-extrabold mb-16 text-left text-gray-900 border-l-8 border-[var(--color-critical)] pl-4 leading-none">Technical Articles</h2>
+      <div class="grid md:grid-cols-2 gap-10">
         {% for slug, article in data.articles.items() %}
-          <a href="/article/{{ slug }}" class="block bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition duration-300 overflow-hidden">
-            <div class="relative h-56 w-full bg-gray-100 overflow-hidden">
+          <a href="/article/{{ slug }}" class="block bg-white rounded-xl shadow-xl hover:shadow-2xl hover:translate-y-[-5px] transition duration-300 overflow-hidden border border-gray-100">
+            <div class="relative h-60 w-full bg-gray-100 overflow-hidden">
               <img src="{{ url_for('static', filename='images/placeholder_article_' + loop.index|string + '.jpg') }}"
-                   alt="{{ article.title }} expert article" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                  alt="{{ article.title }} expert article" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
             </div>
             <div class="p-6">
-              <h3 class="text-2xl font-semibold text-gray-900 mb-2">{{ article.title }}</h3>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2 leading-snug">{{ article.title }}</h3>
               <p class="text-gray-600 mb-4 text-base">{{ article.summary }}</p>
-              <span class="text-[#E74C3C] font-medium flex items-center hover:text-[#C0392B] transition">
+              <span class="text-[var(--color-critical)] font-semibold flex items-center hover:text-[var(--color-accent-dark)] transition">
                 Read Full Article
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </span>
@@ -172,20 +182,6 @@
       </div>
     </div>
   </section>
+
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('hero-carousel');
-    const images = carousel.querySelectorAll('img');
-    let currentIndex = 0;
-    function showNextImage() {
-      images[currentIndex].classList.remove('opacity-100');
-      images[currentIndex].classList.add('opacity-0');
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.remove('opacity-0');
-      images[currentIndex].classList.add('opacity-100');
-    }
-    setInterval(showNextImage, 5000);
-  });
-</script>
 {% endblock content %}
