@@ -6,16 +6,14 @@
     <title>{% block title %}Portfolio{% endblock %}</title>
     
     <!-- 
-      FIX 1: Removed the Tailwind CDN script.
-      FIX 2: Added the link to your own local output.css file.
-      We use url_for() to correctly point to the static directory.
+      This links to the local output.css file.
+      This is correct for your Vercel build setup.
     -->
     <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
         /* Apply the Inter font globally */
-        /* Note: This is also handled by your tailwind.config.js, but good to keep! */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f7f7;
@@ -40,11 +38,6 @@
         }
     </style>
     
-    <!-- 
-      FIX 3: Removed the inline tailwind.config = {...} script.
-      This is no longer needed because we are using your local build,
-      which already reads your tailwind.config.js file.
-    -->
 </head>
 <body class="text-gray-900">
 
@@ -56,7 +49,6 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center">
                     <a href="/" class="flex-shrink-0">
-                        {# IMPROVEMENT: Use url_for for static assets for reliability #}
                         <img src="{{ url_for('static', filename='images/logo_ek.png') }}" 
                              alt="{{ data.initials | default('TS') }} Specialist Logo" 
                              class="h-10 w-auto">
@@ -101,11 +93,8 @@
     </main>
 
     {# -------------------------------------- #}
-    {# 3. FLOATING CTA BUTTONS (INDIVIDUAL SLIDE FIX APPLIED) #}
+    {# 3. FLOATING CTA BUTTONS #}
     {# -------------------------------------- #}
-    <!-- The HTML structure here was already correct. -->
-    <!-- The 'group' class is correctly placed on each <a> tag. -->
-    <!-- The problem was the CSS, which we are fixing. -->
     <div class="fixed bottom-6 right-6 z-50 space-y-3">
         
         {# 3.1. Call Button #}
@@ -149,63 +138,43 @@
     </div>
 
     {# -------------------------------------- #}
-    {# 4. FOOTER #}
+    {# 4. FOOTER (NEW WHITE DESIGN) #}
     {# -------------------------------------- #}
-    <footer class="bg-gray-900 text-white py-12 border-t-4 border-primary-red/50">
+    <footer class="bg-white text-gray-900 py-12 border-t-4 border-primary-red/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 
-                {# Column 1: Brand & Summary - Keeping text logo here for contrast #}
-                <div>
-                    <a href="/" class="text-3xl font-extrabold text-primary-red tracking-tight mb-4 block">
-                        {{ data.initials | default('TS') }}<span class="text-white font-light ml-1">Specialist</span>
+                {# Column 1: Brand & Summary (Updated) #}
+                <div class="md:col-span-2"> <!-- Give brand section more space -->
+                    <a href="/" class="flex items-center space-x-3 mb-4">
+                        <img src="{{ url_for('static', filename='images/logo_ek.png') }}" 
+                             alt="{{ data.initials | default('TS') }} Specialist Logo" 
+                             class="h-10 w-auto">
+                        <span class="text-xl font-semibold text-gray-800">
+                            Technical Specialist
+                        </span>
                     </a>
-                    <p class="text-gray-400 text-sm">
-                        {{ (data.footer | default({})).summary | default('Precision Engineering and Corrosion Control.') }}
+                    <p class="text-gray-600 text-sm">
+                        Cleanliness & Rust Prevention
                     </p>
                 </div>
 
-                {# Column 2: Quick Links #}
+                {# Column 2: Quick Links (Updated) #}
                 <div>
                     <h4 class="text-lg font-semibold mb-4 text-primary-red">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="{{ url_for('index') }}#about" class="text-gray-400 hover:text-white transition duration-200 text-sm">About Me</a></li>
-                        <li><a href="{{ url_for('index') }}#competencies" class="text-gray-400 hover:text-white transition duration-200 text-sm">My Expertise</a></li>
-                        <li><a href="{{ url_for('index') }}#casestudies" class="text-gray-400 hover:text-white transition duration-200 text-sm">Case Studies</a></li>
-                        <li><a href="{{ url_for('index') }}#articles" class="text-gray-400 hover:text-white transition duration-200 text-sm">Technical Insights</a></li>
+                        <li><a href="{{ url_for('index') }}#about" class="text-gray-600 hover:text-primary-red transition duration-200 text-sm">About Me</a></li>
+                        <li><a href="{{ url_for('index') }}#competencies" class="text-gray-600 hover:text-primary-red transition duration-200 text-sm">My Expertise</a></li>
+                        <li><a href="{{ url_for('index') }}#casestudies" class="text-gray-600 hover:text-primary-red transition duration-200 text-sm">Case Studies</a></li>
+                        <li><a href="{{ url_for('index') }}#articles" class="text-gray-600 hover:text-primary-red transition duration-200 text-sm">Technical Insights</a></li>
                     </ul>
                 </div>
 
-                {# Column 3: Contact Info #}
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-primary-red">Connect</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3 text-primary-red" fill="currentColor" viewBox="0 0 24 24"><path d="M0 4c0-1.104.896-2 2-2h20c1.104 0 2 .896 2 2v16c0 1.104-.896 2-2 2h-20c-1.104 0-2-.896-2-2v-16zm2 0v.696l10 7.5 10-7.5v-.696h-20zm0 16h20v-11.458l-10 7.5-10-7.5v11.458z"/></svg>
-                            <a href="mailto:{{ data.email_address | default('#') }}" class="text-gray-400 hover:text-white transition duration-200">{{ data.email_address | default('contact@example.com') }}</a>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-3 text-primary-red" fill="currentColor" viewBox="0 0 24 24"><path d="M20.001 16.687l-3.321-1.789c-.569-.307-1.29-.153-1.685.354l-1.049 1.34c-1.666-1.03-3.69-3.05-4.721-4.717l1.34-1.049c.507-.395.661-1.116.354-1.685l-1.789-3.32c-.307-.568-1.028-.875-1.68-.535l-2.616 1.39c-1.077.57-1.674 1.76-1.46 2.95 1.09 5.86 5.86 10.63 11.72 11.72 1.19.214 2.38-.383 2.95-1.46l1.39-2.616c.339-.652.032-1.373-.537-1.68z"/></svg>
-                            <a href="tel:{{ data.phone_number | default('#') }}" class="text-gray-400 hover:text-white transition duration-200">{{ data.phone_number | default('(555) 123-4567') }}</a>
-                        </li>
-                    </ul>
-                </div>
-
-                {# Column 4: Social Media #}
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-primary-red">Follow Me</h4>
-                    <div class="flex space-x-4">
-                        <a href="{{ data.social_media.linkedin | default('#') }}" target="_blank" class="text-gray-400 hover:text-primary-red transition duration-200" aria-label="LinkedIn">
-                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.317-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        </a>
-                        {# Add more social links if needed, e.g., Twitter, GitHub #}
-                    </div>
-                </div>
+                {# Column 3 & 4: Removed as requested #}
 
             </div>
             
-            <div class="mt-12 pt-6 border-t border-gray-700 text-center">
-                {# IMPROVEMENT: Use a dynamic year. Pass 'current_year' from Flask. #}
+            <div class="mt-12 pt-6 border-t border-gray-200 text-center">
                 <p class="text-sm text-gray-500">&copy; {{ current_year | default('2025') }} {{ data.full_name | default('Technical Specialist') }}. All rights reserved.</p>
             </div>
         </div>
