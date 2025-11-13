@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Portfolio{% endblock %}</title>
+    
+    <!-- 
+      FIX 1: Removed the Tailwind CDN script.
+      FIX 2: Added the link to your own local output.css file.
+      We use url_for() to correctly point to the static directory.
+    -->
+    <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Apply the Inter font globally */
+        /* Note: This is also handled by your tailwind.config.js, but good to keep! */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f7f7;
@@ -31,19 +39,12 @@
             opacity: 0; /* Start invisible */
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-red': '#D80032',
-                        'dark-red': '#A50026',
-                        'background-gray': '#f7f7f7',
-                    },
-                }
-            }
-        }
-    </script>
+    
+    <!-- 
+      FIX 3: Removed the inline tailwind.config = {...} script.
+      This is no longer needed because we are using your local build,
+      which already reads your tailwind.config.js file.
+    -->
 </head>
 <body class="text-gray-900">
 
@@ -55,10 +56,10 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center">
                     <a href="/" class="flex-shrink-0">
-                        {# LOGO: Corrected path to include /static/ as per the file structure. #}
-                        <img src="/static/images/logo_ek.png" 
-                            alt="{{ data.initials | default('TS') }} Specialist Logo" 
-                            class="h-10 w-auto">
+                        {# IMPROVEMENT: Use url_for for static assets for reliability #}
+                        <img src="{{ url_for('static', filename='images/logo_ek.png') }}" 
+                             alt="{{ data.initials | default('TS') }} Specialist Logo" 
+                             class="h-10 w-auto">
                     </a>
                 </div>
                 <div class="hidden md:block">
@@ -102,6 +103,9 @@
     {# -------------------------------------- #}
     {# 3. FLOATING CTA BUTTONS (INDIVIDUAL SLIDE FIX APPLIED) #}
     {# -------------------------------------- #}
+    <!-- The HTML structure here was already correct. -->
+    <!-- The 'group' class is correctly placed on each <a> tag. -->
+    <!-- The problem was the CSS, which we are fixing. -->
     <div class="fixed bottom-6 right-6 z-50 space-y-3">
         
         {# 3.1. Call Button #}
@@ -201,7 +205,8 @@
             </div>
             
             <div class="mt-12 pt-6 border-t border-gray-700 text-center">
-                <p class="text-sm text-gray-500">&copy; {{ '2025' }} {{ data.full_name | default('Technical Specialist') }}. All rights reserved.</p>
+                {# IMPROVEMENT: Use a dynamic year. Pass 'current_year' from Flask. #}
+                <p class="text-sm text-gray-500">&copy; {{ current_year | default('2025') }} {{ data.full_name | default('Technical Specialist') }}. All rights reserved.</p>
             </div>
         </div>
     </footer>
