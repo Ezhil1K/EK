@@ -1,0 +1,44 @@
+# Node.js
+node_modules
+npm-debug.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# Build output
+static/dist/output.css
+
+
+After pasting this, **commit the new file**.
+
+### Step 2: Delete the old `output.css` file
+
+Now that you've told Git to ignore this file, you can safely delete the old, broken one.
+
+1.  Go to the file `static/dist/output.css`.
+2.  Delete this file.
+3.  Commit the deletion.
+
+### Step 3: Update your `base.html` file
+
+This is the final step. You need to edit `templates/base.html` to remove the CDN and link to the CSS file that Vercel will now build for you.
+
+This is the same code I sent before, just confirming it's what you need.
+
+
+http://googleusercontent.com/immersive_entry_chip/0
+
+I've provided the two files you need to create/update.
+
+Once you **commit these three changes** (create `.gitignore`, delete `output.css`, update `base.html`), Vercel will trigger a new deployment. This new deployment will:
+
+1.  Read your `package.json` and run your `build` script.
+2.  Generate a **new, correct `output.css`** file on Vercel's server (this file will be ignored by GitHub, as it should be).
+3.  Serve your updated `base.html`, which now links to the correct file.
+
+This will fix your animation bug.
